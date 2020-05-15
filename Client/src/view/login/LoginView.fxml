@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
@@ -8,8 +9,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="333.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="82.0" prefWidth="412.0" style="-fx-background-color: #E8E8E8;">
          <children>
@@ -32,17 +35,68 @@
             </JFXTextField>
          </children>
       </HBox>
-      <HBox prefHeight="58.0" prefWidth="400.0">
+      <HBox prefHeight="52.0" prefWidth="400.0">
          <children>
             <JFXPasswordField focusColor="#003780" opacity="0.95" prefHeight="40.0" prefWidth="320.0" promptText="Password">
                <HBox.margin>
-                  <Insets left="40.0" top="5.0" />
+                  <Insets left="40.0" />
                </HBox.margin>
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </JFXPasswordField>
          </children>
+         <VBox.margin>
+            <Insets top="2.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox prefHeight="20.0" prefWidth="400.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="No account? " wrappingWidth="70.13671875">
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+            </Text>
+            <Text fill="#003780" strokeType="OUTSIDE" strokeWidth="0.0" text="Create one!" underline="true" wrappingWidth="66.93670654296875" />
+         </children>
+         <VBox.margin>
+            <Insets top="25.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox prefHeight="27.0" prefWidth="400.0">
+         <children>
+            <Text fill="#003780" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter as a guest" underline="true" wrappingWidth="87.73675537109375">
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+            </Text>
+         </children>
+         <VBox.margin>
+            <Insets top="3.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox prefHeight="38.0" prefWidth="400.0">
+         <children>
+            <JFXButton prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #C5D5D6;" text="Cancel">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="192.0" />
+               </HBox.margin>
+            </JFXButton>
+            <JFXButton prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #354f6a;" text="Sign in" textFill="#ededed">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="7.0" />
+               </HBox.margin>
+            </JFXButton>
+         </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
       </HBox>
    </children>
 </VBox>
