@@ -4,8 +4,9 @@ public class Discussion
 {
   private MessageList messageList;
   private UserBase userBase;
+  private String discussionId;
 
-  public Discussion()
+  public Discussion(String discussionId)
   {
     messageList = new MessageList();
     userBase = new UserBase();
@@ -31,5 +32,17 @@ public class Discussion
   private void addMessage(String message, String login)
   {
     messageList.addMessage(message,login);
+  }
+  private MessageList getMessageList()
+  {
+    return messageList;
+  }
+  private UserBase getUserBase()
+  {
+    return userBase;
+  }
+  public String getDiscussionId()
+  {
+    return discussionId;
   }
 }
