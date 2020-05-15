@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="82.0" prefWidth="412.0" style="-fx-background-color: #DADFE1;">
+         <children>
+            <ImageView fitHeight="62.0" fitWidth="464.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../sources/images/v2.3_240p_transparent.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="96.0" top="11.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</VBox>
