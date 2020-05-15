@@ -13,5 +13,6 @@
     <orderEntry type="library" name="MyObserver-1.2" level="application" />
     <orderEntry type="library" name="XmlJsonParser-1.3" level="application" />
     <orderEntry type="library" name="jfoenix-9.0.8" level="application" />
+    <orderEntry type="library" name="gson-2.8.5" level="application" />
   </component>
 </module>
