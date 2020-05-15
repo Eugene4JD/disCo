@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -8,7 +11,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox prefHeight="82.0" prefWidth="412.0" style="-fx-background-color: #DADFE1;">
+      <HBox prefHeight="82.0" prefWidth="412.0" style="-fx-background-color: #E8E8E8;">
          <children>
             <ImageView fitHeight="62.0" fitWidth="464.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -18,6 +21,27 @@
                   <Insets left="96.0" top="11.0" />
                </HBox.margin>
             </ImageView>
+         </children>
+      </HBox>
+      <HBox prefHeight="58.0" prefWidth="400.0">
+         <children>
+            <JFXTextField focusColor="#003780" opacity="0.95" prefHeight="40.0" prefWidth="320.0" promptText="Username">
+               <HBox.margin>
+                  <Insets left="40.0" top="10.0" />
+               </HBox.margin>
+            </JFXTextField>
+         </children>
+      </HBox>
+      <HBox prefHeight="58.0" prefWidth="400.0">
+         <children>
+            <JFXPasswordField focusColor="#003780" opacity="0.95" prefHeight="40.0" prefWidth="320.0" promptText="Password">
+               <HBox.margin>
+                  <Insets left="40.0" top="5.0" />
+               </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXPasswordField>
          </children>
       </HBox>
    </children>
