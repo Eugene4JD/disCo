@@ -2,6 +2,9 @@ package mediator;
 
 import com.google.gson.Gson;
 import model.ClientModel;
+import model.Discussion;
+import network.CreateDiscussionRequest;
+import network.LogRequest;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -53,14 +56,14 @@ public class ClientSender implements RemoteModel
 
   }
 
-  @Override public void createNewDiscussion()
+  @Override public void createNewDiscussion(String discussionID)
   {
-
+    out.println(gson.toJson(new CreateDiscussionRequest(new Discussion(discussionID))));
   }
 
   @Override public void log(String login, String password, boolean isNewUser)
   {
-
+    out.println(gson.toJson(new LogRequest(login,password,isNewUser)));
   }
 
   @Override public void logToExistingDiscussion(String discussionId)
