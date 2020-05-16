@@ -2,5 +2,5 @@ package network;
 
 public enum RequestType
 {
-  Log,Broadcast,Message;
+  Log,BroadcastMessage,Message,BroadcastDiscussions;
 }

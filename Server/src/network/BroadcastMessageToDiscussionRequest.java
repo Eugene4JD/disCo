@@ -1,14 +1,14 @@
 package network;
 
-public class BroadcastRequest extends Request
+public class BroadcastMessageToDiscussionRequest extends Request
 {
   private String discussionID;
   private String message;
   private String sender;
 
-  public BroadcastRequest(String discussionID, String sender, String message)
+  public BroadcastMessageToDiscussionRequest(String discussionID, String sender, String message)
   {
-    super(RequestType.Broadcast);
+    super(RequestType.BroadcastMessage);
     this.discussionID = discussionID;
     this.sender = sender;
     this.message = message;

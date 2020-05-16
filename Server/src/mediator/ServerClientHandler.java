@@ -44,7 +44,8 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
          switch ((gson.fromJson(req, Request.class).getType()))
          {
            case Message:
-           case Broadcast:
+           case BroadcastDiscussions:
+           case BroadcastMessage:
            case Log:
              break;
          }

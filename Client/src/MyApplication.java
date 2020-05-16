@@ -1,17 +1,17 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.Model;
-import model.ModelManager;
+import model.ClientModel;
+import model.ClientModelManager;
 import view.ViewHandler;
 import viewmodel.ViewModelFactory;
 
 public class MyApplication extends Application
 {
-  private Model model;
+  private ClientModel model;
 
   @Override public void start(Stage primaryStage)
   {
-    model = new ModelManager();
+    model = new ClientModelManager();
     ViewModelFactory viewModelFactory = new ViewModelFactory(model);
     ViewHandler view = new ViewHandler(viewModelFactory);
 
