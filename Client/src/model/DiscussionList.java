@@ -15,6 +15,10 @@ public class DiscussionList
   {
     discussions.add(new Discussion(discussionId));
   }
+  public void addDiscussion(Discussion discussion)
+  {
+    this.discussions.add(discussion);
+  }
 
   public Discussion getDiscussionById(String discussionId)
   {
@@ -24,6 +28,11 @@ public class DiscussionList
         return discussions.get(i);
     }
     return null;
+  }
+
+  public Discussion getDiscussion(int i)
+  {
+    return discussions.get(i);
   }
 
   public void removeDiscussionById(String discussionId)
@@ -36,5 +45,10 @@ public class DiscussionList
         break;
       }
     }
+  }
+
+  public int size()
+  {
+    return discussions.size();
   }
 }

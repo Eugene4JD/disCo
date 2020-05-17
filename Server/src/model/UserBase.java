@@ -76,6 +76,16 @@ public class UserBase
     return Integer.toString(index);
   }
 
+  public User getUser(int i)
+  {
+    return users.get(i);
+  }
+
+  public int size()
+  {
+    return this.users.size();
+  }
+
 
   private boolean isLoginInBase(String login)
   {
