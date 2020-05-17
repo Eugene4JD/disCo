@@ -5,44 +5,51 @@ public class Discussion
   private MessageList messageList;
   private UserBase userBase;
   private String discussionId;
+  private User editorOfDiscussion;
 
-  public Discussion(String discussionId)
+  public Discussion(String discussionId,User editorOfDiscussion)
   {
     messageList = new MessageList();
     userBase = new UserBase();
+    this.editorOfDiscussion = editorOfDiscussion;
   }
 
-  private void addUser(User user)
+  public void addUser(User user)
   {
     userBase.addUser(user);
   }
-  private void addUser(String type, String login, String password)
+  public  void addUser(String type, String login, String password)
   {
     userBase.addUser(type,login,password);
   }
-  private void removeUserById(String userId)
+  public void removeUserById(String userId)
   {
     userBase.removeUserById(userId);
   }
-  private User getUserIdByLogin(String userId)
+  public User getUserIdByLogin(String userId)
   {
     return userBase.getUserById(userId);
   }
 
-  private void addMessage(String message, String login)
+  public void addMessage(String message, String login)
   {
     messageList.addMessage(message,login);
   }
-  private MessageList getMessageList()
+  public  MessageList getMessageList()
   {
     return messageList;
   }
-  private UserBase getUserBase()
+  public UserBase getUserBase()
   {
     return userBase;
   }
   public String getDiscussionId()
   {
     return discussionId;
+  }
+
+  public User getEditorOfDiscussion()
+  {
+    return editorOfDiscussion;
   }
 }

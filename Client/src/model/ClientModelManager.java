@@ -2,7 +2,7 @@ package model;
 
 import mediator.RemoteModel;
 import mediator.RemoteModelProxy;
-import network.BroadcastMessageToDiscussionRequest;
+import network.*;
 
 import java.beans.PropertyChangeEvent;
 import java.io.IOException;
@@ -12,6 +12,7 @@ public class ClientModelManager implements ClientModel
   private DiscussionList discussionListBuffer;
   private UserBase userBaseBuffer;
   private RemoteModel remoteModel;
+  private String login;
 
   public ClientModelManager()
   {
@@ -26,6 +27,7 @@ public class ClientModelManager implements ClientModel
     {
       e.printStackTrace();
     }
+    this.login = "";
 
   }
 
@@ -87,7 +89,7 @@ public class ClientModelManager implements ClientModel
 
   @Override public void createDiscussion(String discussionId)
   {
-      remoteModel.createNewDiscussion(discussionId);
+      remoteModel.createNewDiscussion(discussionId,login);
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
@@ -96,12 +98,29 @@ public class ClientModelManager implements ClientModel
     {
       case "broadcastMessageToDiscussion":
         BroadcastMessageToDiscussionRequest request = (BroadcastMessageToDiscussionRequest)evt.getNewValue();
-        //this.discussionListBuffer.getDiscussionById(request.getDiscussionID())
+        Discussion discussion = this.discussionListBuffer.getDiscussionById(request.getDiscussionID());
+        if (discussion != null)
+        discussion.getMessageList().addMessage(request.getSender(),request.getMessage());
+        break;
       case "broadcastDiscussionsToUser":
+        BroadcastDiscussionsToUserRequest request1 = (BroadcastDiscussionsToUserRequest)evt.getNewValue();
+        for (int i =0; i<request1.getDiscussions().size();i++)
+        {
+          discussionListBuffer.addDiscussion(discussionListBuffer.getDiscussion(i));
+        }
+        break;
       case "broadcastDiscussionToUser":
+        BroadcastDiscussionToUserRequest request2 = (BroadcastDiscussionToUserRequest)evt.getNewValue();
+        discussionListBuffer.addDiscussion(request2.getDiscussion());
+        break;
       case "broadcastRemovingDiscussionToUser":
+        BroadcastRemovingDiscussionToUserRequest request3 =(BroadcastRemovingDiscussionToUserRequest)evt.getNewValue();
+        discussionListBuffer.removeDiscussionById(request3.getDiscussionId());
+        break;
       case "broadcastLoginStatusToUser":
-
+        BroadcastLoginStatusToUserRequest request4 = (BroadcastLoginStatusToUserRequest)evt.getNewValue();
+        if (request4.isLogSuccessful())
+          this.login = request4.getLogin();
     }
   }
 }

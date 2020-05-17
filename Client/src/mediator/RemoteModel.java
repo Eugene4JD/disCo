@@ -9,7 +9,7 @@ public interface RemoteModel
   void disconnect() throws IOException;
   void log(String login, String password, boolean isNewUser);
   void logToExistingDiscussion(String discussionId,String login);
-  void createNewDiscussion(String discussionId);
+  void createNewDiscussion(String discussionId,String loginOfEditor);
   void sendMessageInDiscussion(String discussionId, String sender, String message);
   void removeDiscussion(String discussionId);
 

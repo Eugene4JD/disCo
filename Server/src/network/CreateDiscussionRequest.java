@@ -4,15 +4,22 @@ import model.Discussion;
 
 public class CreateDiscussionRequest extends Request
 {
-  private Discussion discussion;
-  public CreateDiscussionRequest(Discussion discussion)
+  private  String discussionId;
+  private String editorLogin;
+  public CreateDiscussionRequest(String discussionId,String editorLogin)
   {
     super(RequestType.CreateDiscussion);
-    this.discussion = discussion;
+    this.discussionId =discussionId;
+    this.editorLogin = editorLogin;
   }
 
-  public Discussion getDiscussion()
+  public String getDiscussionId()
   {
-    return discussion;
+    return discussionId;
+  }
+
+  public String getEditorLogin()
+  {
+    return editorLogin;
   }
 }

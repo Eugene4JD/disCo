@@ -71,7 +71,7 @@ public class UserBase
   }
 
 
-  private String getUserId()
+  public String getUserId()
   {
     return Integer.toString(index);
   }
@@ -87,7 +87,7 @@ public class UserBase
   }
 
 
-  private boolean isLoginInBase(String login)
+  public boolean isLoginInBase(String login)
   {
     for (int i =0; i< users.size(); i++)
     {
