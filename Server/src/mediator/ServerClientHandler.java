@@ -53,6 +53,7 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
              model.addMessageToDiscussion(request.getDiscussionId(),request.getSender(),request.getMessage());
              break;
 
+
            case Log:
              LogRequest request1 = gson.fromJson(req,LogRequest.class);
              User user = model.getUserFromUserBaseByLogin(request1.getLogin());
@@ -69,6 +70,7 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
              else
                out.println(new BroadcastLoginStatusToUserRequest(false));
 
+
            case LogToExistingDiscussion:
              LogToExistingDiscussionRequest request2 = gson.fromJson(req,LogToExistingDiscussionRequest.class);
              if (model.getDiscussionById(request2.getDiscussionId()).getUserBase().getUserByLogin(request2.getUserLogin()) == null)
@@ -78,6 +80,7 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
              }
              break;
 
+
            case CreateDiscussion:
              CreateDiscussionRequest request3 = gson.fromJson(req,CreateDiscussionRequest.class);
              if (model.getDiscussionById(request3.getDiscussionId()) == null)
@@ -86,6 +89,8 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
                out.println(gson.toJson(new BroadcastDiscussionToUserRequest(model.getDiscussionById(request3.getDiscussionId()))));
              }
              break;
+
+
            case RemoveDiscussion:
               RemoveDiscussionRequest request4 = gson.fromJson(req,RemoveDiscussionRequest.class);
               if (model.getDiscussionById(request4.getDiscussionId()) != null)
