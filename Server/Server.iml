@@ -16,5 +16,6 @@
     <orderEntry type="library" name="jfoenix-9.0.8" level="application" />
     <orderEntry type="library" name="gson-2.8.5" level="application" />
     <orderEntry type="library" name="JavaFX12.swing" level="application" />
+    <orderEntry type="library" name="MyDatabase" level="application" />
   </component>
 </module>
