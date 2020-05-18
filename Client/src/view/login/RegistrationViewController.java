@@ -2,33 +2,35 @@ package view.login;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
-import javafx.scene.*;
 import view.ViewHandler;
-import viewmodel.login.LoginViewModel;
+import viewmodel.login.RegistrationViewModel;
 
-public class LoginViewController
+public class RegistrationViewController
 {
   @FXML private JFXTextField usernameField;
   @FXML private JFXPasswordField passwordField;
+  @FXML private JFXPasswordField repeatPasswordField;
 
   private ViewHandler viewHandler;
-  private LoginViewModel viewModel;
+  private RegistrationViewModel viewModel;
   private Region root;
 
-  public void init(ViewHandler viewHandler, LoginViewModel loginViewModel,
+  public void init(ViewHandler viewHandler, RegistrationViewModel viewModel,
       Region root)
   {
     this.viewHandler = viewHandler;
-    this.viewModel = loginViewModel;
+    this.viewModel = viewModel;
     this.root = root;
 
     usernameField.textProperty()
         .bindBidirectional(viewModel.getUsernameProperty());
     passwordField.textProperty()
         .bindBidirectional(viewModel.getPasswordProperty());
+    repeatPasswordField.textProperty()
+        .bindBidirectional(viewModel.getRepeatPasswordProperty());
   }
 
   public void reset()
@@ -36,23 +38,17 @@ public class LoginViewController
     viewModel.clear();
   }
 
-  @FXML private void cancelButtonPressed()
+  public void backButtonPressed(ActionEvent event)
   {
-
+    viewHandler.openView("login");
   }
 
-  @FXML private void signInButtonPressed()
+  public void signUpButtonPressed(ActionEvent event)
   {
-
   }
 
   public Region getRoot()
   {
     return root;
-  }
-
-  public void createOnePressed(MouseEvent mouseEvent)
-  {
-    viewHandler.openView("registration");
   }
 }

@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import view.login.LoginViewController;
+import view.login.RegistrationViewController;
 import viewmodel.ViewModelFactory;
 
 public class ViewHandler
@@ -13,6 +14,7 @@ public class ViewHandler
   private Scene currentScene;
   private ViewModelFactory viewModelFactory;
   private LoginViewController loginViewController;
+  private RegistrationViewController registrationViewController;
 
   public ViewHandler(ViewModelFactory viewModelFactory)
   {
@@ -34,6 +36,8 @@ public class ViewHandler
       case "login":
         root = loadLoginView("login/LoginView.fxml");
         break;
+      case "registration":
+        root = loadRegistrationView("login/RegistrationView.fxml");
     }
     currentScene.setRoot(root);
 
@@ -72,6 +76,31 @@ public class ViewHandler
       loginViewController.reset();
     }
     return loginViewController.getRoot();
+  }
+
+  private Region loadRegistrationView(String fxmlFile)
+  {
+    if (registrationViewController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        Region root = loader.load();
+        registrationViewController = loader.getController();
+        registrationViewController
+            .init(this, viewModelFactory.getRegistrationViewModel(), root);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else
+    {
+      registrationViewController.reset();
+    }
+    return registrationViewController.getRoot();
   }
 
 }
