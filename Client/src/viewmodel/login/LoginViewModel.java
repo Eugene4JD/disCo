@@ -2,15 +2,15 @@ package viewmodel.login;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import model.Model;
+import model.ClientModel;
 
 public class LoginViewModel
 {
-  private Model model;
+  private ClientModel model;
   private StringProperty username;
   private StringProperty password;
 
-  public LoginViewModel(Model model)
+  public LoginViewModel(ClientModel model)
   {
     this.model = model;
     username = new SimpleStringProperty();

@@ -1,13 +1,19 @@
 package model;
 
-public interface ServerModel
+import utility.UnnamedPropertyChangeSubject;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
+public interface ServerModel extends UnnamedPropertyChangeSubject
 {
-  void createNewDiscussion(String DiscussionId);
-  void removeDiscussion(String DiscussionId);
-  void getDiscussionById(String DiscussionId);
-  void addNewUserToUserBase(String userType, String Login, String Password);
+  void createNewDiscussion(String discussionId,String editorOfDiscussionId);
+  void removeDiscussion(String discussionId);
+  Discussion getDiscussionById(String discussionId);
+  void addNewUserToUserBase(String userType, String login, String password);
   void removeUserFromUserBase(String userLogin);
-  void getUserFromUserBaseByLogin(String login);
+  User getUserFromUserBaseByLogin(String login);
+  void addMessageToDiscussion(String discussionId, String sender, String message);
   void addLog(String log);
 
 }

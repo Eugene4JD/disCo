@@ -1,13 +1,13 @@
 package viewmodel;
 
-import model.Model;
+import model.ClientModel;
 import viewmodel.login.LoginViewModel;
 
 public class ViewModelFactory
 {
   private LoginViewModel loginViewModel;
 
-  public ViewModelFactory(Model model)
+  public ViewModelFactory(ClientModel model)
   {
     loginViewModel = new LoginViewModel(model);
   }
