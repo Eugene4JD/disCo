@@ -32,7 +32,7 @@ public class ViewHandler
     switch (id)
     {
       case "login":
-        root = loadLoginView("LoginView.fxml");
+        root = loadLoginView("login/LoginView.fxml");
         break;
     }
     currentScene.setRoot(root);
