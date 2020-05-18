@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="481.0" prefWidth="416.0"
+      userData="Register" xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="view.login.RegistrationViewController">
+    <children>
+        <HBox prefHeight="82.0" prefWidth="412.0"
+              style="-fx-background-color: #E8E8E8;">
+            <children>
+                <ImageView fitHeight="62.0" fitWidth="464.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@../../resources/v2.3_240p_transparent.png"/>
+                    </image>
+                    <HBox.margin>
+                        <Insets left="96.0" top="11.0"/>
+                    </HBox.margin>
+                </ImageView>
+            </children>
+        </HBox>
+        <Text fill="#354f6a" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Welcome to disCo!" wrappingWidth="320.5367431640625">
+            <VBox.margin>
+                <Insets left="40.0" top="22.0"/>
+            </VBox.margin>
+            <font>
+                <Font name="System Bold" size="17.0"/>
+            </font>
+        </Text>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+              text="To start using disCo create a new account "
+              wrappingWidth="320.5367431640625">
+            <VBox.margin>
+                <Insets left="40.0"/>
+            </VBox.margin>
+        </Text>
+        <HBox prefHeight="58.0" prefWidth="416.0">
+            <children>
+                <JFXTextField fx:id="usernameField" focusColor="#003780"
+                              opacity="0.95" prefHeight="40.0" prefWidth="320.0"
+                              promptText="Username">
+                    <HBox.margin>
+                        <Insets left="40.0" top="10.0"/>
+                    </HBox.margin>
+                </JFXTextField>
+            </children>
+        </HBox>
+        <HBox prefHeight="48.0" prefWidth="416.0">
+            <children>
+                <JFXPasswordField fx:id="passwordField" focusColor="#003780"
+                                  opacity="0.95" prefHeight="40.0"
+                                  prefWidth="320.0" promptText="Password">
+                    <HBox.margin>
+                        <Insets left="40.0"/>
+                    </HBox.margin>
+                    <cursor>
+                        <Cursor fx:constant="TEXT"/>
+                    </cursor>
+                </JFXPasswordField>
+            </children>
+            <VBox.margin>
+                <Insets top="2.0"/>
+            </VBox.margin>
+        </HBox>
+        <HBox prefHeight="52.0" prefWidth="400.0">
+            <children>
+                <JFXPasswordField fx:id="repeatPasswordField"
+                                  focusColor="#003780" opacity="0.95"
+                                  prefHeight="40.0" prefWidth="320.0"
+                                  promptText="Repeat password">
+                    <HBox.margin>
+                        <Insets left="40.0" top="2.0"/>
+                    </HBox.margin>
+                    <cursor>
+                        <Cursor fx:constant="TEXT"/>
+                    </cursor>
+                </JFXPasswordField>
+            </children>
+        </HBox>
+        <HBox prefHeight="46.0" prefWidth="416.0">
+            <children>
+                <JFXButton fx:id="signInButton" onAction="#signUpButtonPressed"
+                           prefHeight="30.0" prefWidth="320.0"
+                           style="-fx-background-color: #354f6a; -fx-background-radius: 0;"
+                           text="Sign up for FREE !" textFill="#ededed">
+                    <font>
+                        <Font name="System Bold" size="13.0"/>
+                    </font>
+                    <HBox.margin>
+                        <Insets left="40.0" top="10.0"/>
+                    </HBox.margin>
+                </JFXButton>
+            </children>
+            <VBox.margin>
+                <Insets top="14.0"/>
+            </VBox.margin>
+        </HBox>
+        <HBox prefHeight="27.0" prefWidth="400.0">
+            <children>
+                <JFXButton fx:id="backButton" onAction="#backButtonPressed"
+                           prefHeight="30.0" prefWidth="320.0"
+                           style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;"
+                           text="Back">
+                    <font>
+                        <Font name="System Bold" size="13.0"/>
+                    </font>
+                    <HBox.margin>
+                        <Insets left="40.0"/>
+                    </HBox.margin>
+                </JFXButton>
+            </children>
+            <VBox.margin>
+                <Insets top="3.0"/>
+            </VBox.margin>
+        </HBox>
+        <HBox prefHeight="34.0" prefWidth="416.0">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Or">
+                    <HBox.margin>
+                        <Insets left="147.0"/>
+                    </HBox.margin>
+                </Text>
+                <Text fill="#003780" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="enter as a guest" underline="true"
+                      wrappingWidth="87.73675537109375">
+                    <HBox.margin>
+                        <Insets left="5.0"/>
+                    </HBox.margin>
+                </Text>
+            </children>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </HBox>
+    </children>
+</VBox>
