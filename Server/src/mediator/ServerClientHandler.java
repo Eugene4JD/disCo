@@ -61,14 +61,14 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
              {
                if (user.getUserPassword().equals(request1.getPassword()))
                {
-                 out.println(new BroadcastLoginStatusToUserRequest(true));
+                 out.println(new BroadcastLoginStatusToUserRequest(true,user.getUserLogin()));
                  out.println(new BroadcastDiscussionsToUserRequest());
                }
                else
-                 out.println(new BroadcastLoginStatusToUserRequest(false));
+                 out.println(new BroadcastLoginStatusToUserRequest(false,""));
              }
              else
-               out.println(new BroadcastLoginStatusToUserRequest(false));
+               out.println(new BroadcastLoginStatusToUserRequest(false,""));
 
 
            case LogToExistingDiscussion:
