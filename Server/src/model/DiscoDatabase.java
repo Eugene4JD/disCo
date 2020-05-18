@@ -40,14 +40,30 @@ public class DiscoDatabase implements DiscoPersistence
     return discussions;
   }
 
-  @Override public void clearDiscussions()
+  @Override public void clearDiscussions() throws SQLException
   {
-
+    try
+    {
+      String sql = "TRUNCATE TABLE DisCoDB.DiscussionList CASCADE;";
+      db.update(sql);
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
   }
 
-  @Override public void clearUsers()
+  @Override public void clearUsers() throws SQLException
   {
-
+    try
+    {
+      String sql = "TRUNCATE TABLE DisCoDB.userBase CASCADE;";
+      db.update(sql);
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public void linkTheConnectionsBetween(DiscussionList discussionList,
@@ -60,17 +76,18 @@ public class DiscoDatabase implements DiscoPersistence
       Object[] row = result.get(i);
       discussionList.getDiscussionById((int)row[0]).addUser(userBase.getUserById((int)row[1]));
     }
-
   }
 
-  @Override public void removeDiscussion(Discussion discussion)
+  @Override public void removeDiscussion(String discussionName,String loginOfEditor) throws SQLException
   {
-
+    String sql = "Delete from DisCoDB.DiscussionList where DiscussionName = ? AND LoginOfEditor = ?;";
+    db.update(sql,discussionName,loginOfEditor);
   }
 
-  @Override public void removeUser(User user)
+  @Override public void removeUser(String login, String password) throws SQLException
   {
-
+    String sql = "Delete from DisCoDB.userBase where Login = ? AND Password = ?;";
+    db.update(sql,login,password);
   }
 
   @Override public Discussion saveDiscussion(String discussionName, String loginOfEditor) throws SQLException
@@ -97,4 +114,9 @@ public class DiscoDatabase implements DiscoPersistence
     return new User(id,userType,login,password);
   }
 
+  @Override public void saveUserDiscussionConnection(int discussionId, int userId) throws SQLException
+  {
+    String sql = "INSERT INTO DisCoDB.DiscussionUserList(DiscussionId,UserID) " + "VALUES(?,?);";
+    db.update(sql,discussionId,userId);
+  }
 }

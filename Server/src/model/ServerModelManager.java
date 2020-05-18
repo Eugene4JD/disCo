@@ -5,10 +5,12 @@ import utility.Log;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.sql.SQLException;
 
 public class ServerModelManager implements ServerModel
 {
   private DiscussionList discussionList;
+  private DiscoPersistence discoPersistence;
   private PropertyChangeSupport property;
   private UserBase userBase;
   private Log log;
@@ -18,20 +20,52 @@ public class ServerModelManager implements ServerModel
     this.userBase = new UserBase();
     this.log = Log.getInstance();
     property = new PropertyChangeSupport(this);
+    try
+    {
+      this.discoPersistence = new DiscoDatabase();
+    }
+    catch (ClassNotFoundException e)
+    {
+      e.printStackTrace();
+    }
+    try
+    {
+      this.discussionList = discoPersistence.loadDiscussions();
+      this.userBase = discoPersistence.loadUsers();
+      discoPersistence.linkTheConnectionsBetween(discussionList,userBase);
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+
   }
 
-  @Override public void addNewUserToUserBase(int userId,String userType, String login,
+  @Override public void addNewUserToUserBase(String userType, String login,
       String password)
   {
-   userBase.addUser(userId,userType, login, password);
+    try
+    {
+      userBase.addUser(discoPersistence.saveUser(userType,login,password));
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
   }
 
-  @Override public void createNewDiscussion(String discussionId,String editorOfDiscussionLogin)
+  @Override public void createNewDiscussion(String discussionName,String editorOfDiscussionLogin)
   {
-   //
-    //TODO : add for a dbs
-  }
+    try
+    {
+      this.discussionList.addDiscussion(discoPersistence.saveDiscussion(discussionName,editorOfDiscussionLogin));
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
 
+  }
   @Override public Discussion getDiscussionById(int discussionId)
   {
    return discussionList.getDiscussionById(discussionId);
@@ -42,14 +76,43 @@ public class ServerModelManager implements ServerModel
    return userBase.getUserByLogin(login);
   }
 
-  @Override public void removeDiscussion( int discussionId)
+  @Override public void removeDiscussion( String discussionName, String loginOfEditor)
   {
-    discussionList.removeDiscussionById(discussionId);
+    discussionList.removeDiscussionByName(discussionName);
+    try
+    {
+      discoPersistence.removeDiscussion(discussionName,loginOfEditor);
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+
   }
 
   @Override public void removeUserFromUserBase(String userLogin)
   {
     userBase.removeUserById(userBase.getUserByLogin(userLogin).getUserId());
+    try
+    {
+      discoPersistence.removeUser(userLogin,userBase.getUserByLogin(userLogin).getUserPassword());
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+  @Override public void addUserToDiscussion(int discussionID, int loginID)
+  {
+    try
+    {
+      discoPersistence.saveUserDiscussionConnection(discussionID,loginID);
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public void addLog(String log)
