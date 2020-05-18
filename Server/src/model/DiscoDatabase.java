@@ -73,23 +73,28 @@ public class DiscoDatabase implements DiscoPersistence
 
   }
 
-  @Override public void saveDiscussion(Discussion discussion)
+  @Override public Discussion saveDiscussion(String discussionName, String loginOfEditor) throws SQLException
   {
+    String sql = "INSERT INTO DisCoDB.DiscussionList(DiscussionName,LoginOfEditor) " + " VALUES(?,?);";
+    db.update(sql,discussionName,loginOfEditor);
 
+    sql = "SELECT ID From DisCoDB.DiscussionList WHERE DiscussionName = ? AND LoginOfEditor = ?;";
+    ArrayList<Object[]> idRes = db.query(sql,discussionName,loginOfEditor);
+    int id = Integer.parseInt(idRes.get(0)[0].toString());
+
+    return new Discussion(id,discussionName,loginOfEditor);
   }
 
-  @Override public void saveDiscussions(DiscussionList discussionList)
+  @Override public User saveUser(String userType ,String login, String password) throws SQLException
   {
+    String sql = "INSERT INTO DisCoDB.userBase(Login,Password,UserType) " + "VALUES(?,?,?);";
+    db.update(sql,login,password,userType);
 
+    sql = "SELECT ID from DisCoDB.userBase WHERE Login = ? AND Password = ? AND UserType = ?;";
+    ArrayList<Object[]> idRes = db.query(sql,login,password,userType);
+    int id = Integer.parseInt(idRes.get(0)[0].toString());
+
+    return new User(id,userType,login,password);
   }
 
-  @Override public void saveUser(User user)
-  {
-
-  }
-
-  @Override public void saveUsers(UserBase userBase)
-  {
-
-  }
 }
