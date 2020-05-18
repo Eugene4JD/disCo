@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
+import javafx.scene.*;
 import view.ViewHandler;
 import viewmodel.login.LoginViewModel;
 
@@ -20,7 +21,7 @@ public class LoginViewController
       Region root)
   {
     this.viewHandler = viewHandler;
-    this.viewModel = viewModel;
+    this.viewModel = loginViewModel;
     this.root = root;
 
     usernameField.textProperty()
