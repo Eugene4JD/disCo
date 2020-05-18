@@ -98,7 +98,7 @@ public class ClientModelManager implements ClientModel
     {
       case "broadcastMessageToDiscussion":
         BroadcastMessageToDiscussionRequest request = (BroadcastMessageToDiscussionRequest)evt.getNewValue();
-        Discussion discussion = this.discussionListBuffer.getDiscussionById(request.getDiscussionID());
+        Discussion discussion = this.discussionListBuffer.getDiscussionByName(request.getDiscussionID());
         if (discussion != null)
         discussion.getMessageList().addMessage(request.getSender(),request.getMessage());
         break;
@@ -115,7 +115,7 @@ public class ClientModelManager implements ClientModel
         break;
       case "broadcastRemovingDiscussionToUser":
         BroadcastRemovingDiscussionToUserRequest request3 =(BroadcastRemovingDiscussionToUserRequest)evt.getNewValue();
-        discussionListBuffer.removeDiscussionById(request3.getDiscussionId());
+        discussionListBuffer.removeDiscussionByName(request3.getDiscussionId());
         break;
       case "broadcastLoginStatusToUser":
         BroadcastLoginStatusToUserRequest request4 = (BroadcastLoginStatusToUserRequest)evt.getNewValue();

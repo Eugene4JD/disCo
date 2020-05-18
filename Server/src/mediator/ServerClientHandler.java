@@ -73,29 +73,29 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
 
            case LogToExistingDiscussion:
              LogToExistingDiscussionRequest request2 = gson.fromJson(req,LogToExistingDiscussionRequest.class);
-             if (model.getDiscussionById(request2.getDiscussionId()).getUserBase().getUserByLogin(request2.getUserLogin()) == null)
+             if (model.getDiscussionByName(request2.getDiscussionName()).getUserBase().getUserByLogin(request2.getUserLogin()) == null)
              {
-               model.getDiscussionById(request2.getDiscussionId()).addUser(model.getUserFromUserBaseByLogin(request2.getUserLogin()));
-               out.println(gson.toJson(new BroadcastDiscussionToUserRequest(model.getDiscussionById(request2.getDiscussionId()))));
+               model.getDiscussionByName(request2.getDiscussionName()).addUser(model.getUserFromUserBaseByLogin(request2.getUserLogin()));
+               out.println(gson.toJson(new BroadcastDiscussionToUserRequest(model.getDiscussionByName(request2.getDiscussionName()))));
              }
              break;
 
 
            case CreateDiscussion:
              CreateDiscussionRequest request3 = gson.fromJson(req,CreateDiscussionRequest.class);
-             if (model.getDiscussionById(request3.getDiscussionId()) == null)
+             if (model.getDiscussionByName(request3.getDiscussionId()) == null)
              {
                model.createNewDiscussion(request3.getDiscussionId(),request3.getEditorLogin());
-               out.println(gson.toJson(new BroadcastDiscussionToUserRequest(model.getDiscussionById(request3.getDiscussionId()))));
+               out.println(gson.toJson(new BroadcastDiscussionToUserRequest(model.getDiscussionByName(request3.getDiscussionId()))));
              }
              break;
 
 
            case RemoveDiscussion:
               RemoveDiscussionRequest request4 = gson.fromJson(req,RemoveDiscussionRequest.class);
-              if (model.getDiscussionById(request4.getDiscussionId()) != null)
+              if (model.getDiscussionByName(request4.getDiscussionId()) != null)
               {
-                model.removeDiscussion(request4.getDiscussionId());
+                model.removeDiscussionByName(request4.getDiscussionId());
                 out.println(gson.toJson(new BroadcastRemovingDiscussionToUserRequest(request4.getDiscussionId())));
               }
              break;

@@ -20,18 +20,19 @@ public class ServerModelManager implements ServerModel
     property = new PropertyChangeSupport(this);
   }
 
-  @Override public void addNewUserToUserBase(String userType, String login,
+  @Override public void addNewUserToUserBase(int userId,String userType, String login,
       String password)
   {
-   userBase.addUser(userType, login, password);
+   userBase.addUser(userId,userType, login, password);
   }
 
   @Override public void createNewDiscussion(String discussionId,String editorOfDiscussionLogin)
   {
-   discussionList.createNewDiscussion(discussionId,userBase.getUserByLogin(editorOfDiscussionLogin));
+   //
+    //TODO : add for a dbs
   }
 
-  @Override public Discussion getDiscussionById(String discussionId)
+  @Override public Discussion getDiscussionById(int discussionId)
   {
    return discussionList.getDiscussionById(discussionId);
   }
@@ -41,7 +42,7 @@ public class ServerModelManager implements ServerModel
    return userBase.getUserByLogin(login);
   }
 
-  @Override public void removeDiscussion(String discussionId)
+  @Override public void removeDiscussion( int discussionId)
   {
     discussionList.removeDiscussionById(discussionId);
   }
@@ -70,5 +71,15 @@ public class ServerModelManager implements ServerModel
   @Override public void addListener(PropertyChangeListener listener)
   {
     property.addPropertyChangeListener(listener);
+  }
+
+  @Override public Discussion getDiscussionByName(String name)
+  {
+    return discussionList.getDiscussionByName(name);
+  }
+
+  @Override public void removeDiscussionByName(String name)
+  {
+    discussionList.removeDiscussionByName(name);
   }
 }

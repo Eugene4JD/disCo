@@ -23,17 +23,17 @@ public class UserBase
     this.users.add(user);
   }
 
-  public void addUser(String userType,String login, String password)
+  public void addUser(int userId, String userType,String login, String password)
   {
-    this.users.add(new User(getUserId(),userType,login,password));
+    this.users.add(new User(userId,userType,login,password));
     index ++;
   }
 
-  public void removeUserById(String id)
+  public void removeUserById(int id)
   {
     for (int i = 0; i<users.size(); i++)
     {
-      if (users.get(i).getUserId().equals(id))
+      if (users.get(i).getUserId() == id)
       {
         users.remove(i);
         break;
@@ -41,11 +41,11 @@ public class UserBase
     }
   }
 
-  public User getUserById(String userId)
+  public User getUserById(int userId)
   {
     for (int i = 0; i<users.size(); i++)
     {
-      if (users.get(i).getUserId().equals(userId))
+      if (users.get(i).getUserId() == userId)
         return users.get(i);
     }
     return null;

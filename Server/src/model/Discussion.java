@@ -4,29 +4,30 @@ public class Discussion
 {
   private MessageList messageList;
   private UserBase userBase;
-  private String discussionId;
-  private User editorOfDiscussion;
+  private int discussionId;
+  private String discussionName;
+  private String LoginOfEditorOfDiscussion;
 
-  public Discussion(String discussionId,User editorOfDiscussion)
+  public Discussion(int discussionId,String discussionName,String editorOfDiscussion)
   {
     messageList = new MessageList();
     userBase = new UserBase();
-    this.editorOfDiscussion = editorOfDiscussion;
+    this.LoginOfEditorOfDiscussion = editorOfDiscussion;
   }
 
   public void addUser(User user)
   {
     userBase.addUser(user);
   }
-  public  void addUser(String type, String login, String password)
+  public  void addUser(int id,String type, String login, String password)
   {
-    userBase.addUser(type,login,password);
+    userBase.addUser(id,type,login,password);
   }
-  public void removeUserById(String userId)
+  public void removeUserById(int userId)
   {
     userBase.removeUserById(userId);
   }
-  public User getUserIdByLogin(String userId)
+  public User getUserIdByLogin(int userId)
   {
     return userBase.getUserById(userId);
   }
@@ -43,13 +44,18 @@ public class Discussion
   {
     return userBase;
   }
-  public String getDiscussionId()
+  public String getDiscussionName()
+  {
+    return discussionName;
+  }
+
+  public int getDiscussionId()
   {
     return discussionId;
   }
 
-  public User getEditorOfDiscussion()
+  public String getLoginOfEditorOfDiscussion()
   {
-    return editorOfDiscussion;
+    return this.LoginOfEditorOfDiscussion;
   }
 }

@@ -2,13 +2,42 @@ package model;
 
 import utility.persistence.MyDatabase;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class DiscoDatabase implements DiscoPersistence
 {
 
-  private MyDatabase db; 
-  @Override public UserBase loadUsers()
+  private MyDatabase db;
+
+  public DiscoDatabase() throws ClassNotFoundException
   {
-    return null;
+      this.db = new MyDatabase("org.postgresql.Driver" ,"jdbc:postgresql://localhost:5432/postgres", "postgres", "3228");
+  }
+  @Override public UserBase loadUsers() throws SQLException
+  {
+    String sql = "Select * From DisCoDB.userBase";
+    ArrayList<Object[]> result = db.query(sql);
+    UserBase userBase = new UserBase();
+    for (int i =0; i < result.size(); i++)
+    {
+      Object[] row = result.get(i);
+      userBase.addUser((int)row[0],(String)row[3],(String)row[1],(String)row[2]);
+    }
+    return userBase;
+  }
+
+  @Override public DiscussionList loadDiscussions() throws SQLException
+  {
+    String sql ="Select * From DisCoDB.DiscussionList";
+    ArrayList<Object[]> result = db.query(sql);
+    DiscussionList discussions = new DiscussionList();
+    for (int i=0;i < result.size();i++)
+    {
+      Object[] row = result.get(i);
+      discussions.addDiscussion(new Discussion((int)row[0],(String)row[1],(String)row[2]));
+    }
+    return discussions;
   }
 
   @Override public void clearDiscussions()
@@ -21,9 +50,16 @@ public class DiscoDatabase implements DiscoPersistence
 
   }
 
-  @Override public void lingTheConnectionsBetween(DiscussionList discussionList,
-      UserBase userBase)
+  @Override public void linkTheConnectionsBetween(DiscussionList discussionList,
+      UserBase userBase) throws SQLException
   {
+    String sql = "Select * from DisCoDB.DiscussionUserList";
+    ArrayList<Object[]> result = db.query(sql);
+    for (int i = 0; i<result.size(); i++)
+    {
+      Object[] row = result.get(i);
+      discussionList.getDiscussionById((int)row[0]).addUser(userBase.getUserById((int)row[1]));
+    }
 
   }
 

@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 public  class User implements Serializable
 {
-  private String userId;
+  private int userId;
   private String userType;
   private String userLogin;
   private String userPassword;
 
-  public User(String userId, String userType, String userLogin, String userPassword)
+  public User(int userId, String userType, String userLogin, String userPassword)
   {
     this.userType = userType;
     this.userId = userId;
@@ -17,7 +17,7 @@ public  class User implements Serializable
     this.userPassword = userPassword;
   }
 
-  public String getUserId()
+  public int getUserId()
   {
     return userId;
   }
@@ -43,7 +43,6 @@ public  class User implements Serializable
   {
     this.userPassword = userPassword;
   }
-
 
   @Override public String toString()
   {
