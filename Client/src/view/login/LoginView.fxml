@@ -13,8 +13,8 @@
 <?import javafx.scene.text.Text?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="370.0" prefWidth="415.0"
-      userData="loginWindow" xmlns="http://javafx.com/javafx/11.0.1"
+      minWidth="-Infinity" prefHeight="367.0" prefWidth="416.0"
+      userData="Log in" xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="view.login.LoginViewController">
     <children>
@@ -24,7 +24,7 @@
                 <ImageView fitHeight="62.0" fitWidth="464.0" pickOnBounds="true"
                            preserveRatio="true">
                     <image>
-                        <Image url="file:/C:/Users/pavli/IdeaProjects/disCo/sources/images/v2.3_240p_transparent.png"/>
+                        <Image url="@../../resources/v2.3_240p_transparent.png"/>
                     </image>
                     <HBox.margin>
                         <Insets left="96.0" top="11.0"/>
