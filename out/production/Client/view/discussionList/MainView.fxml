@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="522.0" prefWidth="822.0"
+      minWidth="-Infinity" prefHeight="522.0" prefWidth="822.0" userData="disCo"
       xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="view.discussionList.MainViewController"
-      userData="disCo">
+      fx:controller="view.discussionList.MainViewController">
     <children>
-        <HBox prefHeight="227.0" prefWidth="600.0"/>
+        <HBox prefHeight="227.0" prefWidth="600.0">
+            <children>
+                <JFXListView prefHeight="227.0" prefWidth="596.0"
+                             style="-fx-background-color: #ffe6e6;"
+                             fx:id="listView"/>
+            </children>
+        </HBox>
         <HBox prefHeight="100.0" prefWidth="200.0">
             <children>
                 <JFXButton onAction="#backButtonPressed" text="Back">
