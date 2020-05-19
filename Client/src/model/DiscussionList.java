@@ -11,9 +11,9 @@ public class DiscussionList
     this.discussions = new ArrayList<>();
   }
 
-  public void createNewDiscussion(String discussionId,String loginOfEditor)
+  public void createNewDiscussion(int discussionId,String discussionName,String loginOfEditor)
   {
-    discussions.add(new Discussion(discussionId,loginOfEditor));
+    discussions.add(new Discussion(discussionId,discussionName,loginOfEditor));
   }
   public void addDiscussion(Discussion discussion)
   {

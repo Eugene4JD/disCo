@@ -1,7 +1,5 @@
 package network;
 
-import model.Discussion;
-
 public class CreateDiscussionRequest extends Request
 {
   private  String discussionId;

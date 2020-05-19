@@ -8,7 +8,7 @@ public class Discussion
   private String discussionName;
   private String LoginOfEditorOfDiscussion;
 
-  public Discussion(String discussionId,String editorOfDiscussion)
+  public Discussion(int discussionId,String discussionName,String editorOfDiscussion)
   {
     messageList = new MessageList();
     userBase = new UserBase();
