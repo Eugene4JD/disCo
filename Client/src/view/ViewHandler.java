@@ -51,7 +51,7 @@ public class ViewHandler
     primaryStage.setScene(currentScene);
     primaryStage.setWidth(root.getPrefWidth());
     primaryStage.setHeight(root.getPrefHeight());
-    primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/icon.png")));
+    primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/exp.png")));
     primaryStage.show();
   }
 
