@@ -2,6 +2,7 @@ package view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import view.login.LoginViewController;
@@ -50,6 +51,7 @@ public class ViewHandler
     primaryStage.setScene(currentScene);
     primaryStage.setWidth(root.getPrefWidth());
     primaryStage.setHeight(root.getPrefHeight());
+    primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/iconSolo_1x1.jpg")));
     primaryStage.show();
   }
 
