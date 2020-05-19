@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import view.discussionList.MainViewController;
 import view.login.LoginViewController;
 import view.login.RegistrationViewController;
 import viewmodel.ViewModelFactory;
@@ -16,6 +17,7 @@ public class ViewHandler
   private ViewModelFactory viewModelFactory;
   private LoginViewController loginViewController;
   private RegistrationViewController registrationViewController;
+  private MainViewController mainViewController;
 
   public ViewHandler(ViewModelFactory viewModelFactory)
   {
@@ -39,6 +41,10 @@ public class ViewHandler
         break;
       case "registration":
         root = loadRegistrationView("login/RegistrationView.fxml");
+        break;
+      case "main":
+        root = loadMainView("discussionList/MainView.fxml");
+        break;
     }
     currentScene.setRoot(root);
 
@@ -51,7 +57,8 @@ public class ViewHandler
     primaryStage.setScene(currentScene);
     primaryStage.setWidth(root.getPrefWidth());
     primaryStage.setHeight(root.getPrefHeight());
-    primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/exp.png")));
+    primaryStage.getIcons()
+        .add(new Image(getClass().getResourceAsStream("/resources/exp.png")));
     primaryStage.show();
   }
 
@@ -103,6 +110,31 @@ public class ViewHandler
       registrationViewController.reset();
     }
     return registrationViewController.getRoot();
+  }
+
+  private Region loadMainView(String fxmlFile)
+  {
+    if (mainViewController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        Region root = loader.load();
+        mainViewController = loader.getController();
+        mainViewController
+            .init(this, viewModelFactory.getMainViewModel(), root);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else
+    {
+      mainViewController.reset();
+    }
+    return mainViewController.getRoot();
   }
 
 }

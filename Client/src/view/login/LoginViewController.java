@@ -55,4 +55,9 @@ public class LoginViewController
   {
     viewHandler.openView("registration");
   }
+
+  public void enterAsGuestClicked(MouseEvent mouseEvent)
+  {
+    viewHandler.openView("main");
+  }
 }

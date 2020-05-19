@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="522.0" prefWidth="822.0"
+      xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="view.discussionList.MainViewController"
+      userData="disCo">
+    <children>
+        <HBox prefHeight="227.0" prefWidth="600.0"/>
+        <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <JFXButton onAction="#backButtonPressed" text="Back">
+                    <HBox.margin>
+                        <Insets left="60.0"/>
+                    </HBox.margin>
+                </JFXButton>
+            </children>
+            <VBox.margin>
+                <Insets/>
+            </VBox.margin>
+        </HBox>
+    </children>
+</VBox>
