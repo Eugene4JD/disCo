@@ -35,7 +35,7 @@ public class ViewHandler
     try
     {
       AudioInputStream audioInputStream = AudioSystem
-          .getAudioInputStream(new File("Client/src/resources/introSong.wav"));
+          .getAudioInputStream(new File("Client/src/resources/intro.wav"));
       Clip clip = AudioSystem.getClip();
       clip.open(audioInputStream);
       clip.start();
