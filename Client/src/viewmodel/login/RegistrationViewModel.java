@@ -4,7 +4,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.ClientModel;
 
-public class RegistrationViewModel
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class RegistrationViewModel implements PropertyChangeListener
 {
   private ClientModel model;
   private StringProperty username;
@@ -14,6 +17,7 @@ public class RegistrationViewModel
   public RegistrationViewModel(ClientModel model)
   {
     this.model = model;
+    model.addListener(this);
     username = new SimpleStringProperty();
     password = new SimpleStringProperty();
     repeatPassword = new SimpleStringProperty();
@@ -46,5 +50,14 @@ public class RegistrationViewModel
     String username = this.username.get();
     String password = this.password.get();
     model.log(username, password, true);
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    switch (evt.getPropertyName())
+    {
+      case "LogStatus":
+
+    }
   }
 }

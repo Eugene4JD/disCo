@@ -3,21 +3,27 @@ package model;
 import mediator.RemoteModel;
 import mediator.RemoteModelProxy;
 import network.*;
+import utility.UnnamedPropertyChangeSubject;
 
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 
-public class ClientModelManager implements ClientModel
+public class ClientModelManager implements ClientModel,
+    PropertyChangeListener
 {
   private DiscussionList discussionListBuffer;
   private UserBase userBaseBuffer;
   private RemoteModel remoteModel;
   private String login;
+  private PropertyChangeSupport property;
 
   public ClientModelManager()
   {
     this.discussionListBuffer = new DiscussionList();
     this.userBaseBuffer = new UserBase();
+    this.property = new PropertyChangeSupport(this);
     try
     {
       this.remoteModel = new RemoteModelProxy(this);
@@ -125,7 +131,26 @@ public class ClientModelManager implements ClientModel
       case "broadcastLoginStatusToUser":
         BroadcastLoginStatusToUserRequest request4 = (BroadcastLoginStatusToUserRequest)evt.getNewValue();
         if (request4.isLogSuccessful())
+        {
           this.login = request4.getLogin();
+          property.firePropertyChange("LogStatus",null,true);
+        }
+        else
+        {
+          property.firePropertyChange("LogStatus", null, false);
+        }
+
+
     }
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    this.property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    this.property.removePropertyChangeListener(listener);
   }
 }
