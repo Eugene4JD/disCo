@@ -45,7 +45,7 @@ public class RegistrationViewController
 
   public void signUpButtonPressed(ActionEvent event)
   {
-   viewModel.signUp();
+    viewModel.signUp();
   }
 
   public Region getRoot()
