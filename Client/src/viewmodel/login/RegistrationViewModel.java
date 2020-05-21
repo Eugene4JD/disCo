@@ -13,6 +13,7 @@ public class RegistrationViewModel implements PropertyChangeListener
   private StringProperty username;
   private StringProperty password;
   private StringProperty repeatPassword;
+  private boolean isLogInSuccess;
 
   public RegistrationViewModel(ClientModel model)
   {
@@ -57,7 +58,12 @@ public class RegistrationViewModel implements PropertyChangeListener
     switch (evt.getPropertyName())
     {
       case "LogStatus":
-
+        if (evt.getNewValue().equals(true))
+        {
+          isLogInSuccess = true;
+        }
+        else
+          isLogInSuccess = false;
     }
   }
 }
