@@ -118,7 +118,7 @@ public class ClientModelManager implements ClientModel
         BroadcastDiscussionsToUserRequest request1 = (BroadcastDiscussionsToUserRequest)evt.getNewValue();
         for (int i =0; i<request1.getDiscussions().size();i++)
         {
-          discussionListBuffer.addDiscussion(discussionListBuffer.getDiscussion(i));
+          discussionListBuffer.addDiscussion(request1.getDiscussions().getDiscussion(i));
         }
         break;
       case "broadcastDiscussionToUser":
@@ -153,7 +153,6 @@ public class ClientModelManager implements ClientModel
 
   @Override public int getId()
   {
-    System.out.println("id");
     return id;
   }
 

@@ -1,6 +1,8 @@
 package mediator;
 
 import com.google.gson.Gson;
+import model.Discussion;
+import model.DiscussionList;
 import model.ServerModel;
 import model.User;
 import network.*;
@@ -66,7 +68,8 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
                  if (user.getUserPassword().equals(request1.getPassword()))
                  {
                    out.println(gson.toJson(new BroadcastLoginStatusToUserRequest(true, user.getUserLogin(),user.getUserId())));
-                   out.println(gson.toJson(new BroadcastDiscussionsToUserRequest(model.getDiscussionWithUser(model.getUserFromUserBaseByLogin(request1.getLogin()).getUserId()))));
+                   DiscussionList discussionList =model.getDiscussionWithUser(model.getUserFromUserBaseByLogin(request1.getLogin()).getUserId());
+                   out.println(gson.toJson(new BroadcastDiscussionsToUserRequest(discussionList)));
                  }
                  else
                    out.println(gson.toJson(new BroadcastLoginStatusToUserRequest(false, "",0)));

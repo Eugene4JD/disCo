@@ -80,13 +80,10 @@ public class test
             System.out.println("write String discussionId");
             in.nextLine();
             String discussionId3=in.nextLine();
-            System.out.println("removed discussion");
             int discussionID = model.getDiscussionIdFromBuffer(discussionId3);
-            System.out.println("ddd");
             int userID = model.getId();
-            System.out.println("DD");
             model.removeDiscussion(discussionID,userID);
-            System.out.println("end");
+            System.out.println("removed discussion");
 
             break;
           default:

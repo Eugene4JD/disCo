@@ -154,7 +154,7 @@ public class ServerModelManager implements ServerModel
     DiscussionList discussionList = new DiscussionList();
     for (int i =0; i<this.discussionList.size(); i++)
     {
-      if (discussionList.getDiscussion(i).getUserBase().getUserById(userID) != null)
+      if (this.discussionList.getDiscussion(i).getUserBase().getUserById(userID) != null)
       {
         discussionList.addDiscussion(this.discussionList.getDiscussion(i));
       }
