@@ -10,6 +10,9 @@ import view.login.LoginViewController;
 import view.login.RegistrationViewController;
 import viewmodel.ViewModelFactory;
 
+import javax.sound.sampled.*;
+import java.io.File;
+
 public class ViewHandler
 {
   private Stage primaryStage;
@@ -29,6 +32,17 @@ public class ViewHandler
     this.primaryStage = primaryStage;
     this.currentScene = new Scene(new Region());
     openView("login");
+    try
+    {
+      AudioInputStream audioInputStream = AudioSystem
+          .getAudioInputStream(new File("Client/src/resources/introSong.wav"));
+      Clip clip = AudioSystem.getClip();
+      clip.open(audioInputStream);
+      clip.start();
+    }
+    catch (Exception e)
+    {
+    }
   }
 
   public void openView(String id)
