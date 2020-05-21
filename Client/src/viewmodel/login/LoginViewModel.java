@@ -37,6 +37,6 @@ public class LoginViewModel
   {
     String username = this.username.get();
     String password = this.password.get();
-    System.out.printf(password);
+    model.log(username, password, false);
   }
 }
