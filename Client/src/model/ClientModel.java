@@ -1,8 +1,10 @@
 package model;
 
+import utility.UnnamedPropertyChangeSubject;
+
 import java.beans.PropertyChangeListener;
 
-public interface ClientModel extends PropertyChangeListener
+public interface ClientModel extends UnnamedPropertyChangeSubject
 {
   void addDiscussions(DiscussionList discussionList);
   void addUsers(UserBase userBase);

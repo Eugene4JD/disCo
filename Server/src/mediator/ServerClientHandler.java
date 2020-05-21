@@ -52,11 +52,9 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
              MessageRequest request = gson.fromJson(req,MessageRequest.class);
              model.addMessageToDiscussion(request.getDiscussionId(),request.getSender(),request.getMessage());
              break;
-
-
            case Log:
              LogRequest request1 = gson.fromJson(req,LogRequest.class);
-             if (request1.isNewUser() == true)
+             if (request1.isNewUser())
              {
                model.addNewUserToUserBase("RegisteredUser",request1.getLogin(),request1.getPassword());
              }

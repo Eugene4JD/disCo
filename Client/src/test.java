@@ -64,6 +64,7 @@ public class test
             System.out.println("Write String loginOfEditor");
             String loginOfEditor=in.nextLine();
             System.out.println("createNewDiscussion completed");
+           // model.createDiscussion();
             break;
           case 6:
             System.out.println("write String discussionId");
