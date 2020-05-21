@@ -33,6 +33,7 @@ public class ServerModelManager implements ServerModel
       this.discussionList = discoPersistence.loadDiscussions();
       this.userBase = discoPersistence.loadUsers();
       discoPersistence.linkTheConnectionsBetween(discussionList,userBase);
+      System.out.println(this.discussionList.getDiscussion(0).getUserBase().getUser(0).getUserLogin());
     }
     catch (SQLException e)
     {
@@ -58,7 +59,9 @@ public class ServerModelManager implements ServerModel
   {
     try
     {
-      this.discussionList.addDiscussion(discoPersistence.saveDiscussion(discussionName,editorOfDiscussionLogin));
+      Discussion discussion = discoPersistence.saveDiscussion(discussionName,editorOfDiscussionLogin);
+      this.discussionList.addDiscussion(discussion);
+      addUserToDiscussion(discussion.getDiscussionId(),getUserFromUserBaseByLogin(editorOfDiscussionLogin).getUserId());
     }
     catch (SQLException e)
     {
@@ -76,12 +79,12 @@ public class ServerModelManager implements ServerModel
    return userBase.getUserByLogin(login);
   }
 
-  @Override public void removeDiscussion( String discussionName, String loginOfEditor)
+  @Override public void removeDiscussion(int discussionId, int userId)
   {
-    discussionList.removeDiscussionByName(discussionName);
     try
     {
-      discoPersistence.removeDiscussion(discussionName,loginOfEditor);
+      discoPersistence.removeDiscussion(discussionId,userId);
+      discussionList.removeDiscussionById(discussionId);
     }
     catch (SQLException e)
     {
@@ -103,11 +106,11 @@ public class ServerModelManager implements ServerModel
     }
   }
 
-  @Override public void addUserToDiscussion(int discussionID, int loginID)
+  @Override public void addUserToDiscussion(int discussionID, int userID)
   {
     try
     {
-      discoPersistence.saveUserDiscussionConnection(discussionID,loginID);
+      discoPersistence.saveUserDiscussionConnection(discussionID,userID);
     }
     catch (SQLException e)
     {
@@ -144,5 +147,18 @@ public class ServerModelManager implements ServerModel
   @Override public void removeDiscussionByName(String name)
   {
     discussionList.removeDiscussionByName(name);
+  }
+
+  @Override public DiscussionList getDiscussionWithUser(int userID)
+  {
+    DiscussionList discussionList = new DiscussionList();
+    for (int i =0; i<this.discussionList.size(); i++)
+    {
+      if (discussionList.getDiscussion(i).getUserBase().getUserById(userID) != null)
+      {
+        discussionList.addDiscussion(this.discussionList.getDiscussion(i));
+      }
+    }
+    return discussionList;
   }
 }

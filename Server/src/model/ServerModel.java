@@ -8,7 +8,7 @@ import java.beans.PropertyChangeSupport;
 public interface ServerModel extends UnnamedPropertyChangeSubject
 {
   void createNewDiscussion(String discussionName,String editorOfDiscussion);
-  void removeDiscussion(String discussionName, String editorOfDiscussion);
+  void removeDiscussion(int discussionId, int userId);
   Discussion getDiscussionById(int discussionId);
   void addNewUserToUserBase(String userType, String login, String password);
   void removeUserFromUserBase(String userLogin);
@@ -17,6 +17,7 @@ public interface ServerModel extends UnnamedPropertyChangeSubject
   void addLog(String log);
   void addUserToDiscussion(int discussionID, int loginID);
   Discussion getDiscussionByName(String name);
+  DiscussionList getDiscussionWithUser(int userID);
   void removeDiscussionByName(String name);
 
 }

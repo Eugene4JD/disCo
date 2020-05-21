@@ -11,6 +11,6 @@ public interface RemoteModel
   void logToExistingDiscussion(String discussionId,String login);
   void createNewDiscussion(String discussionId,String loginOfEditor);
   void sendMessageInDiscussion(String discussionId, String sender, String message);
-  void removeDiscussion(String discussionId);
+  void removeDiscussion(int discussionId, int userId);
 
 }

@@ -78,10 +78,12 @@ public class DiscoDatabase implements DiscoPersistence
     }
   }
 
-  @Override public void removeDiscussion(String discussionName,String loginOfEditor) throws SQLException
+  @Override public void removeDiscussion(int discussionId, int userId) throws SQLException
   {
-    String sql = "Delete from DisCoDB.DiscussionList where DiscussionName = ? AND LoginOfEditor = ?;";
-    db.update(sql,discussionName,loginOfEditor);
+    String sql = "Delete from DisCoDB.DiscussionList where ID = ?;";
+    db.update(sql,discussionId);
+    sql = "Delete from DisCoDB.DiscussionUserList where DiscussionID = ?;";
+    db.update(sql,discussionId);
   }
 
   @Override public void removeUser(String login, String password) throws SQLException

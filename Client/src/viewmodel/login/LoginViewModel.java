@@ -49,7 +49,7 @@ public class LoginViewModel implements PropertyChangeListener
     switch (evt.getPropertyName())
     {
       case "LogStatus":
-        
+
     }
   }
 }

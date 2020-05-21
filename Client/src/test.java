@@ -59,12 +59,13 @@ public class test
             System.out.println("logToExistingDiscussion");
             break;
           case 5:
+            in.nextLine();
             System.out.println("write String discussionId");
             String discussionId1=in.nextLine();
-            System.out.println("Write String loginOfEditor");
-            String loginOfEditor=in.nextLine();
+            //System.out.println("Write String loginOfEditor");
+           // String loginOfEditor=in.nextLine();
+            model.createDiscussion(discussionId1);
             System.out.println("createNewDiscussion completed");
-           // model.createDiscussion();
             break;
           case 6:
             System.out.println("write String discussionId");
@@ -77,9 +78,16 @@ public class test
             break;
           case 7:
             System.out.println("write String discussionId");
+            in.nextLine();
             String discussionId3=in.nextLine();
-            model.removeDiscussion(discussionId3);
             System.out.println("removed discussion");
+            int discussionID = model.getDiscussionIdFromBuffer(discussionId3);
+            System.out.println("ddd");
+            int userID = model.getId();
+            System.out.println("DD");
+            model.removeDiscussion(discussionID,userID);
+            System.out.println("end");
+
             break;
           default:
             System.out.println("There are no function for this number");

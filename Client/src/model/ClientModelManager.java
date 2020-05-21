@@ -10,13 +10,13 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 
-public class ClientModelManager implements ClientModel,
-    PropertyChangeListener
+public class ClientModelManager implements ClientModel
 {
   private DiscussionList discussionListBuffer;
   private UserBase userBaseBuffer;
   private RemoteModel remoteModel;
   private String login;
+  private int id;
   private PropertyChangeSupport property;
 
   public ClientModelManager()
@@ -62,9 +62,9 @@ public class ClientModelManager implements ClientModel,
   }
 
 
-  @Override public void removeDiscussion(String discussionId)
+  @Override public void removeDiscussion(int discussionId, int userId)
   {
-    this.remoteModel.removeDiscussion(discussionId);
+    this.remoteModel.removeDiscussion(discussionId,userId);
   }
 
   @Override public void addDiscussion(Discussion discussion)
@@ -98,6 +98,7 @@ public class ClientModelManager implements ClientModel,
       remoteModel.createNewDiscussion(discussionId,login);
   }
 
+
   @Override public void log(String login, String password, boolean isNewUser)
   {
     remoteModel.log(login,password,isNewUser);
@@ -126,13 +127,14 @@ public class ClientModelManager implements ClientModel,
         break;
       case "broadcastRemovingDiscussionToUser":
         BroadcastRemovingDiscussionToUserRequest request3 =(BroadcastRemovingDiscussionToUserRequest)evt.getNewValue();
-        discussionListBuffer.removeDiscussionByName(request3.getDiscussionId());
+        discussionListBuffer.removeDiscussionById(request3.getDiscussionId());
         break;
       case "broadcastLoginStatusToUser":
         BroadcastLoginStatusToUserRequest request4 = (BroadcastLoginStatusToUserRequest)evt.getNewValue();
         if (request4.isLogSuccessful())
         {
           this.login = request4.getLogin();
+          this.id = request4.getId();
           property.firePropertyChange("LogStatus",null,true);
         }
         else
@@ -142,6 +144,22 @@ public class ClientModelManager implements ClientModel,
 
 
     }
+  }
+  public int getDiscussionIdFromBuffer(String discussionName)
+  {
+    int id = this.discussionListBuffer.getDiscussionByName(discussionName).getDiscussionId();
+    return id;
+  }
+
+  @Override public int getId()
+  {
+    System.out.println("id");
+    return id;
+  }
+
+  public String getLogin()
+  {
+    return login;
   }
 
   @Override public void addListener(PropertyChangeListener listener)

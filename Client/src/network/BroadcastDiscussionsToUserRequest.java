@@ -5,10 +5,10 @@ import model.DiscussionList;
 public class BroadcastDiscussionsToUserRequest extends Request
 {
   private DiscussionList discussions;
-  public BroadcastDiscussionsToUserRequest()
+  public BroadcastDiscussionsToUserRequest(DiscussionList discussionList)
   {
     super(RequestType.BroadcastDiscussions);
-    this.discussions = new DiscussionList();
+    this.discussions = discussionList;
   }
   public DiscussionList getDiscussions()
   {

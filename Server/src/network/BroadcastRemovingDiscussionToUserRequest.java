@@ -2,14 +2,14 @@ package network;
 
 public class BroadcastRemovingDiscussionToUserRequest extends Request
 {
-  String discussionId;
-  public BroadcastRemovingDiscussionToUserRequest(String discussionId)
+  int discussionId;
+  public BroadcastRemovingDiscussionToUserRequest(int discussionId)
   {
     super(RequestType.BroadcastRemovingDiscussion);
     this.discussionId =discussionId;
   }
 
-  public String getDiscussionId()
+  public int getDiscussionId()
   {
     return discussionId;
   }

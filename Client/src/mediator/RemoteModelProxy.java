@@ -28,9 +28,9 @@ public class RemoteModelProxy implements RemoteModel
     clientSender.disconnect();
   }
 
-  @Override public void removeDiscussion(String discussionId)
+  @Override public void removeDiscussion(int discussionId,int userId)
   {
-    clientSender.removeDiscussion(discussionId);
+    clientSender.removeDiscussion(discussionId,userId);
   }
 
   @Override public void createNewDiscussion(String discussionId,String login)

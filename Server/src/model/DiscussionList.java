@@ -27,7 +27,7 @@ public class DiscussionList
       if (discussions.get(i).getDiscussionId() == discussionId)
         return discussions.get(i);
     }
-    return null;
+    throw new IllegalArgumentException(" e");
   }
 
   public Discussion getDiscussionByName(String name)
@@ -72,5 +72,17 @@ public class DiscussionList
   public int size()
   {
     return discussions.size();
+  }
+
+  public String toString()
+  {
+    String str = " ";
+    for (int i=0 ; i<this.size(); i++)
+    {
+     str += discussions.get(0).getDiscussionName() + " " + discussions.get(0).getDiscussionId() + " " + discussions.get(0).getLoginOfEditorOfDiscussion();
+     str += "\n";
+    }
+    return str;
+
   }
 }

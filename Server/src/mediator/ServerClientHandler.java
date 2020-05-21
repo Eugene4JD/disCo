@@ -65,14 +65,14 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
                {
                  if (user.getUserPassword().equals(request1.getPassword()))
                  {
-                   out.println(new BroadcastLoginStatusToUserRequest(true, user.getUserLogin()));
-                   out.println(new BroadcastDiscussionsToUserRequest());
+                   out.println(gson.toJson(new BroadcastLoginStatusToUserRequest(true, user.getUserLogin(),user.getUserId())));
+                   out.println(gson.toJson(new BroadcastDiscussionsToUserRequest(model.getDiscussionWithUser(model.getUserFromUserBaseByLogin(request1.getLogin()).getUserId()))));
                  }
                  else
-                   out.println(new BroadcastLoginStatusToUserRequest(false, ""));
+                   out.println(gson.toJson(new BroadcastLoginStatusToUserRequest(false, "",0)));
                }
                else
-                 out.println(new BroadcastLoginStatusToUserRequest(false, ""));
+                 out.println(gson.toJson(new BroadcastLoginStatusToUserRequest(false, "",0)));
              }
              break;
 
@@ -101,9 +101,9 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
 
            case RemoveDiscussion:
               RemoveDiscussionRequest request4 = gson.fromJson(req,RemoveDiscussionRequest.class);
-              if (model.getDiscussionByName(request4.getDiscussionId()) != null)
+              if (model.getDiscussionById(request4.getDiscussionId()) != null)
               {
-                model.removeDiscussionByName(request4.getDiscussionId());
+                model.removeDiscussion(request4.getDiscussionId(),request4.getUserId());
                 out.println(gson.toJson(new BroadcastRemovingDiscussionToUserRequest(request4.getDiscussionId())));
               }
              break;

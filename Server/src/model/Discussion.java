@@ -13,6 +13,8 @@ public class Discussion
     messageList = new MessageList();
     userBase = new UserBase();
     this.LoginOfEditorOfDiscussion = editorOfDiscussion;
+    this.discussionId = discussionId;
+    this.discussionName = discussionName;
   }
 
   public void addUser(User user)

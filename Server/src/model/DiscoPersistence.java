@@ -10,7 +10,7 @@ public interface DiscoPersistence
   void removeUser(String login, String password) throws SQLException;
   void clearUsers() throws  SQLException;
   Discussion saveDiscussion(String discussionName, String loginOfEditor) throws SQLException;
-  void removeDiscussion(String discussionName, String loginOfEditor) throws SQLException;
+  void removeDiscussion(int discussionID, int editorId) throws SQLException;
   void clearDiscussions() throws SQLException;
   void linkTheConnectionsBetween(DiscussionList discussionList, UserBase userBase) throws SQLException;
   void saveUserDiscussionConnection(int discussionID, int userID) throws SQLException;
