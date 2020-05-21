@@ -9,7 +9,7 @@ public class Message implements Serializable
   private String senderId;
   private DateTime dateTime;
 
-  public Message(String senderId, String text,int messageId)
+  public Message(String senderId, String text, int messageId)
   {
     this.dateTime = new DateTime();
   }
@@ -18,6 +18,7 @@ public class Message implements Serializable
   {
     return this.text;
   }
+
   public int getMessageId()
   {
     return this.messageId;
@@ -30,13 +31,14 @@ public class Message implements Serializable
 
   public String toString()
   {
-    return senderId + " "+ this.dateTime.toString()+" : " + senderId;
+    return senderId + " " + this.dateTime.toString() + " : " + senderId;
   }
+
   @Override public boolean equals(Object obj)
   {
     if (!(obj instanceof Message))
       return false;
-    Message newMessage = (Message)obj;
+    Message newMessage = (Message) obj;
     return newMessage.getMessageId() == this.messageId;
   }
 }
