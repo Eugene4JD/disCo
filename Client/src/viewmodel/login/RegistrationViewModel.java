@@ -40,4 +40,11 @@ public class RegistrationViewModel
   {
     return repeatPassword;
   }
+
+  public void signUp()
+  {
+    String username = this.username.get();
+    String password = this.password.get();
+    model.log(username, password, true);
+  }
 }

@@ -35,8 +35,8 @@ public class LoginViewModel
 
   public void logIn()
   {
-    String username = this.username.get();
-    String password = this.password.get();
-    model.log(username, password, false);
+    //String username = this.username.get();
+    //String password = this.password.get();
+    //model.log(username, password, false);
   }
 }
