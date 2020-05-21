@@ -67,7 +67,7 @@ public class ClientReceiver implements Runnable, UnnamedPropertyChangeSubject
              break;
          }
        }
-       catch (IOException e)
+       catch (Exception e)
        {
          e.printStackTrace();
        }

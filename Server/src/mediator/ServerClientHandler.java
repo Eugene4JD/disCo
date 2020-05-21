@@ -56,19 +56,27 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
 
            case Log:
              LogRequest request1 = gson.fromJson(req,LogRequest.class);
-             User user = model.getUserFromUserBaseByLogin(request1.getLogin());
-             if (user != null)
+             if (request1.isNewUser() == true)
              {
-               if (user.getUserPassword().equals(request1.getPassword()))
-               {
-                 out.println(new BroadcastLoginStatusToUserRequest(true,user.getUserLogin()));
-                 out.println(new BroadcastDiscussionsToUserRequest());
-               }
-               else
-                 out.println(new BroadcastLoginStatusToUserRequest(false,""));
+               model.addNewUserToUserBase("RegisteredUser",request1.getLogin(),request1.getPassword());
              }
              else
-               out.println(new BroadcastLoginStatusToUserRequest(false,""));
+             {
+               User user = model.getUserFromUserBaseByLogin(request1.getLogin());
+               if (user != null)
+               {
+                 if (user.getUserPassword().equals(request1.getPassword()))
+                 {
+                   out.println(new BroadcastLoginStatusToUserRequest(true, user.getUserLogin()));
+                   out.println(new BroadcastDiscussionsToUserRequest());
+                 }
+                 else
+                   out.println(new BroadcastLoginStatusToUserRequest(false, ""));
+               }
+               else
+                 out.println(new BroadcastLoginStatusToUserRequest(false, ""));
+             }
+             break;
 
 
            case LogToExistingDiscussion:
