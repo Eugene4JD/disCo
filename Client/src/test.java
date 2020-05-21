@@ -40,8 +40,15 @@ public class test
             System.out.println("Write String password");
             String password=in.nextLine();
             System.out.println("Write boolean isNewUser");
-            boolean isNewUser=in.nextBoolean();
-            model.log(login,password,isNewUser);
+            String isNewUser=in.nextLine();
+            if (isNewUser.equals("true"))
+            {
+                model.log(login,password,true);
+            }
+            else
+            {
+              model.log(login,password,false);
+            }
             System.out.println("log added");
             break;
           case 4:
