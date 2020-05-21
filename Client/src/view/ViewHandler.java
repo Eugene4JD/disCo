@@ -73,6 +73,7 @@ public class ViewHandler
     primaryStage.setHeight(root.getPrefHeight());
     primaryStage.getIcons()
         .add(new Image(getClass().getResourceAsStream("/resources/exp.png")));
+    primaryStage.centerOnScreen();
     primaryStage.show();
   }
 
