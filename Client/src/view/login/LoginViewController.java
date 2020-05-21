@@ -38,12 +38,12 @@ public class LoginViewController
 
   @FXML private void cancelButtonPressed()
   {
-
+    viewHandler.closeView();
   }
 
   @FXML private void signInButtonPressed()
   {
-
+    viewModel.logIn();
   }
 
   public Region getRoot()

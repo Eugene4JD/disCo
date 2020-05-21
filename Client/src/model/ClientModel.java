@@ -12,5 +12,5 @@ public interface ClientModel extends PropertyChangeListener
   void removeDiscussion(String discussionId);
   void connect();
   void disconnect();
-  void log(String login, String password ,boolean isNewUser);
+  void log(String login, String password, boolean isNewUser);
 }

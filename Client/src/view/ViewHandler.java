@@ -77,6 +77,11 @@ public class ViewHandler
     primaryStage.show();
   }
 
+  public void closeView()
+  {
+    primaryStage.close();
+  }
+
   private Region loadLoginView(String fxmlFile)
   {
     if (loginViewController == null)

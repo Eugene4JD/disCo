@@ -32,4 +32,11 @@ public class LoginViewModel
   {
     return password;
   }
+
+  public void logIn()
+  {
+    String username = this.username.get();
+    String password = this.password.get();
+    System.out.printf(password);
+  }
 }
