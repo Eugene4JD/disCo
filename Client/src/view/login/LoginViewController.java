@@ -2,6 +2,9 @@ package view.login;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RequiredFieldValidator;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
@@ -29,6 +32,22 @@ public class LoginViewController
         .bindBidirectional(viewModel.getUsernameProperty());
     passwordField.textProperty()
         .bindBidirectional(viewModel.getPasswordProperty());
+
+    RequiredFieldValidator validator = new RequiredFieldValidator();
+    usernameField.getValidators().add(validator);
+    validator.setMessage("No input given");
+    usernameField.focusedProperty().addListener(new ChangeListener<Boolean>()
+    {
+      @Override public void changed(
+          ObservableValue<? extends Boolean> observable, Boolean oldValue,
+          Boolean newValue)
+      {
+        if (!newValue)
+        {
+          usernameField.validate();
+        }
+      }
+    });
   }
 
   public void reset()
@@ -60,4 +79,5 @@ public class LoginViewController
   {
     viewHandler.openView("main");
   }
+
 }
