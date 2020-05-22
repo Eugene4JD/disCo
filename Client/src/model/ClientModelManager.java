@@ -122,11 +122,13 @@ public class ClientModelManager implements ClientModel
           discussionListBuffer
               .addDiscussion(request1.getDiscussions().getDiscussion(i));
         }
+        property.firePropertyChange("AddList", null, discussionListBuffer);
         break;
       case "broadcastDiscussionToUser":
         BroadcastDiscussionToUserRequest request2 = (BroadcastDiscussionToUserRequest) evt
             .getNewValue();
         discussionListBuffer.addDiscussion(request2.getDiscussion());
+        property.firePropertyChange("Add", null, request2.getDiscussion());
         break;
       case "broadcastRemovingDiscussionToUser":
         BroadcastRemovingDiscussionToUserRequest request3 = (BroadcastRemovingDiscussionToUserRequest) evt
@@ -181,10 +183,10 @@ public class ClientModelManager implements ClientModel
   {
 
   }
-   public  DiscussionList getDiscussionListBuffer()
-   {
-     return this.discussionListBuffer;
-   }
 
+  public DiscussionList getDiscussionListBuffer()
+  {
+    return this.discussionListBuffer;
+  }
 
 }
