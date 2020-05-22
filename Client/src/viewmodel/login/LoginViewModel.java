@@ -39,9 +39,9 @@ public class LoginViewModel implements PropertyChangeListener
 
   public void logIn()
   {
-    //String username = this.username.get();
-    //String password = this.password.get();
-    //model.log(username, password, false);
+    String username = this.username.get();
+    String password = this.password.get();
+    model.log(username, password, false);
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)

@@ -43,6 +43,7 @@ public class LoginViewController
   @FXML private void signInButtonPressed()
   {
     viewModel.logIn();
+    viewHandler.openView("main");
   }
 
   public Region getRoot()
