@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import view.chat.ChatViewController;
 import view.discussionList.MainViewController;
 import view.login.LoginViewController;
 import view.login.RegistrationViewController;
@@ -21,6 +22,7 @@ public class ViewHandler
   private LoginViewController loginViewController;
   private RegistrationViewController registrationViewController;
   private MainViewController mainViewController;
+  private ChatViewController chatViewController;
 
   public ViewHandler(ViewModelFactory viewModelFactory)
   {
@@ -59,6 +61,9 @@ public class ViewHandler
       case "main":
         root = loadMainView("discussionList/MainView.fxml");
         break;
+      case "chat":
+        root = loadChatView("chat/ChatView.fxml");
+        break;
     }
     currentScene.setRoot(root);
 
@@ -74,6 +79,7 @@ public class ViewHandler
     primaryStage.getIcons()
         .add(new Image(getClass().getResourceAsStream("/resources/exp.png")));
     primaryStage.centerOnScreen();
+    primaryStage.setResizable(false);
     primaryStage.show();
   }
 
@@ -155,6 +161,31 @@ public class ViewHandler
       mainViewController.reset();
     }
     return mainViewController.getRoot();
+  }
+
+  private Region loadChatView(String fxmlFile)
+  {
+    if (chatViewController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        Region root = loader.load();
+        chatViewController = loader.getController();
+        chatViewController
+            .init(this, viewModelFactory.getChatViewModel(), root);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else
+    {
+      chatViewController.reset();
+    }
+    return chatViewController.getRoot();
   }
 
 }

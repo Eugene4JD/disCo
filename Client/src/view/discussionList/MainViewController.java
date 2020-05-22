@@ -29,11 +29,7 @@ public class MainViewController
     this.viewModel = viewModel;
     this.root = root;
 
-    for (int i = 0; i < 25; i++)
-    {
-      Label label = new Label("Item: " + i);
-      listView.getItems().add(label);
-    }
+    listView.setItems(viewModel.getMessages());
   }
 
   public void reset()
@@ -48,6 +44,7 @@ public class MainViewController
 
   public void settingsButtonPressed(ActionEvent actionEvent)
   {
+    viewHandler.openView("chat");
   }
 
   public void addButtonPressed(ActionEvent actionEvent)

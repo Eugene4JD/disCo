@@ -34,7 +34,6 @@ public class ClientModelManager implements ClientModel
       e.printStackTrace();
     }
     this.login = "";
-
   }
 
   @Override public void connect()
@@ -61,10 +60,9 @@ public class ClientModelManager implements ClientModel
     }
   }
 
-
   @Override public void removeDiscussion(int discussionId, int userId)
   {
-    this.remoteModel.removeDiscussion(discussionId,userId);
+    this.remoteModel.removeDiscussion(discussionId, userId);
   }
 
   @Override public void addDiscussion(Discussion discussion)
@@ -74,7 +72,7 @@ public class ClientModelManager implements ClientModel
 
   @Override public void addDiscussions(DiscussionList discussionList)
   {
-    for (int i = 0; i<discussionList.size(); i++)
+    for (int i = 0; i < discussionList.size(); i++)
     {
       this.discussionListBuffer.addDiscussion(discussionList.getDiscussion(i));
     }
@@ -82,12 +80,12 @@ public class ClientModelManager implements ClientModel
 
   @Override public void addUser(User user)
   {
-     userBaseBuffer.addUser(user);
+    userBaseBuffer.addUser(user);
   }
 
   @Override public void addUsers(UserBase userBase)
   {
-    for (int i = 0; i<userBase.size(); i++)
+    for (int i = 0; i < userBase.size(); i++)
     {
       this.userBaseBuffer.addUser(userBase.getUser(i));
     }
@@ -95,13 +93,12 @@ public class ClientModelManager implements ClientModel
 
   @Override public void createDiscussion(String discussionId)
   {
-      remoteModel.createNewDiscussion(discussionId,login);
+    remoteModel.createNewDiscussion(discussionId, login);
   }
-
 
   @Override public void log(String login, String password, boolean isNewUser)
   {
-    remoteModel.log(login,password,isNewUser);
+    remoteModel.log(login, password, isNewUser);
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
@@ -109,45 +106,53 @@ public class ClientModelManager implements ClientModel
     switch (evt.getPropertyName())
     {
       case "broadcastMessageToDiscussion":
-        BroadcastMessageToDiscussionRequest request = (BroadcastMessageToDiscussionRequest)evt.getNewValue();
-        Discussion discussion = this.discussionListBuffer.getDiscussionByName(request.getDiscussionID());
+        BroadcastMessageToDiscussionRequest request = (BroadcastMessageToDiscussionRequest) evt
+            .getNewValue();
+        Discussion discussion = this.discussionListBuffer
+            .getDiscussionByName(request.getDiscussionID());
         if (discussion != null)
-        discussion.getMessageList().addMessage(request.getSender(),request.getMessage());
+          discussion.getMessageList()
+              .addMessage(request.getSender(), request.getMessage());
         break;
       case "broadcastDiscussionsToUser":
-        BroadcastDiscussionsToUserRequest request1 = (BroadcastDiscussionsToUserRequest)evt.getNewValue();
-        for (int i =0; i<request1.getDiscussions().size();i++)
+        BroadcastDiscussionsToUserRequest request1 = (BroadcastDiscussionsToUserRequest) evt
+            .getNewValue();
+        for (int i = 0; i < request1.getDiscussions().size(); i++)
         {
-          discussionListBuffer.addDiscussion(request1.getDiscussions().getDiscussion(i));
+          discussionListBuffer
+              .addDiscussion(request1.getDiscussions().getDiscussion(i));
         }
         break;
       case "broadcastDiscussionToUser":
-        BroadcastDiscussionToUserRequest request2 = (BroadcastDiscussionToUserRequest)evt.getNewValue();
+        BroadcastDiscussionToUserRequest request2 = (BroadcastDiscussionToUserRequest) evt
+            .getNewValue();
         discussionListBuffer.addDiscussion(request2.getDiscussion());
         break;
       case "broadcastRemovingDiscussionToUser":
-        BroadcastRemovingDiscussionToUserRequest request3 =(BroadcastRemovingDiscussionToUserRequest)evt.getNewValue();
+        BroadcastRemovingDiscussionToUserRequest request3 = (BroadcastRemovingDiscussionToUserRequest) evt
+            .getNewValue();
         discussionListBuffer.removeDiscussionById(request3.getDiscussionId());
         break;
       case "broadcastLoginStatusToUser":
-        BroadcastLoginStatusToUserRequest request4 = (BroadcastLoginStatusToUserRequest)evt.getNewValue();
+        BroadcastLoginStatusToUserRequest request4 = (BroadcastLoginStatusToUserRequest) evt
+            .getNewValue();
         if (request4.isLogSuccessful())
         {
           this.login = request4.getLogin();
           this.id = request4.getId();
-          property.firePropertyChange("LogStatus",null,true);
+          property.firePropertyChange("LogStatus", null, true);
         }
         else
         {
           property.firePropertyChange("LogStatus", null, false);
         }
-
-
     }
   }
+
   public int getDiscussionIdFromBuffer(String discussionName)
   {
-    int id = this.discussionListBuffer.getDiscussionByName(discussionName).getDiscussionId();
+    int id = this.discussionListBuffer.getDiscussionByName(discussionName)
+        .getDiscussionId();
     return id;
   }
 
