@@ -12,7 +12,7 @@ public class DiscoDatabase implements DiscoPersistence
 
   public DiscoDatabase() throws ClassNotFoundException
   {
-      this.db = new MyDatabase("org.postgresql.Driver" ,"jdbc:postgresql://localhost:5432/postgres", "postgres", "3228");
+      this.db = new MyDatabase("org.postgresql.Driver" ,"jdbc:postgresql://discodb.csnebnxmdf9e.us-east-2.rds.amazonaws.com:5432/postgres", "postgres", "DisCoDB20");
   }
   @Override public UserBase loadUsers() throws SQLException
   {

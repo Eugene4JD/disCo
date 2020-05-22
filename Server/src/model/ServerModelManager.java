@@ -33,7 +33,6 @@ public class ServerModelManager implements ServerModel
       this.discussionList = discoPersistence.loadDiscussions();
       this.userBase = discoPersistence.loadUsers();
       discoPersistence.linkTheConnectionsBetween(discussionList,userBase);
-      System.out.println(this.discussionList.getDiscussion(0).getUserBase().getUser(0).getUserLogin());
     }
     catch (SQLException e)
     {
