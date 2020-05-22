@@ -13,7 +13,7 @@ public interface ServerModel extends UnnamedPropertyChangeSubject
   void addNewUserToUserBase(String userType, String login, String password);
   void removeUserFromUserBase(String userLogin);
   User getUserFromUserBaseByLogin(String login);
-  void addMessageToDiscussion(String discussionId, String sender, String message);
+  void addMessageToDiscussion(int discussionId, int senderId, String message);
   void addLog(String log);
   void addUserToDiscussion(int discussionID, int loginID);
   Discussion getDiscussionByName(String name);

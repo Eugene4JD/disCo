@@ -10,7 +10,7 @@ public interface RemoteModel
   void log(String login, String password, boolean isNewUser);
   void logToExistingDiscussion(String discussionId,String login);
   void createNewDiscussion(String discussionId,String loginOfEditor);
-  void sendMessageInDiscussion(String discussionId, String sender, String message);
+  void sendMessageInDiscussion(int discussionId, int sender, String message);
   void removeDiscussion(int discussionId, int userId);
 
 }

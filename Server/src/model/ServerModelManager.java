@@ -123,10 +123,10 @@ public class ServerModelManager implements ServerModel
     this.log.addLog(log);
   }
 
-  @Override public void addMessageToDiscussion(String discussionId,
-      String sender, String message)
+  @Override public void addMessageToDiscussion(int discussionId,
+      int senderID, String message)
   {
-    property.firePropertyChange("BroadcastMessageToDiscussion",null,new BroadcastMessageToDiscussionRequest(discussionId,sender,message));
+    property.firePropertyChange("BroadcastMessageToDiscussion",null,new BroadcastMessageToDiscussionRequest(discussionId,senderID,message));
   }
 
   @Override public void removeListener(PropertyChangeListener listener)

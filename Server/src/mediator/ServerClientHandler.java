@@ -52,7 +52,7 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
          {
            case Message:
              MessageRequest request = gson.fromJson(req,MessageRequest.class);
-             model.addMessageToDiscussion(request.getDiscussionId(),request.getSender(),request.getMessage());
+             model.addMessageToDiscussion(request.getDiscussionId(),request.getSenderID(),request.getMessage());
              break;
            case Log:
              LogRequest request1 = gson.fromJson(req,LogRequest.class);

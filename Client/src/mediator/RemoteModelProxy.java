@@ -44,9 +44,9 @@ public class RemoteModelProxy implements RemoteModel
     clientSender.logToExistingDiscussion(discussionId,login);
   }
 
-  @Override public void sendMessageInDiscussion(String discussionId,
-      String sender, String message)
+  @Override public void sendMessageInDiscussion(int discussionId,
+      int senderID, String message)
   {
-    clientSender.sendMessageInDiscussion(discussionId,sender,message);
+    clientSender.sendMessageInDiscussion(discussionId,senderID,message);
   }
 }

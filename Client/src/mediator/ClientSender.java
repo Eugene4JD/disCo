@@ -76,8 +76,8 @@ public class ClientSender implements RemoteModel
     out.println(gson.toJson(new RemoveDiscussionRequest(discussionID,userId)));
   }
 
-  @Override public void sendMessageInDiscussion(String discussionId, String sender, String message)
+  @Override public void sendMessageInDiscussion(int discussionId, int senderID, String message)
   {
-    out.println(gson.toJson(new MessageRequest(discussionId,sender,message)));
+    out.println(gson.toJson(new MessageRequest(discussionId,senderID,message)));
   }
 }
