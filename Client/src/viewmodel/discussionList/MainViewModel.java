@@ -38,7 +38,12 @@ public class MainViewModel
       listView.add(label);
     }
      */
-    DiscussionList list =
+    DiscussionList list = model.getDiscussionListBuffer();
+    for (int i = 0; i < list.size(); i++)
+    {
+      Label label = new Label(list.getDiscussion(i).getDiscussionName());
+      listView.add(label);
+    }
   }
 
 }
