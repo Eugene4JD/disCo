@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import model.ClientModel;
+import model.DiscussionList;
 
 public class MainViewModel
 {
@@ -30,11 +31,14 @@ public class MainViewModel
   public void updateListView()
   {
     listView = FXCollections.observableArrayList();
+    /*
     for (int i = 0; i < 25; i++)
     {
       Label label = new Label("Item: " + i);
       listView.add(label);
     }
+     */
+    DiscussionList list =
   }
 
 }
