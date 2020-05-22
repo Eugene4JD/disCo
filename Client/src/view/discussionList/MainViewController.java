@@ -29,11 +29,12 @@ public class MainViewController
     this.viewModel = viewModel;
     this.root = root;
 
-    for (int i = 0; i < 25; i++)
-    {
-      Label label = new Label("Item: " + i);
-      listView.getItems().add(label);
-    }
+    listView.setItems(viewModel.getMessages());
+    //for (int i = 0; i < 25; i++)
+    //{
+      //Label label = new Label("Item: " + i);
+      //listView.getItems().add(label);
+    //}
   }
 
   public void reset()
