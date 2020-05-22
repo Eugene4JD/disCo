@@ -2,20 +2,20 @@ package network;
 
 public class MessageRequest extends Request
 {
-  private String sender;
+  private int senderID;
   private String message;
-  private String discussionId;
-  public MessageRequest(String discussionId, String sender, String message)
+  private int discussionId;
+  public MessageRequest(int discussionId, int senderId, String message)
   {
     super(RequestType.Message);
     this.discussionId = discussionId;
     this.message = message;
-    this.sender = sender;
+    this.senderID = senderID;
   }
 
-  public String getSender()
+  public int getSenderID()
   {
-    return sender;
+    return senderID;
   }
 
   public String getMessage()
@@ -23,7 +23,7 @@ public class MessageRequest extends Request
     return message;
   }
 
-  public String getDiscussionId()
+  public int getDiscussionId()
   {
     return discussionId;
   }
