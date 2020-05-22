@@ -43,6 +43,14 @@ public class LoginViewController
   @FXML private void signInButtonPressed()
   {
     viewModel.logIn();
+    try
+    {
+      Thread.sleep(1000);
+    }
+    catch (InterruptedException e)
+    {
+
+    }
     viewHandler.openView("main");
   }
 

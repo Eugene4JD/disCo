@@ -39,6 +39,7 @@ public class MainViewModel
     }
      */
     DiscussionList list = model.getDiscussionListBuffer();
+    System.out.println(list.toString());
     for (int i = 0; i < list.size(); i++)
     {
       Label label = new Label(list.getDiscussion(i).getDiscussionName());

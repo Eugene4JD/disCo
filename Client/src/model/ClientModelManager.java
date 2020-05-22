@@ -122,6 +122,7 @@ public class ClientModelManager implements ClientModel
           discussionListBuffer
               .addDiscussion(request1.getDiscussions().getDiscussion(i));
         }
+        System.out.println(discussionListBuffer.toString());
         break;
       case "broadcastDiscussionToUser":
         BroadcastDiscussionToUserRequest request2 = (BroadcastDiscussionToUserRequest) evt
