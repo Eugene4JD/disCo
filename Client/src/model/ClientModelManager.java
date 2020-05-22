@@ -175,4 +175,16 @@ public class ClientModelManager implements ClientModel
   {
     this.property.removePropertyChangeListener(listener);
   }
+
+  @Override public void sendMessageToDiscussion(int discussionID, int userId,
+      String message)
+  {
+
+  }
+   public  DiscussionList getDiscussionListBuffer()
+   {
+     return this.discussionListBuffer;
+   }
+
+
 }
