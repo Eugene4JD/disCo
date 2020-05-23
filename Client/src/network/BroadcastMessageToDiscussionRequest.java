@@ -2,19 +2,19 @@ package network;
 
 public class BroadcastMessageToDiscussionRequest extends Request
 {
-  private String discussionID;
+  private int discussionID;
   private String message;
-  private String sender;
+  private int senderID;
 
-  public BroadcastMessageToDiscussionRequest(String discussionID, String sender, String message)
+  public BroadcastMessageToDiscussionRequest(int  discussionID, int senderID, String message)
   {
     super(RequestType.BroadcastMessage);
     this.discussionID = discussionID;
-    this.sender = sender;
+    this.senderID = senderID;
     this.message = message;
   }
 
-  public String getDiscussionID()
+  public int getDiscussionID()
   {
     return discussionID;
   }
@@ -24,8 +24,8 @@ public class BroadcastMessageToDiscussionRequest extends Request
     return message;
   }
 
-  public String getSender()
+  public int getSenderID()
   {
-    return sender;
+    return senderID;
   }
 }
