@@ -109,10 +109,10 @@ public class ClientModelManager implements ClientModel
         BroadcastMessageToDiscussionRequest request = (BroadcastMessageToDiscussionRequest) evt
             .getNewValue();
         Discussion discussion = this.discussionListBuffer
-            .getDiscussionByName(request.getDiscussionID());
+            .getDiscussionById(request.getDiscussionID());
         if (discussion != null)
           discussion.getMessageList()
-              .addMessage(request.getSender(), request.getMessage());
+              .addMessage(this.userBaseBuffer.getUserById(request.getSenderID()).getUserLogin(), request.getMessage());
         break;
       case "broadcastDiscussionsToUser":
         BroadcastDiscussionsToUserRequest request1 = (BroadcastDiscussionsToUserRequest) evt
