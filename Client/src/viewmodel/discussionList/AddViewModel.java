@@ -31,8 +31,7 @@ public class AddViewModel
   public void createThread()
   {
     int random = ThreadLocalRandom.current().nextInt(5, 1000);
-    model.addDiscussion(new Discussion(random, enter.get(), "Bob"));
-    System.out.printf("hhhh");
+    model.createDiscussion(enter.get());
   }
 
 }
