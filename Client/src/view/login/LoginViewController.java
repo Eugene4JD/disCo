@@ -3,6 +3,8 @@ package view.login;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import view.ViewHandler;
@@ -61,4 +63,11 @@ public class LoginViewController
     viewHandler.openView("main");
   }
 
+  public void onEnter(KeyEvent keyEvent)
+  {
+    if (keyEvent.getCode() == KeyCode.ENTER)
+    {
+      signInButtonPressed();
+    }
+  }
 }

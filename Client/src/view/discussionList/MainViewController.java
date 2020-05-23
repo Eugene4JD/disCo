@@ -49,5 +49,6 @@ public class MainViewController
 
   public void addButtonPressed(ActionEvent actionEvent)
   {
+    viewHandler.openView("add");
   }
 }

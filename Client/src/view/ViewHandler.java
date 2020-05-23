@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import view.chat.ChatViewController;
+import view.discussionList.AddViewController;
 import view.discussionList.MainViewController;
 import view.login.LoginViewController;
 import view.login.RegistrationViewController;
@@ -23,6 +24,7 @@ public class ViewHandler
   private RegistrationViewController registrationViewController;
   private MainViewController mainViewController;
   private ChatViewController chatViewController;
+  private AddViewController addViewController;
 
   public ViewHandler(ViewModelFactory viewModelFactory)
   {
@@ -63,6 +65,9 @@ public class ViewHandler
         break;
       case "chat":
         root = loadChatView("chat/ChatView.fxml");
+        break;
+      case "add":
+        root = loadAddView("discussionList/AddView.fxml");
         break;
     }
     currentScene.setRoot(root);
@@ -186,6 +191,30 @@ public class ViewHandler
       chatViewController.reset();
     }
     return chatViewController.getRoot();
+  }
+
+  private Region loadAddView(String fxmlFile)
+  {
+    if (addViewController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        Region root = loader.load();
+        addViewController = loader.getController();
+        addViewController.init(this, viewModelFactory.getAddViewModel(), root);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else
+    {
+      addViewController.reset();
+    }
+    return addViewController.getRoot();
   }
 
 }
