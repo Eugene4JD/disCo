@@ -25,6 +25,7 @@ public class ChatViewController
     this.viewModel = viewModel;
     this.root = root;
 
+    //chatList.setExpanded(true);
     chatList.setItems(viewModel.getChatList());
   }
 

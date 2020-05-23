@@ -1,13 +1,18 @@
 package view.discussionList;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXPopup;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import view.ViewHandler;
 import viewmodel.discussionList.MainViewModel;
 
@@ -17,6 +22,7 @@ public class MainViewController
 {
   @FXML private JFXListView<Label> listView;
   @FXML private TextField searchField;
+  @FXML private JFXPopup popup;
 
   private ViewHandler viewHandler;
   private MainViewModel viewModel;
@@ -30,6 +36,16 @@ public class MainViewController
     this.root = root;
 
     listView.setItems(viewModel.getMessages());
+   // initPopup();
+  }
+
+  private void initPopup()
+  {
+    JFXButton b0 = new JFXButton("Enter");
+    JFXButton b1 = new JFXButton("Edit");
+    JFXButton b2 = new JFXButton("Remove");
+    VBox vBox = new VBox(b0, b1, b2);
+    popup.setPopupContent(vBox);
   }
 
   public void reset()
@@ -50,5 +66,17 @@ public class MainViewController
   public void addButtonPressed(ActionEvent actionEvent)
   {
     viewHandler.openView("add");
+  }
+
+  public void doubleClickOnThread(MouseEvent mouseEvent)
+  {
+    if (mouseEvent.getButton().equals(MouseButton.PRIMARY))
+    {
+      if (mouseEvent.getClickCount() == 2)
+      {
+        Label selectedItem = listView.getSelectionModel().getSelectedItem();
+        System.out.printf(selectedItem.getText());
+      }
+    }
   }
 }
