@@ -2,6 +2,7 @@ package viewmodel;
 
 import model.ClientModel;
 import viewmodel.chat.ChatViewModel;
+import viewmodel.discussionList.AddViewModel;
 import viewmodel.discussionList.MainViewModel;
 import viewmodel.login.LoginViewModel;
 import viewmodel.login.RegistrationViewModel;
@@ -12,6 +13,7 @@ public class ViewModelFactory
   private RegistrationViewModel registrationViewModel;
   private MainViewModel mainViewModel;
   private ChatViewModel chatViewModel;
+  private AddViewModel addViewModel;
 
   public ViewModelFactory(ClientModel model)
   {
@@ -19,6 +21,7 @@ public class ViewModelFactory
     registrationViewModel = new RegistrationViewModel(model);
     mainViewModel = new MainViewModel(model);
     chatViewModel = new ChatViewModel(model);
+    addViewModel = new AddViewModel(model);
   }
 
   public LoginViewModel getLoginViewModel()
@@ -39,5 +42,10 @@ public class ViewModelFactory
   public ChatViewModel getChatViewModel()
   {
     return chatViewModel;
+  }
+
+  public AddViewModel getAddViewModel()
+  {
+    return addViewModel;
   }
 }

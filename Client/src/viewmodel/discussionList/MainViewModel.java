@@ -21,9 +21,10 @@ public class MainViewModel implements PropertyChangeListener
 
   public MainViewModel(ClientModel model)
   {
+    listView = FXCollections.observableArrayList();
     model.addListener(this);
     this.model = model;
-    updateListView();
+    // updateListView();
   }
 
   public void clear()
@@ -38,7 +39,6 @@ public class MainViewModel implements PropertyChangeListener
 
   public void updateListView()
   {
-    listView = FXCollections.observableArrayList();
     /*
     for (int i = 0; i < 25; i++)
     {
