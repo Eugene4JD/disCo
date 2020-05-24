@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXPopup;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -24,6 +25,7 @@ public class MainViewController
   @FXML private JFXListView<Label> listView;
   @FXML private TextField searchField;
   @FXML private JFXPopup popup;
+  @FXML private ComboBox<String> searchSelector;
 
   private ViewHandler viewHandler;
   private MainViewModel viewModel;
@@ -37,7 +39,8 @@ public class MainViewController
     this.root = root;
 
     listView.setItems(viewModel.getMessages());
-   // initPopup();
+    searchSelector.setItems(viewModel.getSearchSelector());
+    // initPopup();
   }
 
   private void initPopup()

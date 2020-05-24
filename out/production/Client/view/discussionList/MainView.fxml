@@ -85,13 +85,14 @@
                 <ComboBox fx:id="searchSelector" prefHeight="27.0"
                           prefWidth="150.0"
                           style="-fx-background-color: #E8E8E8; -fx-background-radius: 0; -fx-font-weight: bold;"
-                          value="by TITLE">
-                    <items>
+                          value="by ID">
+                    <!--<items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="by TITLE"/>
                             <String fx:value="by ID"/>
                         </FXCollections>
                     </items>
+                    -->
                     <HBox.margin>
                         <Insets left="15.0"/>
                     </HBox.margin>
