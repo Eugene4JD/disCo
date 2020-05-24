@@ -81,12 +81,27 @@ public class MainViewModel implements PropertyChangeListener
                     .getDiscussion(i).getDiscussionName()));
           }
           break;
-        case "searchById":
+        case "searchByName":
+          System.out.println("aaaaa");
           listView.removeAll();
           DiscussionList titleList = (DiscussionList) evt.getNewValue();
-        case "searchByName":
+          for (int i = 0; i < titleList.size(); i++)
+          {
+            listView.add(new Label(
+                titleList.getDiscussion(i).getDiscussionId() + "      "
+                    + titleList.getDiscussion(i).getDiscussionName()));
+          }
+          break;
+        case "searchByID":
+          System.out.printf("bbbbb");
           listView.removeAll();
           Discussion iD = (Discussion) evt.getNewValue();
+          for (int i = 0; i < 1; i++)
+          {
+            listView.add(new Label(
+                iD.getDiscussionId() + "      " + iD.getDiscussionName()));
+          }
+          break;
       }
     });
   }
@@ -98,12 +113,14 @@ public class MainViewModel implements PropertyChangeListener
 
   public void searchByName()
   {
-    
+    model.searchDiscussionsByName(search.get());
+    System.out.println("vvvvv");
   }
 
   public void searchById()
   {
-
+    model.searchDiscussionById(Integer.parseInt(search.get()));
+    System.out.println("cccc");
   }
 
   public StringProperty getSearch()
