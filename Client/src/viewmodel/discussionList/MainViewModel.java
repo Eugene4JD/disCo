@@ -74,4 +74,9 @@ public class MainViewModel implements PropertyChangeListener
       }
     });
   }
+
+  public ClientModel getModel()
+  {
+    return model;
+  }
 }

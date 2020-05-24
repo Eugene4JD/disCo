@@ -13,6 +13,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import model.ClientModel;
 import view.ViewHandler;
 import viewmodel.discussionList.MainViewModel;
 
@@ -78,5 +79,10 @@ public class MainViewController
         System.out.printf(selectedItem.getText());
       }
     }
+  }
+
+  public ClientModel getModel()
+  {
+    return viewModel.getModel();
   }
 }
