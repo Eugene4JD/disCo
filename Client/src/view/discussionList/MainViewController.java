@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
@@ -40,6 +41,7 @@ public class MainViewController
 
     listView.setItems(viewModel.getMessages());
     searchSelector.setItems(viewModel.getSearchSelector());
+    searchField.textProperty().bindBidirectional(viewModel.getSearch());
     // initPopup();
   }
 
@@ -87,5 +89,17 @@ public class MainViewController
   public ClientModel getModel()
   {
     return viewModel.getModel();
+  }
+
+  public void searchRefresh(KeyEvent keyEvent)
+  {
+    if (searchSelector.getValue().equals("by TITLE"))
+    {
+      viewModel.searchByName();
+    }
+    if (searchSelector.getValue().equals("by ID"))
+    {
+      viewModel.searchById();
+    }
   }
 }

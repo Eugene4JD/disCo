@@ -2,6 +2,9 @@ package viewmodel.discussionList;
 
 import com.jfoenix.controls.JFXListView;
 import javafx.application.Platform;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
@@ -17,11 +20,13 @@ import java.beans.PropertyChangeListener;
 public class MainViewModel implements PropertyChangeListener
 {
   private ClientModel model;
+  private StringProperty search;
   private ObservableList<Label> listView;
   private ObservableList<String> searchSelector;
 
   public MainViewModel(ClientModel model)
   {
+    search = new SimpleStringProperty();
     listView = FXCollections.observableArrayList();
     searchSelector = FXCollections.observableArrayList();
     searchSelector.addAll("by TITLE", "by ID");
@@ -47,13 +52,6 @@ public class MainViewModel implements PropertyChangeListener
 
   public void updateListView()
   {
-    /*
-    for (int i = 0; i < 25; i++)
-    {
-      Label label = new Label("Item: " + i);
-      listView.add(label);
-    }
-     */
     DiscussionList list = model.getDiscussionListBuffer();
     System.out.println(list.toString());
     for (int i = 0; i < list.size(); i++)
@@ -90,5 +88,20 @@ public class MainViewModel implements PropertyChangeListener
   public ClientModel getModel()
   {
     return model;
+  }
+
+  public void searchByName()
+  {
+    DiscussionList list;
+  }
+
+  public void searchById()
+  {
+
+  }
+
+  public StringProperty getSearch()
+  {
+    return search;
   }
 }
