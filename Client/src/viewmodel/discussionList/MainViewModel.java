@@ -81,6 +81,12 @@ public class MainViewModel implements PropertyChangeListener
                     .getDiscussion(i).getDiscussionName()));
           }
           break;
+        case "searchById":
+          listView.removeAll();
+          DiscussionList titleList = (DiscussionList) evt.getNewValue();
+        case "searchByName":
+          listView.removeAll();
+          Discussion iD = (Discussion) evt.getNewValue();
       }
     });
   }
@@ -92,7 +98,7 @@ public class MainViewModel implements PropertyChangeListener
 
   public void searchByName()
   {
-    DiscussionList list;
+    
   }
 
   public void searchById()

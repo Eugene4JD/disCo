@@ -111,8 +111,9 @@ public class ClientModelManager implements ClientModel
         Discussion discussion = this.discussionListBuffer
             .getDiscussionById(request.getDiscussionID());
         if (discussion != null)
-          discussion.getMessageList()
-              .addMessage(this.userBaseBuffer.getUserById(request.getSenderID()).getUserLogin(), request.getMessage());
+          discussion.getMessageList().addMessage(
+              this.userBaseBuffer.getUserById(request.getSenderID())
+                  .getUserLogin(), request.getMessage());
         break;
       case "broadcastDiscussionsToUser":
         BroadcastDiscussionsToUserRequest request1 = (BroadcastDiscussionsToUserRequest) evt
@@ -150,11 +151,15 @@ public class ClientModelManager implements ClientModel
         }
         break;
       case "broadcastSearchedDiscussion":
-        BroadcastSearchedDiscussionToUser request5 = (BroadcastSearchedDiscussionToUser) evt.getNewValue();
+        BroadcastSearchedDiscussionToUser request5 = (BroadcastSearchedDiscussionToUser) evt
+            .getNewValue();
+        property.firePropertyChange("searchByID", null, request5);
         // here to connect View model
         break;
       case "broadcastSearchedDiscussions":
-        BroadcastSearchedDiscussionsToUser request6 = (BroadcastSearchedDiscussionsToUser) evt.getNewValue();
+        BroadcastSearchedDiscussionsToUser request6 = (BroadcastSearchedDiscussionsToUser) evt
+            .getNewValue();
+        property.firePropertyChange("searchByName", null, request6);
         // here to connect View model
         break;
     }
@@ -190,7 +195,7 @@ public class ClientModelManager implements ClientModel
   @Override public void sendMessageToDiscussion(int discussionID, int userId,
       String message)
   {
-    remoteModel.sendMessageInDiscussion(discussionID,userId,message);
+    remoteModel.sendMessageInDiscussion(discussionID, userId, message);
   }
 
   public DiscussionList getDiscussionListBuffer()
@@ -200,6 +205,6 @@ public class ClientModelManager implements ClientModel
 
   @Override public void logToExistingDiscussion(int discussionId)
   {
-    remoteModel.logToExistingDiscussion(discussionId,login);
+    remoteModel.logToExistingDiscussion(discussionId, login);
   }
 }
