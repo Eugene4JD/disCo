@@ -81,7 +81,7 @@ public class MainViewController
       if (mouseEvent.getClickCount() == 2)
       {
         Label selectedItem = listView.getSelectionModel().getSelectedItem();
-        System.out.printf(selectedItem.getText());
+        viewHandler.openView("chat");
       }
     }
   }

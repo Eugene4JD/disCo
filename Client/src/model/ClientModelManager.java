@@ -153,14 +153,12 @@ public class ClientModelManager implements ClientModel
       case "broadcastSearchedDiscussion":
         BroadcastSearchedDiscussionToUser request5 = (BroadcastSearchedDiscussionToUser) evt
             .getNewValue();
-        property.firePropertyChange("searchByID", null, request5);
-        // here to connect View model
+        property.firePropertyChange("searchByID", null, request5.getDiscussion());
         break;
       case "broadcastSearchedDiscussions":
         BroadcastSearchedDiscussionsToUser request6 = (BroadcastSearchedDiscussionsToUser) evt
             .getNewValue();
-        property.firePropertyChange("searchByName", null, request6);
-        // here to connect View model
+        property.firePropertyChange("searchByName", null, request6.getDiscussionList());
         break;
     }
   }

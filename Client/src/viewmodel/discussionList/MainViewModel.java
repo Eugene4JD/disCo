@@ -82,8 +82,7 @@ public class MainViewModel implements PropertyChangeListener
           }
           break;
         case "searchByName":
-          System.out.println("aaaaa");
-          listView.removeAll();
+          listView.clear();
           DiscussionList titleList = (DiscussionList) evt.getNewValue();
           for (int i = 0; i < titleList.size(); i++)
           {
@@ -93,8 +92,8 @@ public class MainViewModel implements PropertyChangeListener
           }
           break;
         case "searchByID":
-          System.out.printf("bbbbb");
-          listView.removeAll();
+          //listView.removeAll();
+          listView.clear();
           Discussion iD = (Discussion) evt.getNewValue();
           for (int i = 0; i < 1; i++)
           {
@@ -113,14 +112,13 @@ public class MainViewModel implements PropertyChangeListener
 
   public void searchByName()
   {
+    System.out.println(search.get());
     model.searchDiscussionsByName(search.get());
-    System.out.println("vvvvv");
   }
 
   public void searchById()
   {
     model.searchDiscussionById(Integer.parseInt(search.get()));
-    System.out.println("cccc");
   }
 
   public StringProperty getSearch()
