@@ -22,4 +22,7 @@ public interface ClientModel extends ultimateUnnamedPropertyChangeSubject
   int getId();
   DiscussionList getDiscussionListBuffer();
   void logToExistingDiscussion(int discussionId);
+  void searchDiscussionById(int discussionId);
+  void searchDiscussionsByName(String name);
+
 }

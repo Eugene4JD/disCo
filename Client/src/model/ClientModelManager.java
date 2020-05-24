@@ -207,4 +207,14 @@ public class ClientModelManager implements ClientModel
   {
     remoteModel.logToExistingDiscussion(discussionId, login);
   }
+
+  @Override public void searchDiscussionsByName(String name)
+  {
+    remoteModel.searchDiscussionsByName(name);
+  }
+
+  @Override public void searchDiscussionById(int discussionId)
+  {
+    remoteModel.searchDiscussionByID(discussionId);
+  }
 }
