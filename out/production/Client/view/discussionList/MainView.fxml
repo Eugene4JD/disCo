@@ -2,7 +2,10 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,73 +14,106 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="815.0" userData="disCo" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.discussionList.MainViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="526.0" prefWidth="815.0" userData="disCo"
+      xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="view.discussionList.MainViewController">
     <children>
-        <HBox prefHeight="66.0" prefWidth="822.0" style="-fx-background-color: #E8E8E8;">
+        <HBox prefHeight="66.0" prefWidth="822.0"
+              style="-fx-background-color: #E8E8E8;">
             <children>
-                <ImageView fitHeight="49.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="49.0" fitWidth="140.0" pickOnBounds="true"
+                           preserveRatio="true">
                     <image>
-                        <Image url="@../../resources/v2.3_240p_transparent.png" />
+                        <Image url="@../../resources/v2.3_240p_transparent.png"/>
                     </image>
                     <HBox.margin>
-                        <Insets left="33.0" top="11.0" />
+                        <Insets left="33.0" top="11.0"/>
                     </HBox.margin>
                 </ImageView>
-                <JFXButton onAction="#settingsButtonPressed" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Settings" textFill="#ededed">
+                <JFXButton onAction="#settingsButtonPressed" prefHeight="30.0"
+                           prefWidth="82.0"
+                           style="-fx-background-color: #354f6a; -fx-background-radius: 0;"
+                           text="Settings" textFill="#ededed">
                     <font>
-                        <Font name="System Bold" size="13.0" />
+                        <Font name="System Bold" size="13.0"/>
                     </font>
                     <HBox.margin>
-                        <Insets left="505.0" top="18.0" />
+                        <Insets left="505.0" top="18.0"/>
                     </HBox.margin>
                 </JFXButton>
             </children>
         </HBox>
         <HBox prefHeight="31.0" prefWidth="800.0">
             <children>
-                <Text fill="#000000a8" strokeType="OUTSIDE" strokeWidth="0.0" text="USERNAME'S threads ▼" wrappingWidth="162.13665771484375">
+                <Text fill="#000000a8" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="USERNAME'S threads ▼"
+                      wrappingWidth="162.13665771484375">
                     <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="14.0"/>
                     </font>
                     <HBox.margin>
-                        <Insets left="41.0" top="12.0" />
+                        <Insets left="41.0" top="12.0"/>
                     </HBox.margin>
                 </Text>
-                <JFXButton onAction="#addButtonPressed" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="+ Add ">
+                <JFXButton onAction="#addButtonPressed" prefHeight="30.0"
+                           prefWidth="60.0"
+                           style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;"
+                           text="+ Add ">
                     <font>
-                        <Font name="System Bold" size="13.0" />
+                        <Font name="System Bold" size="13.0"/>
                     </font>
                     <HBox.margin>
-                        <Insets left="496.0" />
+                        <Insets left="496.0"/>
                     </HBox.margin>
                 </JFXButton>
             </children>
             <VBox.margin>
-                <Insets top="15.0" />
+                <Insets top="15.0"/>
             </VBox.margin>
         </HBox>
         <HBox prefHeight="35.0" prefWidth="800.0">
             <children>
-                <TextField fx:id="searchField" prefHeight="26.0" prefWidth="720.0" promptText="Search" style="-fx-background-radius: 0; -fx-background-color: -fx-text-box-border, -fx-control-inner-background;">
+                <TextField fx:id="searchField" prefHeight="28.0"
+                           prefWidth="554.0" promptText="Search"
+                           style="-fx-background-radius: 0; -fx-background-color: -fx-text-box-border, -fx-control-inner-background;">
                     <HBox.margin>
-                        <Insets left="40.0" />
+                        <Insets left="40.0"/>
                     </HBox.margin>
                 </TextField>
+                <ComboBox fx:id="searchSelector" prefHeight="27.0"
+                          prefWidth="150.0"
+                          style="-fx-background-color: #E8E8E8; -fx-background-radius: 0; -fx-font-weight: bold;"
+                          value="by TITLE">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="by TITLE"/>
+                            <String fx:value="by ID"/>
+                        </FXCollections>
+                    </items>
+                    <HBox.margin>
+                        <Insets left="15.0"/>
+                    </HBox.margin>
+                </ComboBox>
             </children>
             <VBox.margin>
-                <Insets top="12.0" />
+                <Insets top="12.0"/>
             </VBox.margin>
         </HBox>
         <HBox prefHeight="283.0" prefWidth="800.0">
             <children>
-                <JFXListView fx:id="listView" onMouseClicked="#doubleClickOnThread" prefHeight="283.0" prefWidth="720.0" style="-fx-background-color: #E8E8E8;">
+                <JFXListView fx:id="listView"
+                             onMouseClicked="#doubleClickOnThread"
+                             prefHeight="283.0" prefWidth="720.0"
+                             style="-fx-background-color: #E8E8E8;">
                     <HBox.margin>
-                        <Insets left="40.0" />
+                        <Insets left="40.0"/>
                     </HBox.margin>
                 </JFXListView>
             </children>
             <VBox.margin>
-                <Insets />
+                <Insets/>
             </VBox.margin>
         </HBox>
     </children>
