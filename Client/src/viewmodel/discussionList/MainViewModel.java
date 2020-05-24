@@ -62,13 +62,13 @@ public class MainViewModel implements PropertyChangeListener
       {
         case "Add":
           Discussion discussion = (Discussion) evt.getNewValue();
-          listView.add(new Label(discussion.getDiscussionName()));
+          listView.add(new Label(discussion.getDiscussionId() + "      " +discussion.getDiscussionName()));
           break;
         case "AddList":
           DiscussionList list = (DiscussionList) evt.getNewValue();
           for (int i = 0; i < list.size(); i++)
           {
-            listView.add(new Label(list.getDiscussion(i).getDiscussionName()));
+            listView.add(new Label(list.getDiscussion(i).getDiscussionId() + "      " +list.getDiscussion(i).getDiscussionName()));
           }
           break;
       }
