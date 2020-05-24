@@ -28,17 +28,7 @@ public class ServerModelManager implements ServerModel
     {
       e.printStackTrace();
     }
-    try
-    {
-      this.discussionList = discoPersistence.loadDiscussions();
-      this.userBase = discoPersistence.loadUsers();
-      discoPersistence.linkTheConnectionsBetween(discussionList,userBase);
-    }
-    catch (SQLException e)
-    {
-      e.printStackTrace();
-    }
-
+   fetch();
   }
 
   @Override public void addNewUserToUserBase(String userType, String login,
@@ -47,6 +37,7 @@ public class ServerModelManager implements ServerModel
     try
     {
       userBase.addUser(discoPersistence.saveUser(userType,login,password));
+      fetch();
     }
     catch (Exception e)
     {
@@ -61,6 +52,7 @@ public class ServerModelManager implements ServerModel
       Discussion discussion = discoPersistence.saveDiscussion(discussionName,editorOfDiscussionLogin);
       this.discussionList.addDiscussion(discussion);
       addUserToDiscussion(discussion.getDiscussionId(),getUserFromUserBaseByLogin(editorOfDiscussionLogin).getUserId());
+      fetch();
     }
     catch (SQLException e)
     {
@@ -115,6 +107,7 @@ public class ServerModelManager implements ServerModel
     {
       e.printStackTrace();
     }
+    fetch();
   }
 
   @Override public void addLog(String log)
@@ -159,5 +152,19 @@ public class ServerModelManager implements ServerModel
       }
     }
     return discussionList;
+  }
+  private void fetch()
+  {
+    try
+    {
+      this.discussionList = discoPersistence.loadDiscussions();
+      this.userBase = discoPersistence.loadUsers();
+      discoPersistence.linkTheConnectionsBetween(discussionList,userBase);
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+
   }
 }
