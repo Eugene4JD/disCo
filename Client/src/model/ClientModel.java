@@ -21,4 +21,5 @@ public interface ClientModel extends ultimateUnnamedPropertyChangeSubject
   String getLogin();
   int getId();
   DiscussionList getDiscussionListBuffer();
+  void logToExistingDiscussion(int discussionId);
 }

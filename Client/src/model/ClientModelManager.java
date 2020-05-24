@@ -148,6 +148,15 @@ public class ClientModelManager implements ClientModel
         {
           property.firePropertyChange("LogStatus", null, false);
         }
+        break;
+      case "broadcastSearchedDiscussion":
+        BroadcastSearchedDiscussionToUser request5 = (BroadcastSearchedDiscussionToUser) evt.getNewValue();
+        // here to connect View model
+        break;
+      case "broadcastSearchedDiscussions":
+        BroadcastSearchedDiscussionsToUser request6 = (BroadcastSearchedDiscussionsToUser) evt.getNewValue();
+        // here to connect View model
+        break;
     }
   }
 
@@ -181,7 +190,7 @@ public class ClientModelManager implements ClientModel
   @Override public void sendMessageToDiscussion(int discussionID, int userId,
       String message)
   {
-
+    remoteModel.sendMessageInDiscussion(discussionID,userId,message);
   }
 
   public DiscussionList getDiscussionListBuffer()
@@ -189,4 +198,8 @@ public class ClientModelManager implements ClientModel
     return this.discussionListBuffer;
   }
 
+  @Override public void logToExistingDiscussion(int discussionId)
+  {
+    remoteModel.logToExistingDiscussion(discussionId,login);
+  }
 }

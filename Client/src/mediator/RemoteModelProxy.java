@@ -38,7 +38,7 @@ public class RemoteModelProxy implements RemoteModel
     clientSender.createNewDiscussion(discussionId,login);
   }
 
-  @Override public void logToExistingDiscussion(String discussionId,
+  @Override public void logToExistingDiscussion(int discussionId,
       String login)
   {
     clientSender.logToExistingDiscussion(discussionId,login);
@@ -48,5 +48,15 @@ public class RemoteModelProxy implements RemoteModel
       int senderID, String message)
   {
     clientSender.sendMessageInDiscussion(discussionId,senderID,message);
+  }
+
+  @Override public void searchDiscussionByID(int id)
+  {
+    clientSender.searchDiscussionByID(id);
+  }
+
+  @Override public void searchDiscussionsByName(String name)
+  {
+    clientSender.searchDiscussionsByName(name);
   }
 }

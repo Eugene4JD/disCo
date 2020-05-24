@@ -66,7 +66,7 @@ public class ClientSender implements RemoteModel
     out.println(gson.toJson(new LogRequest(login,password,isNewUser)));
   }
 
-  @Override public void logToExistingDiscussion(String discussionId,String login)
+  @Override public void logToExistingDiscussion(int discussionId,String login)
   {
     out.println(gson.toJson(new LogToExistingDiscussionRequest(discussionId,login)));
   }
@@ -79,5 +79,15 @@ public class ClientSender implements RemoteModel
   @Override public void sendMessageInDiscussion(int discussionId, int senderID, String message)
   {
     out.println(gson.toJson(new MessageRequest(discussionId,senderID,message)));
+  }
+
+  @Override public void searchDiscussionByID(int id)
+  {
+    out.println(gson.toJson(new SearchDiscussionByIdRequest(id)));
+  }
+
+  @Override public void searchDiscussionsByName(String name)
+  {
+    out.println(gson.toJson(new SearchDiscussionsByNameRequest(name)));
   }
 }

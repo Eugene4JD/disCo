@@ -45,7 +45,7 @@ public class ServerModelManager implements ServerModel
     }
   }
 
-  @Override public void createNewDiscussion(String discussionName,String editorOfDiscussionLogin)
+  @Override public Discussion createNewDiscussion(String discussionName,String editorOfDiscussionLogin)
   {
     try
     {
@@ -53,12 +53,13 @@ public class ServerModelManager implements ServerModel
       this.discussionList.addDiscussion(discussion);
       addUserToDiscussion(discussion.getDiscussionId(),getUserFromUserBaseByLogin(editorOfDiscussionLogin).getUserId());
       fetch();
+      return discussion;
     }
     catch (SQLException e)
     {
       e.printStackTrace();
     }
-
+    return null;
   }
   @Override public Discussion getDiscussionById(int discussionId)
   {
@@ -102,6 +103,7 @@ public class ServerModelManager implements ServerModel
     try
     {
       discoPersistence.saveUserDiscussionConnection(discussionID,userID);
+      discussionList.getDiscussion(discussionID).addUser(userBase.getUserById(userID));
     }
     catch (SQLException e)
     {
@@ -130,12 +132,6 @@ public class ServerModelManager implements ServerModel
   {
     property.addPropertyChangeListener(listener);
   }
-
-  @Override public Discussion getDiscussionByName(String name)
-  {
-    return discussionList.getDiscussionByName(name);
-  }
-
   @Override public void removeDiscussionByName(String name)
   {
     discussionList.removeDiscussionByName(name);
@@ -153,6 +149,25 @@ public class ServerModelManager implements ServerModel
     }
     return discussionList;
   }
+
+  @Override public Discussion getDiscussionWithCertainId(int id)
+  {
+    return this.discussionList.getDiscussionById(id);
+  }
+
+  @Override public DiscussionList getDiscussionsByName(String name)
+  {
+    DiscussionList discussionList = new DiscussionList();
+    for (int i =0; i<this.discussionList.size(); i++)
+    {
+      if(this.discussionList.getDiscussion(i).getDiscussionName().equals(name))
+      {
+        discussionList.addDiscussion(this.discussionList.getDiscussion(i));
+      }
+    }
+    return discussionList;
+  }
+
   private void fetch()
   {
     try

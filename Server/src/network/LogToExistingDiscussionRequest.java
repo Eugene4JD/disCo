@@ -2,19 +2,19 @@ package network;
 
 public class LogToExistingDiscussionRequest extends Request
 {
-  private String discussionName;
+  private int discussionId;
   private String userLogin;
 
-  public LogToExistingDiscussionRequest(String discussionName, String userLogin)
+  public LogToExistingDiscussionRequest(int discussionId, String userLogin)
   {
     super(RequestType.LogToExistingDiscussion);
-    this.discussionName = discussionName;
+    this.discussionId = discussionId;
     this.userLogin = userLogin;
   }
 
-  public String getDiscussionName()
+  public int getDiscussionId()
   {
-    return discussionName;
+    return discussionId;
   }
 
   public String getUserLogin()

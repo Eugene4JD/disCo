@@ -83,6 +83,15 @@ public class DiscussionList
      str += "\n";
     }
     return str;
+  }
 
+  public boolean isUserWithLoginIsParticipatingInAnyOfDiscussions(String login)
+  {
+    for (int i =0; i<discussions.size(); i++)
+    {
+      if (discussions.get(i).getUserBase().isLoginInBase(login))
+        return true;
+    }
+    return false;
   }
 }

@@ -15,8 +15,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import static network.RequestType.LogToExistingDiscussion;
-import static network.RequestType.RemoveDiscussion;
 
 public class ServerClientHandler implements Runnable, PropertyChangeListener
 {
@@ -82,23 +80,19 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
 
            case LogToExistingDiscussion:
              LogToExistingDiscussionRequest request2 = gson.fromJson(req,LogToExistingDiscussionRequest.class);
-             if (model.getDiscussionByName(request2.getDiscussionName()).getUserBase().getUserByLogin(request2.getUserLogin()) == null)
+             if (!(model.getDiscussionById(request2.getDiscussionId()).getUserBase().isLoginInBase(request2.getUserLogin())))
              {
-               model.addUserToDiscussion(model.getDiscussionByName(request2.getDiscussionName()).getDiscussionId(),
+               model.addUserToDiscussion(request2.getDiscussionId(),
                    model.getUserFromUserBaseByLogin(request2.getUserLogin()).getUserId());
-               model.getDiscussionByName(request2.getDiscussionName()).addUser(model.getUserFromUserBaseByLogin(request2.getUserLogin()));
-               out.println(gson.toJson(new BroadcastDiscussionToUserRequest(model.getDiscussionByName(request2.getDiscussionName()))));
+               out.println(gson.toJson(new BroadcastDiscussionToUserRequest(model.getDiscussionById(request2.getDiscussionId()))));
              }
              break;
 
 
            case CreateDiscussion:
              CreateDiscussionRequest request3 = gson.fromJson(req,CreateDiscussionRequest.class);
-             if (model.getDiscussionByName(request3.getDiscussionId()) == null)
-             {
-               model.createNewDiscussion(request3.getDiscussionId(),request3.getEditorLogin());
-               out.println(gson.toJson(new BroadcastDiscussionToUserRequest(model.getDiscussionByName(request3.getDiscussionId()))));
-             }
+             Discussion discussion = model.createNewDiscussion(request3.getDiscussionId(),request3.getEditorLogin());
+             out.println(gson.toJson(new BroadcastDiscussionToUserRequest(discussion)));
              break;
 
 
@@ -109,6 +103,21 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
                 model.removeDiscussion(request4.getDiscussionId(),request4.getUserId());
                 out.println(gson.toJson(new BroadcastRemovingDiscussionToUserRequest(request4.getDiscussionId())));
               }
+             break;
+
+           case SearchDiscussionById:
+             SearchDiscussionByIdRequest request5 = gson.fromJson(req,SearchDiscussionByIdRequest.class);
+             if (model.getDiscussionById(request5.getId()) != null)
+             {
+               out.println(gson.toJson(new BroadcastSearchedDiscussionToUser(model.getDiscussionById(request5.getId()))));
+             }
+             break;
+           case SearchDiscussionsByName:
+             SearchDiscussionsByNameRequest request6 = gson.fromJson(req,SearchDiscussionsByNameRequest.class);
+             if (model.getDiscussionsByName(request6.getName()).size() != 0)
+             {
+               out.println(gson.toJson(new BroadcastSearchedDiscussionsToUser(model.getDiscussionsByName(request6.getName()))));
+             }
              break;
          }
        }
