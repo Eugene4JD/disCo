@@ -51,6 +51,7 @@ public class RegistrationViewModel implements PropertyChangeListener
     String username = this.username.get();
     String password = this.password.get();
     model.log(username, password, true);
+
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)

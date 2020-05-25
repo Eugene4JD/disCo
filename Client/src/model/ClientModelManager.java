@@ -229,6 +229,7 @@ public class ClientModelManager implements ClientModel
   @Override public void selectDiscussion(int discussionId)
   {
     this.selectedDiscussionId = discussionId;
+    this.logToExistingDiscussion(discussionId);
   }
 
   @Override public int searchDiscussionIdByLabel(String label)

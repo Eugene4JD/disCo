@@ -65,7 +65,14 @@ public class MainViewModel implements PropertyChangeListener
 
   public void load()
   {
-//USERNAME'S threads ▼
+     this.usernamesThreads.set(model.getLogin() +"'s threads ▼");
+     listView.clear();
+     for (int i =0;i<model.getDiscussionListBuffer().size(); i++)
+     {
+       listView.add(new Label(
+           model.getDiscussionListBuffer().getDiscussion(i).getDiscussionId() + "      " + model.getDiscussionListBuffer()
+               .getDiscussion(i).getDiscussionName()));
+     }
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
@@ -137,7 +144,7 @@ public class MainViewModel implements PropertyChangeListener
     return search;
   }
 
-  public StringProperty getUsernamesThreads()
+  public StringProperty getUserNamesThreads()
   {
     return usernamesThreads;
   }
