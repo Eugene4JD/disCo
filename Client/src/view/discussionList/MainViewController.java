@@ -98,10 +98,14 @@ public class MainViewController
     if (searchSelector.getValue().equals("by TITLE"))
     {
       viewModel.searchByName();
+     // if (searchField.getText().equals(""))
+       // viewModel.
     }
     if (searchSelector.getValue().equals("by ID"))
     {
       viewModel.searchById();
+      //if (searchField.getText().equals(""))
+        //viewModel.
     }
   }
 }
