@@ -27,7 +27,6 @@ public class ChatViewModel implements PropertyChangeListener
     updateChatList();
     this.enterField = new SimpleStringProperty();
     this.threadName = new SimpleStringProperty();
-    setThreadName();
   }
 
   private void setThreadName()
@@ -60,6 +59,7 @@ public class ChatViewModel implements PropertyChangeListener
       chatList.add(new Label(
           discussion.getMessageList().getMessage(i).toString()));
     }
+    setThreadName();
   }
 
   public void sendMessage()

@@ -186,6 +186,7 @@ public class ViewHandler
       {
         e.printStackTrace();
       }
+      chatViewController.load();
     }
     else
     {
