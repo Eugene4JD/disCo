@@ -18,6 +18,7 @@ public class ClientModelManager implements ClientModel
   private String login;
   private int id;
   private PropertyChangeSupport property;
+  private Discussion tmpDiscussion;
 
   public ClientModelManager()
   {
@@ -153,12 +154,14 @@ public class ClientModelManager implements ClientModel
       case "broadcastSearchedDiscussion":
         BroadcastSearchedDiscussionToUser request5 = (BroadcastSearchedDiscussionToUser) evt
             .getNewValue();
-        property.firePropertyChange("searchByID", null, request5.getDiscussion());
+        property
+            .firePropertyChange("searchByID", null, request5.getDiscussion());
         break;
       case "broadcastSearchedDiscussions":
         BroadcastSearchedDiscussionsToUser request6 = (BroadcastSearchedDiscussionsToUser) evt
             .getNewValue();
-        property.firePropertyChange("searchByName", null, request6.getDiscussionList());
+        property.firePropertyChange("searchByName", null,
+            request6.getDiscussionList());
         break;
     }
   }
@@ -209,6 +212,16 @@ public class ClientModelManager implements ClientModel
   @Override public void searchDiscussionsByName(String name)
   {
     remoteModel.searchDiscussionsByName(name);
+  }
+
+  @Override public void setTmpDiscussion(Discussion discussion)
+  {
+    tmpDiscussion = discussion;
+  }
+
+  @Override public Discussion getTmpDiscussion()
+  {
+    return tmpDiscussion;
   }
 
   @Override public void searchDiscussionById(int discussionId)

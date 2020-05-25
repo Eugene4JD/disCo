@@ -24,5 +24,8 @@ public interface ClientModel extends ultimateUnnamedPropertyChangeSubject
   void logToExistingDiscussion(int discussionId);
   void searchDiscussionById(int discussionId);
   void searchDiscussionsByName(String name);
+  void setTmpDiscussion(Discussion discussion);
+  Discussion getTmpDiscussion();
+
 
 }

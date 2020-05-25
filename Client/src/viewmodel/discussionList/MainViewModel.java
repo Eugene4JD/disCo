@@ -92,7 +92,6 @@ public class MainViewModel implements PropertyChangeListener
           }
           break;
         case "searchByID":
-          //listView.removeAll();
           listView.clear();
           Discussion iD = (Discussion) evt.getNewValue();
           for (int i = 0; i < 1; i++)
@@ -124,5 +123,10 @@ public class MainViewModel implements PropertyChangeListener
   public StringProperty getSearch()
   {
     return search;
+  }
+
+  public void enterThread(int id)
+  {
+    //bmodel.setTmpDiscussion(model.get);
   }
 }
