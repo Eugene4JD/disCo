@@ -93,7 +93,6 @@ public class ViewHandler
     primaryStage.close();
   }
 
-
   private Region loadLoginView(String fxmlFile)
   {
     if (loginViewController == null)
@@ -156,6 +155,7 @@ public class ViewHandler
         mainViewController = loader.getController();
         mainViewController
             .init(this, viewModelFactory.getMainViewModel(), root);
+        viewModelFactory.getMainViewModel().load();
       }
       catch (Exception e)
       {
@@ -181,12 +181,13 @@ public class ViewHandler
         chatViewController = loader.getController();
         chatViewController
             .init(this, viewModelFactory.getChatViewModel(), root);
+        chatViewController.load();
       }
       catch (Exception e)
       {
         e.printStackTrace();
       }
-      chatViewController.load();
+
     }
     else
     {

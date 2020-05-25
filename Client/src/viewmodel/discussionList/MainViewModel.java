@@ -23,6 +23,7 @@ public class MainViewModel implements PropertyChangeListener
   private StringProperty search;
   private ObservableList<Label> listView;
   private ObservableList<String> searchSelector;
+  private StringProperty usernamesThreads;
 
   public MainViewModel(ClientModel model)
   {
@@ -32,6 +33,7 @@ public class MainViewModel implements PropertyChangeListener
     searchSelector.addAll("by TITLE", "by ID");
     model.addListener(this);
     this.model = model;
+    usernamesThreads = new SimpleStringProperty();
     // updateListView();
   }
 
@@ -59,6 +61,11 @@ public class MainViewModel implements PropertyChangeListener
       Label label = new Label(list.getDiscussion(i).getDiscussionName());
       listView.add(label);
     }
+  }
+
+  public void load()
+  {
+//USERNAME'S threads ▼
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
@@ -128,5 +135,10 @@ public class MainViewModel implements PropertyChangeListener
   public StringProperty getSearch()
   {
     return search;
+  }
+
+  public StringProperty getUsernamesThreads()
+  {
+    return usernamesThreads;
   }
 }

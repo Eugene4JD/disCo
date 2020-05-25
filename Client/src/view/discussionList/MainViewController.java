@@ -15,6 +15,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import model.ClientModel;
 import view.ViewHandler;
 import viewmodel.discussionList.MainViewModel;
@@ -27,6 +28,7 @@ public class MainViewController
   @FXML private TextField searchField;
   @FXML private JFXPopup popup;
   @FXML private ComboBox<String> searchSelector;
+  @FXML private Text usernamesThreads;
 
   private ViewHandler viewHandler;
   private MainViewModel viewModel;
@@ -42,7 +44,7 @@ public class MainViewController
     listView.setItems(viewModel.getMessages());
     searchSelector.setItems(viewModel.getSearchSelector());
     searchField.textProperty().bindBidirectional(viewModel.getSearch());
-    // initPopup();
+    usernamesThreads.textProperty().bindBidirectional(viewModel.getUsernamesThreads());
   }
 
   private void initPopup()
