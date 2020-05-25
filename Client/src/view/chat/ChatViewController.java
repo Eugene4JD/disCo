@@ -38,6 +38,11 @@ public class ChatViewController
     viewModel.clear();
   }
 
+  public void load()
+  {
+     viewModel.load();
+  }
+
   public Region getRoot()
   {
     return root;

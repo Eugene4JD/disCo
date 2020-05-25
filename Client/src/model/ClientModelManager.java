@@ -113,10 +113,6 @@ public class ClientModelManager implements ClientModel
             .getDiscussionById(request.getDiscussionID());
         if (discussion != null)
         {
-
-          System.out.println(request.getSenderID());
-          System.out.println(discussion.getUserBase().getUserById(1));
-          System.out.println(discussion.getUserBase().getUserById(request.getSenderID()));
           discussion.addMessage(request.getMessage(),discussion.getUserBase().getUserById(request.getSenderID()).getUserLogin());
           property.firePropertyChange( "NewMessageToChat",null,discussion);
 
