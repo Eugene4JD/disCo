@@ -81,15 +81,8 @@ public class MainViewController
       if (mouseEvent.getClickCount() == 2)
       {
         Label selectedItem = listView.getSelectionModel().getSelectedItem();
-        String selected = selectedItem.getText();
-        String id = "";
-        while (selected.charAt(0) != ' ')
-        {
-          id += selected.charAt(0);
-          selected = selected.substring(1);
-        }
-        int intId = Integer.parseInt(id);
-        viewModel.enterThread(intId);
+        //here
+        viewModel.selectDiscussion(selectedItem.textProperty().get());
         viewHandler.openView("chat");
       }
     }

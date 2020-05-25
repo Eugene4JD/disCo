@@ -24,6 +24,10 @@ public class MessageList
       messages.remove(0);
     }
   }
+  public Message getMessage(int index)
+  {
+    return messages.get(index);
+  }
 
   public Message getMessageById(int id)
   {
@@ -35,6 +39,10 @@ public class MessageList
       }
     }
     return null;
+  }
+  public int size()
+  {
+    return messages.size();
   }
 
   private int getNewId()

@@ -27,6 +27,7 @@ public class ChatViewController
 
     //chatList.setExpanded(true);
     chatList.setItems(viewModel.getChatList());
+    enterField.textProperty().bindBidirectional(viewModel.getEnterField());
   }
 
   public void reset()
@@ -46,5 +47,6 @@ public class ChatViewController
 
   public void sendButtonPressed(ActionEvent actionEvent)
   {
+    viewModel.sendMessage();
   }
 }

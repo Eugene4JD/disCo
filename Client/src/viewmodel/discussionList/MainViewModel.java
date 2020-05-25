@@ -120,6 +120,11 @@ public class MainViewModel implements PropertyChangeListener
     model.searchDiscussionById(Integer.parseInt(search.get()));
   }
 
+  public void selectDiscussion(String selectedLabel)
+  {
+    model.selectDiscussion(model.searchDiscussionIdByLabel(selectedLabel));
+  }
+
   public StringProperty getSearch()
   {
     return search;

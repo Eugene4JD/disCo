@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXRippler?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXSnackbar?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import com.jfoenix.controls.JFXToggleNode?>
+<?import com.jfoenix.controls.JFXTogglePane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Test">
+   <children>
+      <JFXRadioButton layoutX="74.0" layoutY="92.0" />
+      <JFXRippler layoutX="110.0" layoutY="181.0" />
+      <JFXSlider layoutX="218.0" layoutY="181.0" />
+      <JFXSnackbar layoutX="271.0" layoutY="270.0" />
+      <JFXTabPane layoutX="283.0" layoutY="59.0" />
+      <JFXToggleButton layoutX="97.0" layoutY="301.0" text="ToggleButton" toggleColor="#999999" toggleLineColor="#999999" unToggleLineColor="#fafafa" />
+      <JFXToggleNode layoutX="413.0" layoutY="289.0" prefHeight="26.0" prefWidth="63.0" />
+      <JFXTogglePane layoutX="384.0" layoutY="302.0" prefHeight="66.0" prefWidth="63.0" />
+   </children>
+</AnchorPane>
