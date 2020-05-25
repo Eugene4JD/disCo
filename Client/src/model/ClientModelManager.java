@@ -18,6 +18,7 @@ public class ClientModelManager implements ClientModel
   private String login;
   private int id;
   private PropertyChangeSupport property;
+  private int selectedDiscussionId;
 
   public ClientModelManager()
   {
@@ -111,9 +112,15 @@ public class ClientModelManager implements ClientModel
         Discussion discussion = this.discussionListBuffer
             .getDiscussionById(request.getDiscussionID());
         if (discussion != null)
-          discussion.getMessageList().addMessage(
-              this.userBaseBuffer.getUserById(request.getSenderID())
-                  .getUserLogin(), request.getMessage());
+        {
+
+          System.out.println(request.getSenderID());
+          System.out.println(discussion.getUserBase().getUserById(1));
+          System.out.println(discussion.getUserBase().getUserById(request.getSenderID()));
+          discussion.addMessage(request.getMessage(),discussion.getUserBase().getUserById(request.getSenderID()).getUserLogin());
+          property.firePropertyChange( "NewMessageToChat",null,discussion);
+
+        }
         break;
       case "broadcastDiscussionsToUser":
         BroadcastDiscussionsToUserRequest request1 = (BroadcastDiscussionsToUserRequest) evt
@@ -193,7 +200,7 @@ public class ClientModelManager implements ClientModel
   @Override public void sendMessageToDiscussion(int discussionID, int userId,
       String message)
   {
-    remoteModel.sendMessageInDiscussion(discussionID, userId, message);
+    remoteModel.sendMessageInDiscussion(discussionID, id, message);
   }
 
   public DiscussionList getDiscussionListBuffer()
@@ -214,5 +221,25 @@ public class ClientModelManager implements ClientModel
   @Override public void searchDiscussionById(int discussionId)
   {
     remoteModel.searchDiscussionByID(discussionId);
+  }
+
+  @Override public int getSelectedDiscussion()
+  {
+    return this.selectedDiscussionId;
+  }
+
+  @Override public void selectDiscussion(int discussionId)
+  {
+    this.selectedDiscussionId = discussionId;
+  }
+
+  @Override public int searchDiscussionIdByLabel(String label)
+  {
+    for (int i =0 ; i<discussionListBuffer.size(); i++)
+    {
+      if ((discussionListBuffer.getDiscussion(i).getDiscussionId() + "      " + discussionListBuffer.getDiscussion(i).getDiscussionName()).equals(label))
+        return discussionListBuffer.getDiscussion(i).getDiscussionId();
+    }
+    return -1;
   }
 }
