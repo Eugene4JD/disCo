@@ -130,8 +130,4 @@ public class MainViewModel implements PropertyChangeListener
     return search;
   }
 
-  public void enterThread(int id)
-  {
-    //bmodel.setTmpDiscussion(model.get);
-  }
 }
