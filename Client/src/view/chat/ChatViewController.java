@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import view.ViewHandler;
 import viewmodel.chat.ChatViewModel;
 
@@ -13,6 +14,7 @@ public class ChatViewController
 {
   @FXML private JFXListView<Label> chatList;
   @FXML private TextField enterField;
+  @FXML private Text threadName;
 
   private ViewHandler viewHandler;
   private ChatViewModel viewModel;
@@ -28,6 +30,7 @@ public class ChatViewController
     //chatList.setExpanded(true);
     chatList.setItems(viewModel.getChatList());
     enterField.textProperty().bindBidirectional(viewModel.getEnterField());
+    threadName.textProperty().bindBidirectional(viewModel.getThreadName());
   }
 
   public void reset()

@@ -1,6 +1,7 @@
 package viewmodel.chat;
 
 import javafx.application.Platform;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -17,18 +18,27 @@ public class ChatViewModel implements PropertyChangeListener
   private ClientModel model;
   private ObservableList<Label> chatList;
   private StringProperty enterField;
+  private StringProperty threadName;
 
   public ChatViewModel(ClientModel model)
   {
     this.model = model;
-     model.addListener(this);
+    model.addListener(this);
     updateChatList();
     this.enterField = new SimpleStringProperty();
+    this.threadName = new SimpleStringProperty();
+    setThreadName();
+  }
+
+  private void setThreadName()
+  {
+    threadName.set(model.getDiscussionListBuffer()
+        .getDiscussionById(model.getSelectedDiscussion()).getDiscussionName());
   }
 
   public void clear()
   {
-   chatList.clear();
+    chatList.clear();
   }
 
   public ObservableList<Label> getChatList()
@@ -44,17 +54,18 @@ public class ChatViewModel implements PropertyChangeListener
 
   public void sendMessage()
   {
-    model.sendMessageToDiscussion(model.getSelectedDiscussion(),model.getId(),enterField.get());
+    model.sendMessageToDiscussion(model.getSelectedDiscussion(), model.getId(),
+        enterField.get());
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
-    Platform.runLater(() ->{
+    Platform.runLater(() -> {
       switch (evt.getPropertyName())
       {
         case "NewMessageToChat":
           System.out.println("sss");
-          Discussion discussion = (Discussion)evt.getNewValue();
+          Discussion discussion = (Discussion) evt.getNewValue();
           if (discussion.getDiscussionId() == model.getSelectedDiscussion())
           {
             if (this.chatList.size() == 0)
@@ -67,15 +78,23 @@ public class ChatViewModel implements PropertyChangeListener
             }
             else
             {
-              chatList.add(new Label(discussion.getMessageList().getMessage(discussion.getMessageList().size()-1).toString()));
+              chatList.add(new Label(discussion.getMessageList()
+                  .getMessage(discussion.getMessageList().size() - 1)
+                  .toString()));
             }
           }
           break;
       }
     });
   }
+
   public StringProperty getEnterField()
   {
     return this.enterField;
+  }
+
+  public StringProperty getThreadName()
+  {
+    return threadName;
   }
 }
