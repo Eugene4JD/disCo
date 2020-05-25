@@ -190,6 +190,7 @@ public class ViewHandler
     else
     {
       chatViewController.reset();
+      chatViewController.load();
     }
     return chatViewController.getRoot();
   }

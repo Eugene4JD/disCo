@@ -42,6 +42,16 @@ public class ChatViewModel implements PropertyChangeListener
     chatList.clear();
   }
 
+  public void load()
+  {
+    Discussion discussion = model.getDiscussionListBuffer().getDiscussionById(model.getSelectedDiscussion());
+    for (int i = 0; i < discussion.getMessageList().size(); i++)
+    {
+      chatList.add(new Label(
+          discussion.getMessageList().getMessage(i).toString()));
+    }
+  }
+
   public void sendMessage()
   {
     model.sendMessageToDiscussion(model.getSelectedDiscussion(),model.getId(),enterField.get());
@@ -56,18 +66,7 @@ public class ChatViewModel implements PropertyChangeListener
           Discussion discussion = (Discussion)evt.getNewValue();
           if (discussion.getDiscussionId() == model.getSelectedDiscussion())
           {
-            if (this.chatList.size() == 0)
-            {
-              for (int i = 0; i < discussion.getMessageList().size(); i++)
-              {
-                chatList.add(new Label(
-                    discussion.getMessageList().getMessage(i).toString()));
-              }
-            }
-            else
-            {
               chatList.add(new Label(discussion.getMessageList().getMessage(discussion.getMessageList().size()-1).toString()));
-            }
           }
           break;
       }
