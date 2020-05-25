@@ -220,7 +220,6 @@ public class ClientModelManager implements ClientModel
     remoteModel.searchDiscussionsByName(name);
   }
 
-
   @Override public void searchDiscussionById(int discussionId)
   {
     remoteModel.searchDiscussionByID(discussionId);

@@ -129,5 +129,4 @@ public class MainViewModel implements PropertyChangeListener
   {
     return search;
   }
-
 }
