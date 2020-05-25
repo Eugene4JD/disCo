@@ -53,7 +53,6 @@ public class ChatViewModel implements PropertyChangeListener
       switch (evt.getPropertyName())
       {
         case "NewMessageToChat":
-          System.out.println("sss");
           Discussion discussion = (Discussion)evt.getNewValue();
           if (discussion.getDiscussionId() == model.getSelectedDiscussion())
           {
