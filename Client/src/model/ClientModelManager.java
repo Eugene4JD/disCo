@@ -19,10 +19,12 @@ public class ClientModelManager implements ClientModel
   private int id;
   private PropertyChangeSupport property;
   private int selectedDiscussionId;
+  private DiscussionList lastSearched;
 
   public ClientModelManager()
   {
     this.discussionListBuffer = new DiscussionList();
+    this.lastSearched = new DiscussionList();
     this.userBaseBuffer = new UserBase();
     this.property = new PropertyChangeSupport(this);
     try
@@ -156,6 +158,8 @@ public class ClientModelManager implements ClientModel
       case "broadcastSearchedDiscussion":
         BroadcastSearchedDiscussionToUser request5 = (BroadcastSearchedDiscussionToUser) evt
             .getNewValue();
+        this.lastSearched.clear();
+        this.lastSearched.addDiscussion(request5.getDiscussion());
         property
             .firePropertyChange("searchByID", null, request5.getDiscussion());
         break;
@@ -164,6 +168,7 @@ public class ClientModelManager implements ClientModel
             .getNewValue();
         property.firePropertyChange("searchByName", null,
             request6.getDiscussionList());
+        this.lastSearched = request6.getDiscussionList();
         break;
     }
   }
@@ -229,7 +234,6 @@ public class ClientModelManager implements ClientModel
   @Override public void selectDiscussion(int discussionId)
   {
     this.selectedDiscussionId = discussionId;
-    this.logToExistingDiscussion(discussionId);
   }
 
   @Override public int searchDiscussionIdByLabel(String label)
@@ -237,8 +241,15 @@ public class ClientModelManager implements ClientModel
     for (int i =0 ; i<discussionListBuffer.size(); i++)
     {
       if ((discussionListBuffer.getDiscussion(i).getDiscussionId() + "      " + discussionListBuffer.getDiscussion(i).getDiscussionName()).equals(label))
+      {
         return discussionListBuffer.getDiscussion(i).getDiscussionId();
+      }
     }
     return -1;
+  }
+
+  @Override public DiscussionList getLastSearchedDiscussions()
+  {
+    return this.lastSearched;
   }
 }

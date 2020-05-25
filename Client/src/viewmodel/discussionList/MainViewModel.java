@@ -136,6 +136,18 @@ public class MainViewModel implements PropertyChangeListener
 
   public void selectDiscussion(String selectedLabel)
   {
+    System.out.println(model.searchDiscussionIdByLabel(selectedLabel));
+    if (model.searchDiscussionIdByLabel(selectedLabel) == -1)
+    {
+      for (int i = 0; i < model.getLastSearchedDiscussions().size(); i++)
+      {
+        if (selectedLabel.equals(model.getLastSearchedDiscussions().getDiscussion(i).getDiscussionId() + "      " + model.getLastSearchedDiscussions().getDiscussion(i).getDiscussionName()))
+        {
+          model.logToExistingDiscussion(model.getLastSearchedDiscussions().getDiscussion(i).getDiscussionId());
+        }
+      }
+    }
+    //model.logToExistingDiscussion(model.searchDiscussionIdByLabel(selectedLabel));
     model.selectDiscussion(model.searchDiscussionIdByLabel(selectedLabel));
   }
 

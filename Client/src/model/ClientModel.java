@@ -27,5 +27,6 @@ public interface ClientModel extends ultimateUnnamedPropertyChangeSubject
   void selectDiscussion(int discussionId);
   int getSelectedDiscussion();
   int searchDiscussionIdByLabel(String label);
+  DiscussionList getLastSearchedDiscussions();
 
 }

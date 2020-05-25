@@ -82,7 +82,8 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
              LogToExistingDiscussionRequest request2 = gson.fromJson(req,LogToExistingDiscussionRequest.class);
              if (!(model.getDiscussionById(request2.getDiscussionId()).getUserBase().isLoginInBase(request2.getUserLogin())))
              {
-               model.addUserToDiscussion(request2.getDiscussionId(),
+             System.out.println(request2.getDiscussionId());
+              model.addUserToDiscussion(request2.getDiscussionId(),
                    model.getUserFromUserBaseByLogin(request2.getUserLogin()).getUserId());
                out.println(gson.toJson(new BroadcastDiscussionToUserRequest(model.getDiscussionById(request2.getDiscussionId()))));
              }

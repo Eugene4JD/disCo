@@ -72,6 +72,15 @@ public class DiscussionList
     }
   }
 
+  public void clear()
+  {
+    int s = size();
+    for (int i =0; i<s; i++)
+    {
+      discussions.remove(0);
+    }
+  }
+
   public int size()
   {
     return discussions.size();
