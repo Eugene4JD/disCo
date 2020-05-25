@@ -220,16 +220,6 @@ public class ClientModelManager implements ClientModel
     remoteModel.searchDiscussionsByName(name);
   }
 
-  @Override public void setTmpDiscussion(Discussion discussion)
-  {
-    tmpDiscussion = discussion;
-  }
-
-  @Override public Discussion getTmpDiscussion()
-  {
-    return tmpDiscussion;
-  }
-
   @Override public void searchDiscussionById(int discussionId)
   {
     remoteModel.searchDiscussionByID(discussionId);
