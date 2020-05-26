@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import view.chat.ChatViewController;
 import view.discussionList.AddViewController;
 import view.discussionList.MainViewController;
+import view.discussionList.SettingsViewController;
 import view.login.LoginViewController;
 import view.login.RegistrationViewController;
 import viewmodel.ViewModelFactory;
@@ -25,6 +26,7 @@ public class ViewHandler
   private MainViewController mainViewController;
   private ChatViewController chatViewController;
   private AddViewController addViewController;
+  private SettingsViewController settingsViewController;
 
   public ViewHandler(ViewModelFactory viewModelFactory)
   {
@@ -68,6 +70,9 @@ public class ViewHandler
         break;
       case "add":
         root = loadAddView("discussionList/AddView.fxml");
+        break;
+      case "settings":
+        root = loadSettingsView("discussionList/SettingsView.fxml");
         break;
     }
     currentScene.setRoot(root);
@@ -219,6 +224,31 @@ public class ViewHandler
       addViewController.reset();
     }
     return addViewController.getRoot();
+  }
+
+  private Region loadSettingsView(String fxmlFile)
+  {
+    if (settingsViewController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        Region root = loader.load();
+        settingsViewController = loader.getController();
+        settingsViewController
+            .init(this, viewModelFactory.getSettingsViewModel(), root);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else
+    {
+      settingsViewController.reset();
+    }
+    return settingsViewController.getRoot();
   }
 
 }

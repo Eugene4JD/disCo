@@ -68,7 +68,7 @@ public class MainViewController
 
   public void settingsButtonPressed(ActionEvent actionEvent)
   {
-    viewHandler.openView("chat");
+    viewHandler.openView("settings");
   }
 
   public void addButtonPressed(ActionEvent actionEvent)

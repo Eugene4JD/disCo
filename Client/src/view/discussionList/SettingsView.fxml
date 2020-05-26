@@ -1,14 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.discussionList.SettingsView"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="726.0" userData="Settings" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.discussionList.SettingsViewController">
+    <children>
+        <HBox prefHeight="66.0" prefWidth="822.0" style="-fx-background-color: #E8E8E8;">
+            <children>
+                <ImageView fitHeight="49.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../resources/v2.3_240p_transparent.png" />
+                    </image>
+                    <HBox.margin>
+                        <Insets left="33.0" top="11.0" />
+                    </HBox.margin>
+                </ImageView>
+                <JFXButton onAction="#backButtonPressed" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Back" textFill="#ededed">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="375.0" top="19.0" />
+                    </HBox.margin>
+                </JFXButton>
+            </children>
+        </HBox>
+        <HBox prefHeight="305.0" prefWidth="697.0">
+            <padding>
+                <Insets bottom="40.0" left="40.0" right="40.0" top="25.0" />
+            </padding>
+            <children>
+                <VBox prefHeight="241.0" prefWidth="201.0" style="-fx-background-color: #E8E8E8;">
+                    <children>
+                        <ImageView fitHeight="95.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../resources/profile.png" />
+                            </image>
+                            <VBox.margin>
+                                <Insets left="53.0" top="16.0" />
+                            </VBox.margin>
+                        </ImageView>
+                        <Text fx:id="usernameText" fill="#000000a8" strokeType="OUTSIDE" strokeWidth="0.0" text="User_Name" textAlignment="CENTER" wrappingWidth="153.33670806884766">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="23.0" top="5.0" />
+                            </VBox.margin>
+                        </Text>
+                        <JFXButton onAction="#removeProfileButtonPressed" prefHeight="50.0" prefWidth="146.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="I want to &#10;remove my profile&#10;&#10;" textAlignment="CENTER">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="26.0" top="29.0" />
+                            </VBox.margin>
+                        </JFXButton>
+                    </children>
+                </VBox>
+                <VBox prefHeight="227.0" prefWidth="414.0">
+                    <children>
+                        <JFXTextField fx:id="usernameField" focusColor="#003780" opacity="0.95" prefHeight="25.0" prefWidth="32.0" promptText="Username">
+                            <VBox.margin>
+                                <Insets top="8.0" />
+                            </VBox.margin>
+                        </JFXTextField>
+                  <JFXPasswordField fx:id="oldPasswordFeld" focusColor="#003780" opacity="0.95" prefHeight="25.0" prefWidth="354.0" promptText="Old password">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </JFXPasswordField>
+                  <JFXPasswordField fx:id="newPasswordField1" focusColor="#003780" opacity="0.95" prefHeight="25.0" prefWidth="354.0" promptText="New password">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </JFXPasswordField>
+                  <JFXPasswordField fx:id="newPasswordField2" focusColor="#003780" opacity="0.95" prefHeight="25.0" prefWidth="354.0" promptText="Re-enter new password">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </JFXPasswordField>
+                        <JFXButton onAction="#applyButtonPressed" prefHeight="30.0" prefWidth="122.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="Apply changes">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="232.0" top="43.0" />
+                            </VBox.margin>
+                        </JFXButton>
+                    </children>
+                    <padding>
+                        <Insets left="40.0" right="20.0" top="10.0" />
+                    </padding>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</VBox>
