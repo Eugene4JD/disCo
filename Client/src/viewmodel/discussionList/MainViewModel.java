@@ -12,12 +12,14 @@ import model.ClientModel;
 import model.Discussion;
 import model.DiscussionList;
 import model.Message;
+import utility.UnnamedPropertyChangeSubject;
 import utility.observer.listener.LocalListener;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class MainViewModel implements PropertyChangeListener
+public class MainViewModel implements PropertyChangeListener,
+    UnnamedPropertyChangeSubject
 {
   private ClientModel model;
   private StringProperty search;
@@ -171,5 +173,15 @@ public class MainViewModel implements PropertyChangeListener
   public StringProperty getUserNamesThreads()
   {
     return usernamesThreads;
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+
   }
 }

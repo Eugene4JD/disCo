@@ -104,6 +104,7 @@ public class ViewHandler
     {
       try
       {
+        viewModelFactory.getLoginViewModel().clear();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(fxmlFile));
         Region root = loader.load();
