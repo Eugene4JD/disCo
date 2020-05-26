@@ -5,6 +5,7 @@ import utility.Log;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.security.spec.ECField;
 import java.sql.SQLException;
 
 public class ServerModelManager implements ServerModel
@@ -14,6 +15,7 @@ public class ServerModelManager implements ServerModel
   private PropertyChangeSupport property;
   private UserBase userBase;
   private Log log;
+
   public ServerModelManager()
   {
     this.discussionList = new DiscussionList();
@@ -28,7 +30,7 @@ public class ServerModelManager implements ServerModel
     {
       e.printStackTrace();
     }
-   fetch();
+    fetch();
   }
 
   @Override public void addNewUserToUserBase(String userType, String login,
@@ -36,7 +38,7 @@ public class ServerModelManager implements ServerModel
   {
     try
     {
-      userBase.addUser(discoPersistence.saveUser(userType,login,password));
+      userBase.addUser(discoPersistence.saveUser(userType, login, password));
       fetch();
     }
     catch (Exception e)
@@ -45,13 +47,16 @@ public class ServerModelManager implements ServerModel
     }
   }
 
-  @Override public Discussion createNewDiscussion(String discussionName,String editorOfDiscussionLogin)
+  @Override public Discussion createNewDiscussion(String discussionName,
+      String editorOfDiscussionLogin)
   {
     try
     {
-      Discussion discussion = discoPersistence.saveDiscussion(discussionName,editorOfDiscussionLogin);
+      Discussion discussion = discoPersistence
+          .saveDiscussion(discussionName, editorOfDiscussionLogin);
       this.discussionList.addDiscussion(discussion);
-      addUserToDiscussion(discussion.getDiscussionId(),getUserFromUserBaseByLogin(editorOfDiscussionLogin).getUserId());
+      addUserToDiscussion(discussion.getDiscussionId(),
+          getUserFromUserBaseByLogin(editorOfDiscussionLogin).getUserId());
       fetch();
       return discussion;
     }
@@ -61,14 +66,15 @@ public class ServerModelManager implements ServerModel
     }
     return null;
   }
+
   @Override public Discussion getDiscussionById(int discussionId)
   {
-   return discussionList.getDiscussionById(discussionId);
+    return discussionList.getDiscussionById(discussionId);
   }
 
   @Override public User getUserFromUserBaseById(int id)
   {
-   return userBase.getUserById(id);
+    return userBase.getUserById(id);
   }
 
   @Override public User getUserFromUserBaseByLogin(String login)
@@ -80,7 +86,7 @@ public class ServerModelManager implements ServerModel
   {
     try
     {
-      discoPersistence.removeDiscussion(discussionId,userId);
+      discoPersistence.removeDiscussion(discussionId, userId);
       discussionList.removeDiscussionById(discussionId);
     }
     catch (SQLException e)
@@ -90,12 +96,12 @@ public class ServerModelManager implements ServerModel
 
   }
 
-  @Override public void removeUserFromUserBase(String userLogin)
+  @Override public void removeUserFromUserBase(int userID)
   {
-    userBase.removeUserById(userBase.getUserByLogin(userLogin).getUserId());
     try
     {
-      discoPersistence.removeUser(userLogin,userBase.getUserByLogin(userLogin).getUserPassword());
+      discoPersistence.removeUser(userID);
+      fetch();
     }
     catch (SQLException e)
     {
@@ -107,8 +113,9 @@ public class ServerModelManager implements ServerModel
   {
     try
     {
-      discoPersistence.saveUserDiscussionConnection(discussionID,userID);
-      discussionList.getDiscussion(discussionID).addUser(userBase.getUserById(userID));
+      discoPersistence.saveUserDiscussionConnection(discussionID, userID);
+      discussionList.getDiscussion(discussionID)
+          .addUser(userBase.getUserById(userID));
     }
     catch (SQLException e)
     {
@@ -122,10 +129,12 @@ public class ServerModelManager implements ServerModel
     this.log.addLog(log);
   }
 
-  @Override public void addMessageToDiscussion(int discussionId,
-      int senderID, String message)
+  @Override public void addMessageToDiscussion(int discussionId, int senderID,
+      String message)
   {
-    property.firePropertyChange("BroadcastMessageToDiscussion",null,new BroadcastMessageToDiscussionRequest(discussionId,senderID,message));
+    property.firePropertyChange("BroadcastMessageToDiscussion", null,
+        new BroadcastMessageToDiscussionRequest(discussionId, senderID,
+            message));
   }
 
   @Override public void removeListener(PropertyChangeListener listener)
@@ -137,6 +146,7 @@ public class ServerModelManager implements ServerModel
   {
     property.addPropertyChangeListener(listener);
   }
+
   @Override public void removeDiscussionByName(String name)
   {
     discussionList.removeDiscussionByName(name);
@@ -145,9 +155,10 @@ public class ServerModelManager implements ServerModel
   @Override public DiscussionList getDiscussionWithUser(int userID)
   {
     DiscussionList discussionList = new DiscussionList();
-    for (int i =0; i<this.discussionList.size(); i++)
+    for (int i = 0; i < this.discussionList.size(); i++)
     {
-      if (this.discussionList.getDiscussion(i).getUserBase().getUserById(userID) != null)
+      if (this.discussionList.getDiscussion(i).getUserBase().getUserById(userID)
+          != null)
       {
         discussionList.addDiscussion(this.discussionList.getDiscussion(i));
       }
@@ -163,14 +174,56 @@ public class ServerModelManager implements ServerModel
   @Override public DiscussionList getDiscussionsByName(String name)
   {
     DiscussionList discussionList = new DiscussionList();
-    for (int i =0; i<this.discussionList.size(); i++)
+    for (int i = 0; i < this.discussionList.size(); i++)
     {
-      if(this.discussionList.getDiscussion(i).getDiscussionName().equals(name))
+      if (this.discussionList.getDiscussion(i).getDiscussionName().equals(name))
       {
         discussionList.addDiscussion(this.discussionList.getDiscussion(i));
       }
     }
     return discussionList;
+  }
+
+  @Override public void editUserPassword(int userId, String password)
+  {
+    try
+    {
+      discoPersistence.editUserPassword(userId, password);
+      fetch();
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+  @Override public void editUserLogin(int userId, String userLogin)
+  {
+    try
+    {
+      discoPersistence.changeEditorLoginInEveryDiscussion(
+          this.userBase.getUserById(userId).getUserLogin(), userLogin);
+      discoPersistence.editUserLogin(userId, userLogin);
+      fetch();
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+  @Override public void editNameOfDiscussion(int discussionId, String password)
+  {
+    try
+    {
+      discoPersistence.editNameOfDiscussion(discussionId, password);
+      fetch();
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+
   }
 
   private void fetch()
@@ -179,12 +232,12 @@ public class ServerModelManager implements ServerModel
     {
       this.discussionList = discoPersistence.loadDiscussions();
       this.userBase = discoPersistence.loadUsers();
-      discoPersistence.linkTheConnectionsBetween(discussionList,userBase);
+      discoPersistence.linkTheConnectionsBetween(discussionList, userBase);
     }
     catch (SQLException e)
     {
       e.printStackTrace();
     }
-
   }
+
 }

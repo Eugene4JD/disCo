@@ -6,7 +6,7 @@ public class LogRequest extends Request
   private String password;
   private boolean isNewUser;
 
-  public LogRequest(String login, String password,boolean isNewUser)
+  public LogRequest(String login, String password, boolean isNewUser)
   {
     super(RequestType.Log);
     this.login = login;

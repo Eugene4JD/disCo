@@ -34,7 +34,8 @@ public class ServerConnector implements Runnable
       try
       {
         Socket socket = welcomeSocket.accept();
-        ServerClientHandler serverClientHandler = new ServerClientHandler(socket,model);
+        ServerClientHandler serverClientHandler = new ServerClientHandler(
+            socket, model);
         Thread thread = new Thread(serverClientHandler);
         thread.setDaemon(true);
         thread.start();
@@ -46,6 +47,7 @@ public class ServerConnector implements Runnable
 
     }
   }
+
   public void stop()
   {
     this.running = false;

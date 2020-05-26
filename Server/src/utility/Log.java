@@ -8,6 +8,7 @@ public class Log
   {
 
   }
+
   public static Log getInstance()
   {
     if (instance == null)

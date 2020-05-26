@@ -5,6 +5,7 @@ public class MessageRequest extends Request
   private int senderID;
   private String message;
   private int discussionId;
+
   public MessageRequest(int discussionId, int userId, String message)
   {
     super(RequestType.Message);

@@ -6,7 +6,8 @@ public class BroadcastLoginStatusToUserRequest extends Request
   private String login;
   private int id;
 
-  public BroadcastLoginStatusToUserRequest(Boolean isLogSuccessful,String login,int id)
+  public BroadcastLoginStatusToUserRequest(Boolean isLogSuccessful,
+      String login, int id)
   {
     super(RequestType.BroadcastLoginStatus);
     this.isLogSuccessful = isLogSuccessful;

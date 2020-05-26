@@ -34,7 +34,7 @@ public class Message implements Serializable
 
   public String toString()
   {
-    return this.dateTime.getTimestamp()+ " " + senderId  + " : " + text;
+    return this.dateTime.getTimestamp() + " " + senderId + " : " + text;
   }
 
   @Override public boolean equals(Object obj)

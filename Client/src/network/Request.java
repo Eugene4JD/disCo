@@ -6,10 +6,11 @@ public class Request
 
   public Request(RequestType type)
   {
-     this.type = type;
+    this.type = type;
   }
+
   public RequestType getType()
   {
-     return type;
+    return type;
   }
 }

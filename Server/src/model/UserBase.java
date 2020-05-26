@@ -18,20 +18,22 @@ public class UserBase
   {
     if (isLoginInBase(user.getUserLogin()))
     {
-      throw  new IllegalArgumentException("Login is in the system... Check again");
+      throw new IllegalArgumentException(
+          "Login is in the system... Check again");
     }
     this.users.add(user);
   }
 
-  public void addUser(int userId, String userType,String login, String password)
+  public void addUser(int userId, String userType, String login,
+      String password)
   {
-    this.users.add(new User(userId,userType,login,password));
-    index ++;
+    this.users.add(new User(userId, userType, login, password));
+    index++;
   }
 
   public void removeUserById(int id)
   {
-    for (int i = 0; i<users.size(); i++)
+    for (int i = 0; i < users.size(); i++)
     {
       if (users.get(i).getUserId() == id)
       {
@@ -43,7 +45,7 @@ public class UserBase
 
   public User getUserById(int userId)
   {
-    for (int i = 0; i<users.size(); i++)
+    for (int i = 0; i < users.size(); i++)
     {
       if (users.get(i).getUserId() == userId)
         return users.get(i);
@@ -52,24 +54,24 @@ public class UserBase
   }
 
   public User getUserByLogin(String login)
- {
-   for (int i = 0; i< users.size(); i++)
-   {
-     if (users.get(i).getUserLogin().equals(login))
-       return users.get(i);
-   }
-   return null;
- }
+  {
+    for (int i = 0; i < users.size(); i++)
+    {
+      if (users.get(i).getUserLogin().equals(login))
+        return users.get(i);
+    }
+    return null;
+  }
+
   public void removeAllUserFromChat()
   {
     int s = users.size();
-    for (int i =0; i<s; i++)
+    for (int i = 0; i < s; i++)
     {
       users.remove(0);
     }
-   index = 0;
+    index = 0;
   }
-
 
   public String getUserId()
   {
@@ -86,20 +88,19 @@ public class UserBase
     return this.users.size();
   }
 
-
   public boolean isLoginInBase(String login)
   {
-    for (int i =0; i< users.size(); i++)
+    for (int i = 0; i < users.size(); i++)
     {
       if (users.get(i).getUserLogin().equals(login))
-         return true;
+        return true;
     }
     return false;
   }
 
   public boolean isLogged(int id)
   {
-    for (int i = 0; i< users.size(); i++)
+    for (int i = 0; i < users.size(); i++)
     {
       if (users.get(i).getUserId() == id)
       {

@@ -73,6 +73,22 @@ public class ClientReceiver implements Runnable, UnnamedPropertyChangeSubject
              BroadcastSearchedDiscussionsToUser broadcastSearchedDiscussionsToUser = gson.fromJson(req,BroadcastSearchedDiscussionsToUser.class);
              property.firePropertyChange("broadcastSearchedDiscussions",null,broadcastSearchedDiscussionsToUser);
              break;
+           case BroadcastChangeDiscussionName:
+             BroadcastChangedDiscussionName broadcastChangedDiscussionName = gson.fromJson(req,BroadcastChangedDiscussionName.class);
+             property.firePropertyChange("broadcastChangeDiscussionName",null,broadcastChangedDiscussionName);
+             break;
+           case BroadcastChangePasswordToUser:
+             BroadcastChangedPasswordToUser broadcastChangedPasswordToUser = gson.fromJson(req,BroadcastChangedPasswordToUser.class);
+             property.firePropertyChange("broadcastChangePasswordToUser",null,broadcastChangedPasswordToUser);
+             break;
+           case BroadcastChangeUserNameToUser:
+             BroadcastChangedUserNameToUser broadcastChangedUserNameToUser = gson.fromJson(req,BroadcastChangedUserNameToUser.class);
+             property.firePropertyChange("broadcastChangeUserNameToUser",null,broadcastChangedUserNameToUser);
+             break;
+           case BroadcastDeletedAccount:
+             BroadcastDeletedAccountRequest broadcastDeletedAccountRequest = gson.fromJson(req,BroadcastDeletedAccountRequest.class);
+             property.firePropertyChange("broadcastDeletedAccountRequest",null,broadcastDeletedAccountRequest);
+             break;
          }
        }
        catch (Exception e)

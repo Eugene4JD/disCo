@@ -6,7 +6,8 @@ public class BroadcastDiscussionToUserRequest extends Request
 {
   private Discussion discussion;
   private int userId;
-  public BroadcastDiscussionToUserRequest(Discussion discussion,int id)
+
+  public BroadcastDiscussionToUserRequest(Discussion discussion, int id)
   {
     super(RequestType.BroadcastDiscussion);
     this.discussion = discussion;
