@@ -10,9 +10,9 @@ public class DateTime
 
   public DateTime()
   {
-    date = Calendar.getInstance()
-        .getTime();// store current time
+    date = Calendar.getInstance().getTime();// store current time
   }
+
   public String getTimestamp()
   {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");

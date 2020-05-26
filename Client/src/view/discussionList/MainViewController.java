@@ -44,7 +44,8 @@ public class MainViewController
     listView.setItems(viewModel.getMessages());
     searchSelector.setItems(viewModel.getSearchSelector());
     searchField.textProperty().bindBidirectional(viewModel.getSearch());
-    usernamesThreads.textProperty().bindBidirectional(viewModel.getUserNamesThreads());
+    usernamesThreads.textProperty()
+        .bindBidirectional(viewModel.getUserNamesThreads());
   }
 
   private void initPopup()
@@ -106,10 +107,10 @@ public class MainViewController
     if (searchSelector.getValue().equals("by TITLE"))
     {
 
-     if (searchField.getText().equals(""))
+      if (searchField.getText().equals(""))
         viewModel.load();
-     else
-       viewModel.searchByName();
+      else
+        viewModel.searchByName();
     }
     if (searchSelector.getValue().equals("by ID"))
     {

@@ -2,14 +2,15 @@ package model;
 
 import java.io.Serializable;
 
-public  class User implements Serializable
+public class User implements Serializable
 {
   private int userId;
   private String userType;
   private String userLogin;
   private String userPassword;
 
-  public User(int userId, String userType, String userLogin, String userPassword)
+  public User(int userId, String userType, String userLogin,
+      String userPassword)
   {
     this.userType = userType;
     this.userId = userId;
@@ -21,14 +22,17 @@ public  class User implements Serializable
   {
     return userId;
   }
+
   public String getUserType()
   {
     return userType;
   }
+
   public String getUserLogin()
   {
     return userLogin;
   }
+
   public String getUserPassword()
   {
     return userPassword;

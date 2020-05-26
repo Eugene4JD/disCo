@@ -65,14 +65,15 @@ public class MainViewModel implements PropertyChangeListener
 
   public void load()
   {
-     this.usernamesThreads.set(model.getLogin() +"'s threads ▼");
-     listView.clear();
-     for (int i =0;i<model.getDiscussionListBuffer().size(); i++)
-     {
-       listView.add(new Label(
-           model.getDiscussionListBuffer().getDiscussion(i).getDiscussionId() + "      " + model.getDiscussionListBuffer()
-               .getDiscussion(i).getDiscussionName()));
-     }
+    this.usernamesThreads.set(model.getLogin() + "'s threads ▼");
+    listView.clear();
+    for (int i = 0; i < model.getDiscussionListBuffer().size(); i++)
+    {
+      listView.add(new Label(
+          model.getDiscussionListBuffer().getDiscussion(i).getDiscussionId()
+              + "      " + model.getDiscussionListBuffer().getDiscussion(i)
+              .getDiscussionName()));
+    }
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
@@ -140,20 +141,28 @@ public class MainViewModel implements PropertyChangeListener
     {
       for (int i = 0; i < model.getLastSearchedDiscussions().size(); i++)
       {
-        if (selectedLabel.equals(model.getLastSearchedDiscussions().getDiscussion(i).getDiscussionId() + "      " + model.getLastSearchedDiscussions().getDiscussion(i).getDiscussionName()))
+        if (selectedLabel.equals(
+            model.getLastSearchedDiscussions().getDiscussion(i)
+                .getDiscussionId() + "      " + model
+                .getLastSearchedDiscussions().getDiscussion(i)
+                .getDiscussionName()))
         {
-          model.logToExistingDiscussion(model.getLastSearchedDiscussions().getDiscussion(i).getDiscussionId());
+          model.logToExistingDiscussion(
+              model.getLastSearchedDiscussions().getDiscussion(i)
+                  .getDiscussionId());
         }
       }
     }
   }
+
   public boolean checkSearch(String selectedLabel)
   {
     if (model.searchDiscussionIdByLabel(selectedLabel) == -1)
     {
       return false;
     }
-    else return true;
+    else
+      return true;
   }
 
   public void selectDiscussion(String selectedLabel)

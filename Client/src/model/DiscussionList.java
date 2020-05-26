@@ -75,7 +75,7 @@ public class DiscussionList
   public void clear()
   {
     int s = size();
-    for (int i =0; i<s; i++)
+    for (int i = 0; i < s; i++)
     {
       discussions.remove(0);
     }
@@ -85,12 +85,15 @@ public class DiscussionList
   {
     return discussions.size();
   }
+
   public String toString()
   {
     String str = " ";
-    for (int i=0 ; i<this.size(); i++)
+    for (int i = 0; i < this.size(); i++)
     {
-      str += discussions.get(0).getDiscussionName() + " " + discussions.get(0).getDiscussionId() + " " + discussions.get(0).getLoginOfEditorOfDiscussion();
+      str += discussions.get(0).getDiscussionName() + " " + discussions.get(0)
+          .getDiscussionId() + " " + discussions.get(0)
+          .getLoginOfEditorOfDiscussion();
       str += "\n";
     }
     return str;

@@ -53,12 +53,14 @@ public class ChatViewModel implements PropertyChangeListener
 
   public void load()
   {
-    Discussion discussion = model.getDiscussionListBuffer().getDiscussionById(model.getSelectedDiscussion());
+    Discussion discussion = model.getDiscussionListBuffer()
+        .getDiscussionById(model.getSelectedDiscussion());
     if (discussion != null)
     {
       for (int i = 0; i < discussion.getMessageList().size(); i++)
       {
-        chatList.add(new Label(discussion.getMessageList().getMessage(i).toString()));
+        chatList.add(
+            new Label(discussion.getMessageList().getMessage(i).toString()));
       }
       setThreadName();
     }
@@ -76,10 +78,12 @@ public class ChatViewModel implements PropertyChangeListener
       switch (evt.getPropertyName())
       {
         case "NewMessageToChat":
-          Discussion discussion = (Discussion)evt.getNewValue();
+          Discussion discussion = (Discussion) evt.getNewValue();
           if (discussion.getDiscussionId() == model.getSelectedDiscussion())
           {
-              chatList.add(new Label(discussion.getMessageList().getMessage(discussion.getMessageList().size()-1).toString()));
+            chatList.add(new Label(discussion.getMessageList()
+                .getMessage(discussion.getMessageList().size() - 1)
+                .toString()));
           }
           break;
         case "Add":

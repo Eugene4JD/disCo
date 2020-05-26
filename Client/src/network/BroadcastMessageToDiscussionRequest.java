@@ -6,7 +6,8 @@ public class BroadcastMessageToDiscussionRequest extends Request
   private String message;
   private int senderID;
 
-  public BroadcastMessageToDiscussionRequest(int  discussionID, int senderID, String message)
+  public BroadcastMessageToDiscussionRequest(int discussionID, int senderID,
+      String message)
   {
     super(RequestType.BroadcastMessage);
     this.discussionID = discussionID;

@@ -28,5 +28,9 @@ public interface ClientModel extends ultimateUnnamedPropertyChangeSubject
   int getSelectedDiscussion();
   int searchDiscussionIdByLabel(String label);
   DiscussionList getLastSearchedDiscussions();
+  void changeLogin(String login);
+  void changePassword(String oldPassword, String newPassword);
+  void changeNameOfDiscussion(int discussionId, String name);
+  void removeItself();
 
 }

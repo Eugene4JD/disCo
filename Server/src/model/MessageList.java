@@ -13,17 +13,18 @@ public class MessageList
 
   public void addMessage(String text, String senderId)
   {
-    messages.add(new Message(senderId,text,getNewId()));
+    messages.add(new Message(senderId, text, getNewId()));
   }
 
   public void clearList()
   {
     int index = messages.size();
-    for (int i =0; i<index; i++)
+    for (int i = 0; i < index; i++)
     {
       messages.remove(0);
     }
   }
+
   public Message getMessage(int index)
   {
     return messages.get(index);
@@ -31,7 +32,7 @@ public class MessageList
 
   public Message getMessageById(int id)
   {
-    for (int i =0; i<messages.size(); i++)
+    for (int i = 0; i < messages.size(); i++)
     {
       if (messages.get(i).getMessageId() == id)
       {
@@ -40,6 +41,7 @@ public class MessageList
     }
     return null;
   }
+
   public int size()
   {
     return messages.size();
@@ -47,6 +49,6 @@ public class MessageList
 
   private int getNewId()
   {
-    return this.messages.size()+1;
+    return this.messages.size() + 1;
   }
 }

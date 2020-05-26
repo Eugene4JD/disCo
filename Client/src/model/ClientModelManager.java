@@ -115,8 +115,10 @@ public class ClientModelManager implements ClientModel
             .getDiscussionById(request.getDiscussionID());
         if (discussion != null)
         {
-          discussion.addMessage(request.getMessage(),discussion.getUserBase().getUserById(request.getSenderID()).getUserLogin());
-          property.firePropertyChange( "NewMessageToChat",null,discussion);
+          discussion.addMessage(request.getMessage(),
+              discussion.getUserBase().getUserById(request.getSenderID())
+                  .getUserLogin());
+          property.firePropertyChange("NewMessageToChat", null, discussion);
 
         }
         break;
@@ -172,6 +174,26 @@ public class ClientModelManager implements ClientModel
         property.firePropertyChange("searchByName", null,
             request6.getDiscussionList());
         this.lastSearched = request6.getDiscussionList();
+        break;
+      case "broadcastChangeDiscussionName":
+        BroadcastChangedDiscussionName request7 = (BroadcastChangedDiscussionName) evt
+            .getNewValue();
+        property.firePropertyChange("ChangedDiscussionName", null, request7);
+        break;
+      case "broadcastChangePasswordToUser":
+        BroadcastChangedPasswordToUser request8 = (BroadcastChangedPasswordToUser) evt
+            .getNewValue();
+        property.firePropertyChange("ChangedPassword", null, request8);
+        break;
+      case "broadcastChangeUserNameToUser":
+        BroadcastChangedUserNameToUser request9 = (BroadcastChangedUserNameToUser) evt
+            .getNewValue();
+        property.firePropertyChange("ChangedUserName", null, request9);
+        break;
+      case "broadcastDeletedAccountRequest":
+        BroadcastDeletedAccountRequest request10 = (BroadcastDeletedAccountRequest) evt
+            .getNewValue();
+        //property.firePropertyChange("ds");
         break;
     }
   }
@@ -241,9 +263,11 @@ public class ClientModelManager implements ClientModel
 
   @Override public int searchDiscussionIdByLabel(String label)
   {
-    for (int i =0 ; i<discussionListBuffer.size(); i++)
+    for (int i = 0; i < discussionListBuffer.size(); i++)
     {
-      if ((discussionListBuffer.getDiscussion(i).getDiscussionId() + "      " + discussionListBuffer.getDiscussion(i).getDiscussionName()).equals(label))
+      if ((discussionListBuffer.getDiscussion(i).getDiscussionId() + "      "
+          + discussionListBuffer.getDiscussion(i).getDiscussionName())
+          .equals(label))
       {
         return discussionListBuffer.getDiscussion(i).getDiscussionId();
       }
@@ -254,5 +278,25 @@ public class ClientModelManager implements ClientModel
   @Override public DiscussionList getLastSearchedDiscussions()
   {
     return this.lastSearched;
+  }
+
+  @Override public void changeNameOfDiscussion(int discussionId, String name)
+  {
+    this.remoteModel.changeNameOfDiscussion(discussionId, name);
+  }
+
+  @Override public void changePassword(String oldPassword, String newPassword)
+  {
+    this.remoteModel.changePassword(id, oldPassword, newPassword);
+  }
+
+  @Override public void changeLogin(String login)
+  {
+    this.remoteModel.changeLoginOfUser(id, login);
+  }
+
+  @Override public void removeItself()
+  {
+    this.remoteModel.removeUser(id);
   }
 }
