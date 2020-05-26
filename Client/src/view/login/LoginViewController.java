@@ -2,6 +2,7 @@ package view.login;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -79,13 +80,15 @@ public class LoginViewController implements PropertyChangeListener
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
-    switch (evt.getPropertyName())
-    {
-      case "LogStatus":
-        if (evt.getNewValue().equals(true))
-        {
-          // viewHandler.openView("main");
-        }
-    }
+    Platform.runLater(() -> {
+      switch (evt.getPropertyName())
+      {
+        case "LogStatus":
+          if (evt.getNewValue().equals(true))
+          {
+            viewHandler.openView("main");
+          }
+      }
+    });
   }
 }
