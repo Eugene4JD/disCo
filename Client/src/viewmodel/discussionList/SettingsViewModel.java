@@ -25,5 +25,9 @@ public class SettingsViewModel
     return username;
   }
 
+  public void load()
+  {
+    username.set(model.getLogin());
+  }
 
 }
