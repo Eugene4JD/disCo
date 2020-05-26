@@ -134,9 +134,8 @@ public class MainViewModel implements PropertyChangeListener
     model.searchDiscussionById(Integer.parseInt(search.get()));
   }
 
-  public void selectDiscussion(String selectedLabel)
+  public void logToDiscussion(String selectedLabel)
   {
-    System.out.println(model.searchDiscussionIdByLabel(selectedLabel));
     if (model.searchDiscussionIdByLabel(selectedLabel) == -1)
     {
       for (int i = 0; i < model.getLastSearchedDiscussions().size(); i++)
@@ -147,6 +146,10 @@ public class MainViewModel implements PropertyChangeListener
         }
       }
     }
+  }
+  public void selectDiscussion(String selectedLabel)
+  {
+    System.out.println(model.searchDiscussionIdByLabel(selectedLabel));
     //model.logToExistingDiscussion(model.searchDiscussionIdByLabel(selectedLabel));
     model.selectDiscussion(model.searchDiscussionIdByLabel(selectedLabel));
   }

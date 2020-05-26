@@ -84,6 +84,15 @@ public class MainViewController
       {
         Label selectedItem = listView.getSelectionModel().getSelectedItem();
         //here
+        viewModel.logToDiscussion(selectedItem.textProperty().get());
+        try
+        {
+          Thread.sleep(1000);
+        }
+        catch (Exception e)
+        {
+          //
+        }
         viewModel.selectDiscussion(selectedItem.textProperty().get());
         viewHandler.openView("chat");
       }
