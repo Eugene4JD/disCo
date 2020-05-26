@@ -1,5 +1,6 @@
 package viewmodel.login;
 
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.ClientModel;
@@ -12,6 +13,7 @@ public class LoginViewModel implements PropertyChangeListener
   private ClientModel model;
   private StringProperty username;
   private StringProperty password;
+  private StringProperty error;
 
   public LoginViewModel(ClientModel model)
   {
@@ -19,12 +21,14 @@ public class LoginViewModel implements PropertyChangeListener
     model.addListener(this);
     username = new SimpleStringProperty();
     password = new SimpleStringProperty();
+    error = new SimpleStringProperty();
   }
 
   public void clear()
   {
     username.set(null);
     password.set(null);
+    error.set(null);
   }
 
   public StringProperty getUsernameProperty()
@@ -35,6 +39,11 @@ public class LoginViewModel implements PropertyChangeListener
   public StringProperty getPasswordProperty()
   {
     return password;
+  }
+
+  public StringProperty getErrorProperty()
+  {
+    return error;
   }
 
   public void logIn()

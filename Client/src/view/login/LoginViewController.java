@@ -7,6 +7,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import view.ViewHandler;
 import viewmodel.login.LoginViewModel;
 
@@ -14,6 +15,7 @@ public class LoginViewController
 {
   @FXML private JFXTextField usernameField;
   @FXML private JFXPasswordField passwordField;
+  @FXML private Text errorLabel;
 
   private ViewHandler viewHandler;
   private LoginViewModel viewModel;
@@ -30,6 +32,7 @@ public class LoginViewController
         .bindBidirectional(viewModel.getUsernameProperty());
     passwordField.textProperty()
         .bindBidirectional(viewModel.getPasswordProperty());
+    errorLabel.textProperty().bindBidirectional(viewModel.getErrorProperty());
   }
 
   public void reset()
