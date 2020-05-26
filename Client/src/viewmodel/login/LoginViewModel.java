@@ -75,7 +75,7 @@ public class LoginViewModel
       case "LogStatus":
         if (evt.getNewValue().equals(false))
         {
-          error.set("!  Something went wrong");
+          error.set("! Password or Login is incorrect");
         }
         else
           property.firePropertyChange("LogStatus", null, evt.getNewValue());

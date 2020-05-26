@@ -89,7 +89,7 @@ public class MainViewModel implements PropertyChangeListener,
               discussion.getDiscussionId() + "      " + discussion
                   .getDiscussionName()));
           break;
-        case "AddList":
+       /* case "AddList":
           DiscussionList list = (DiscussionList) evt.getNewValue();
           for (int i = 0; i < list.size(); i++)
           {
@@ -98,6 +98,8 @@ public class MainViewModel implements PropertyChangeListener,
                     .getDiscussion(i).getDiscussionName()));
           }
           break;
+        */
+
         case "searchByName":
           listView.clear();
           DiscussionList titleList = (DiscussionList) evt.getNewValue();
