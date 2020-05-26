@@ -3,13 +3,13 @@ package network;
 public class LogToExistingDiscussionRequest extends Request
 {
   private int discussionId;
-  private String userLogin;
+  private int userId;
 
-  public LogToExistingDiscussionRequest(int discussionId, String userLogin)
+  public LogToExistingDiscussionRequest(int discussionId, int userId)
   {
     super(RequestType.LogToExistingDiscussion);
     this.discussionId = discussionId;
-    this.userLogin = userLogin;
+    this.userId = userId;
   }
 
   public int getDiscussionId()
@@ -17,8 +17,8 @@ public class LogToExistingDiscussionRequest extends Request
     return discussionId;
   }
 
-  public String getUserLogin()
+  public int getUserId()
   {
-    return userLogin;
+    return userId;
   }
 }

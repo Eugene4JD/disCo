@@ -3,12 +3,12 @@ package network;
 public class CreateDiscussionRequest extends Request
 {
   private  String discussionId;
-  private String editorLogin;
-  public CreateDiscussionRequest(String discussionId,String editorLogin)
+  private int userId;
+  public CreateDiscussionRequest(String discussionId,int userId)
   {
     super(RequestType.CreateDiscussion);
     this.discussionId =discussionId;
-    this.editorLogin = editorLogin;
+    this.userId = userId;
   }
 
   public String getDiscussionId()
@@ -16,8 +16,8 @@ public class CreateDiscussionRequest extends Request
     return discussionId;
   }
 
-  public String getEditorLogin()
+  public int getUserID()
   {
-    return editorLogin;
+    return userId;
   }
 }

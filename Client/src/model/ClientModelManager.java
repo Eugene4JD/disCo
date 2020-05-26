@@ -133,8 +133,11 @@ public class ClientModelManager implements ClientModel
       case "broadcastDiscussionToUser":
         BroadcastDiscussionToUserRequest request2 = (BroadcastDiscussionToUserRequest) evt
             .getNewValue();
-        discussionListBuffer.addDiscussion(request2.getDiscussion());
-        property.firePropertyChange("Add", null, request2.getDiscussion());
+        if (request2.getUserId() == this.id)
+        {
+          discussionListBuffer.addDiscussion(request2.getDiscussion());
+          property.firePropertyChange("Add", null, request2.getDiscussion());
+        }
         break;
       case "broadcastRemovingDiscussionToUser":
         BroadcastRemovingDiscussionToUserRequest request3 = (BroadcastRemovingDiscussionToUserRequest) evt

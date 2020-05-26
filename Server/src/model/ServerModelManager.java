@@ -66,9 +66,14 @@ public class ServerModelManager implements ServerModel
    return discussionList.getDiscussionById(discussionId);
   }
 
+  @Override public User getUserFromUserBaseById(int id)
+  {
+   return userBase.getUserById(id);
+  }
+
   @Override public User getUserFromUserBaseByLogin(String login)
   {
-   return userBase.getUserByLogin(login);
+    return userBase.getUserByLogin(login);
   }
 
   @Override public void removeDiscussion(int discussionId, int userId)

@@ -33,15 +33,15 @@ public class RemoteModelProxy implements RemoteModel
     clientSender.removeDiscussion(discussionId,userId);
   }
 
-  @Override public void createNewDiscussion(String discussionId,String login)
+  @Override public void createNewDiscussion(String discussionId,int UserId)
   {
-    clientSender.createNewDiscussion(discussionId,login);
+    clientSender.createNewDiscussion(discussionId,UserId);
   }
 
   @Override public void logToExistingDiscussion(int discussionId,
-      String login)
+      int userId)
   {
-    clientSender.logToExistingDiscussion(discussionId,login);
+    clientSender.logToExistingDiscussion(discussionId,userId);
   }
 
   @Override public void sendMessageInDiscussion(int discussionId,

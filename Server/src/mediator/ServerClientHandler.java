@@ -80,20 +80,20 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
 
            case LogToExistingDiscussion:
              LogToExistingDiscussionRequest request2 = gson.fromJson(req,LogToExistingDiscussionRequest.class);
-             if (!(model.getDiscussionById(request2.getDiscussionId()).getUserBase().isLoginInBase(request2.getUserLogin())))
+             if (!(model.getDiscussionById(request2.getDiscussionId()).getUserBase().isLogged(request2.getUserId())))
              {
              System.out.println(request2.getDiscussionId());
               model.addUserToDiscussion(request2.getDiscussionId(),
-                   model.getUserFromUserBaseByLogin(request2.getUserLogin()).getUserId());
-               out.println(gson.toJson(new BroadcastDiscussionToUserRequest(model.getDiscussionById(request2.getDiscussionId()))));
+                   request2.getUserId());
+               out.println(gson.toJson(new BroadcastDiscussionToUserRequest(model.getDiscussionById(request2.getDiscussionId()),request2.getUserId())));
              }
              break;
 
 
            case CreateDiscussion:
              CreateDiscussionRequest request3 = gson.fromJson(req,CreateDiscussionRequest.class);
-             Discussion discussion = model.createNewDiscussion(request3.getDiscussionId(),request3.getEditorLogin());
-             out.println(gson.toJson(new BroadcastDiscussionToUserRequest(discussion)));
+             Discussion discussion = model.createNewDiscussion(request3.getDiscussionId(),model.getUserFromUserBaseById(request3.getUserID()).getUserLogin());
+             out.println(gson.toJson(new BroadcastDiscussionToUserRequest(discussion,request3.getUserID())));
              break;
 
 

@@ -96,4 +96,16 @@ public class UserBase
     }
     return false;
   }
+
+  public boolean isLogged(int id)
+  {
+    for (int i = 0; i< users.size(); i++)
+    {
+      if (users.get(i).getUserId() == id)
+      {
+        return true;
+      }
+    }
+    return false;
+  }
 }
