@@ -69,7 +69,7 @@
                 </VBox>
                 <VBox prefHeight="227.0" prefWidth="414.0">
                     <children>
-                        <JFXTextField fx:id="usernameField" focusColor="#003780" opacity="0.95" prefHeight="25.0" prefWidth="32.0" promptText="Username">
+                        <JFXTextField fx:id="usernameField" focusColor="#003780" opacity="0.95" prefHeight="25.0" prefWidth="32.0" promptText="New username">
                             <VBox.margin>
                                 <Insets top="8.0" />
                             </VBox.margin>

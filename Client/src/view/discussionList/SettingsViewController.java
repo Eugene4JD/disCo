@@ -5,11 +5,13 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import view.ViewHandler;
 import viewmodel.discussionList.SettingsViewModel;
 
 public class SettingsViewController
 {
+  @FXML private Text usernameText;
   @FXML private JFXTextField usernameField;
   @FXML private JFXPasswordField oldPasswordField;
   @FXML private JFXPasswordField newPasswordField1;
@@ -25,6 +27,8 @@ public class SettingsViewController
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;
     this.root = root;
+    this.usernameText.textProperty()
+        .bindBidirectional(viewModel.getUsernameProperty());
   }
 
   public void backButtonPressed(ActionEvent actionEvent)

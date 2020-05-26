@@ -238,6 +238,7 @@ public class ViewHandler
         settingsViewController = loader.getController();
         settingsViewController
             .init(this, viewModelFactory.getSettingsViewModel(), root);
+        viewModelFactory.getSettingsViewModel().load();
       }
       catch (Exception e)
       {
