@@ -4,6 +4,7 @@ import model.ClientModel;
 import viewmodel.chat.ChatViewModel;
 import viewmodel.discussionList.AddViewModel;
 import viewmodel.discussionList.MainViewModel;
+import viewmodel.discussionList.SettingsViewModel;
 import viewmodel.login.LoginViewModel;
 import viewmodel.login.RegistrationViewModel;
 
@@ -14,6 +15,7 @@ public class ViewModelFactory
   private MainViewModel mainViewModel;
   private ChatViewModel chatViewModel;
   private AddViewModel addViewModel;
+  private SettingsViewModel settingsViewModel;
 
   public ViewModelFactory(ClientModel model)
   {
@@ -22,6 +24,7 @@ public class ViewModelFactory
     mainViewModel = new MainViewModel(model);
     chatViewModel = new ChatViewModel(model);
     addViewModel = new AddViewModel(model);
+    settingsViewModel = new SettingsViewModel(model);
   }
 
   public LoginViewModel getLoginViewModel()
@@ -47,5 +50,10 @@ public class ViewModelFactory
   public AddViewModel getAddViewModel()
   {
     return addViewModel;
+  }
+
+  public SettingsViewModel getSettingsViewModel()
+  {
+    return settingsViewModel;
   }
 }
