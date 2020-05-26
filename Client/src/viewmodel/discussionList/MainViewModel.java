@@ -147,16 +147,20 @@ public class MainViewModel implements PropertyChangeListener
       }
     }
   }
-  public boolean selectDiscussion(String selectedLabel)
+  public boolean checkSearch(String selectedLabel)
   {
-    //System.out.println();
     if (model.searchDiscussionIdByLabel(selectedLabel) == -1)
     {
       return false;
     }
+    else return true;
+  }
+
+  public void selectDiscussion(String selectedLabel)
+  {
+    //System.out.println();
     //model.logToExistingDiscussion(model.searchDiscussionIdByLabel(selectedLabel));
     model.selectDiscussion(model.searchDiscussionIdByLabel(selectedLabel));
-    return true;
   }
 
   public StringProperty getSearch()

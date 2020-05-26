@@ -83,12 +83,15 @@ public class MainViewController
       if (mouseEvent.getClickCount() == 2)
       {
         Label selectedItem = listView.getSelectionModel().getSelectedItem();
-        //here
-        if (!viewModel.selectDiscussion(selectedItem.textProperty().get()))
+        if ((!viewModel.checkSearch(selectedItem.textProperty().get())))
         {
           viewModel.logToDiscussion(selectedItem.textProperty().get());
         }
-        viewHandler.openView("chat");
+        else
+        {
+          viewModel.selectDiscussion(selectedItem.textProperty().get());
+          viewHandler.openView("chat");
+        }
       }
     }
   }
