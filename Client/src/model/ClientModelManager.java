@@ -96,7 +96,7 @@ public class ClientModelManager implements ClientModel
 
   @Override public void createDiscussion(String discussionId)
   {
-    remoteModel.createNewDiscussion(discussionId, login);
+    remoteModel.createNewDiscussion(discussionId, id);
   }
 
   @Override public void log(String login, String password, boolean isNewUser)
@@ -216,7 +216,7 @@ public class ClientModelManager implements ClientModel
 
   @Override public void logToExistingDiscussion(int discussionId)
   {
-    remoteModel.logToExistingDiscussion(discussionId, login);
+    remoteModel.logToExistingDiscussion(discussionId, id);
   }
 
   @Override public void searchDiscussionsByName(String name)
