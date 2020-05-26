@@ -98,14 +98,26 @@
                                 <Insets top="15.0" />
                             </VBox.margin>
                         </JFXPasswordField>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text fx:id="errorLabel" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="! Error label" wrappingWidth="162.13672637939453">
+                           <font>
+                              <Font name="Calibri Bold" size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="50.0" />
+                           </HBox.margin>
+                        </Text>
                         <JFXButton onAction="#applyButtonPressed" prefHeight="30.0" prefWidth="122.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="Apply changes">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets left="252.0" top="42.0" />
-                            </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="90.0" top="40.0" />
+                           </HBox.margin>
                         </JFXButton>
+                     </children>
+                  </HBox>
                     </children>
                     <padding>
                         <Insets left="40.0" top="10.0" />
