@@ -16,6 +16,7 @@ public class SettingsViewController
   @FXML private JFXPasswordField oldPasswordField;
   @FXML private JFXPasswordField newPasswordField1;
   @FXML private JFXPasswordField newPasswordField2;
+  @FXML private Text errorLabel;
 
   private ViewHandler viewHandler;
   private SettingsViewModel viewModel;
@@ -29,6 +30,9 @@ public class SettingsViewController
     this.root = root;
     this.usernameText.textProperty()
         .bindBidirectional(viewModel.getUsernameProperty());
+    this.usernameField.textProperty()
+        .bindBidirectional(viewModel.getNewUsernameProperty());
+    this.errorLabel.textProperty().bindBidirectional(viewModel.getError());
   }
 
   public void backButtonPressed(ActionEvent actionEvent)
@@ -43,7 +47,7 @@ public class SettingsViewController
 
   public void applyButtonPressed(ActionEvent actionEvent)
   {
-
+    System.out.println("Success");
   }
 
   public void reset()

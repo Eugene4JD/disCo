@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import view.ViewHandler;
 import viewmodel.login.RegistrationViewModel;
 
@@ -13,6 +14,7 @@ public class RegistrationViewController
   @FXML private JFXTextField usernameField;
   @FXML private JFXPasswordField passwordField;
   @FXML private JFXPasswordField repeatPasswordField;
+  @FXML private Text errorLabel;
 
   private ViewHandler viewHandler;
   private RegistrationViewModel viewModel;
@@ -31,6 +33,7 @@ public class RegistrationViewController
         .bindBidirectional(viewModel.getPasswordProperty());
     repeatPasswordField.textProperty()
         .bindBidirectional(viewModel.getRepeatPasswordProperty());
+    errorLabel.textProperty().bindBidirectional(viewModel.getErrorProperty());
   }
 
   public void reset()

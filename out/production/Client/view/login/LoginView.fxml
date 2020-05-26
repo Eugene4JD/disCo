@@ -77,12 +77,20 @@
         </HBox>
         <HBox prefHeight="38.0" prefWidth="400.0">
             <children>
+                <Text fx:id="errorLabel" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="! Error label" textAlignment="CENTER" wrappingWidth="142.93671417236328">
+                    <font>
+                        <Font name="Calibri Bold Italic" size="13.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="40.0" top="8.0" />
+                    </HBox.margin>
+                </Text>
                 <JFXButton fx:id="cancelButton" onAction="#cancelButtonPressed" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="Cancel">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
                     <HBox.margin>
-                        <Insets left="192.0" />
+                        <Insets left="10.0" />
                     </HBox.margin>
                 </JFXButton>
                 <JFXButton fx:id="signInButton" onAction="#signInButtonPressed" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Sign in" textFill="#ededed">

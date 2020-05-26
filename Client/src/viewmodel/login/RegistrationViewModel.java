@@ -13,6 +13,7 @@ public class RegistrationViewModel implements PropertyChangeListener
   private StringProperty username;
   private StringProperty password;
   private StringProperty repeatPassword;
+  private StringProperty error;
   private boolean isLogInSuccess;
 
   public RegistrationViewModel(ClientModel model)
@@ -22,6 +23,7 @@ public class RegistrationViewModel implements PropertyChangeListener
     username = new SimpleStringProperty();
     password = new SimpleStringProperty();
     repeatPassword = new SimpleStringProperty();
+    error = new SimpleStringProperty();
   }
 
   public void clear()
@@ -44,6 +46,11 @@ public class RegistrationViewModel implements PropertyChangeListener
   public StringProperty getRepeatPasswordProperty()
   {
     return repeatPassword;
+  }
+
+  public StringProperty getErrorProperty()
+  {
+    return error;
   }
 
   public void signUp()

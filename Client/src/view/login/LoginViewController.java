@@ -7,13 +7,18 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import view.ViewHandler;
 import viewmodel.login.LoginViewModel;
 
-public class LoginViewController
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class LoginViewController implements PropertyChangeListener
 {
   @FXML private JFXTextField usernameField;
   @FXML private JFXPasswordField passwordField;
+  @FXML private Text errorLabel;
 
   private ViewHandler viewHandler;
   private LoginViewModel viewModel;
@@ -25,11 +30,13 @@ public class LoginViewController
     this.viewHandler = viewHandler;
     this.viewModel = loginViewModel;
     this.root = root;
+    loginViewModel.addListener(this);
 
     usernameField.textProperty()
         .bindBidirectional(viewModel.getUsernameProperty());
     passwordField.textProperty()
         .bindBidirectional(viewModel.getPasswordProperty());
+    errorLabel.textProperty().bind(viewModel.getErrorProperty());
   }
 
   public void reset()
@@ -45,7 +52,6 @@ public class LoginViewController
   @FXML private void signInButtonPressed()
   {
     viewModel.logIn();
-    viewHandler.openView("main");
   }
 
   public Region getRoot()
@@ -68,6 +74,18 @@ public class LoginViewController
     if (keyEvent.getCode() == KeyCode.ENTER)
     {
       signInButtonPressed();
+    }
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    switch (evt.getPropertyName())
+    {
+      case "LogStatus":
+        if (evt.getNewValue().equals(true))
+        {
+          // viewHandler.openView("main");
+        }
     }
   }
 }
