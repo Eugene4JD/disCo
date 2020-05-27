@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import view.ViewHandler;
@@ -56,5 +57,13 @@ public class ChatViewController
   public void sendButtonPressed(ActionEvent actionEvent)
   {
     viewModel.sendMessage();
+  }
+
+  public void editPressed(MouseEvent mouseEvent)
+  {
+  }
+
+  public void removePressed(MouseEvent mouseEvent)
+  {
   }
 }
