@@ -132,9 +132,19 @@ public class ServerModelManager implements ServerModel
   @Override public void addMessageToDiscussion(int discussionId, int senderID,
       String message)
   {
-    property.firePropertyChange("BroadcastMessageToDiscussion", null,
-        new BroadcastMessageToDiscussionRequest(discussionId, senderID,
-            message));
+
+    try
+    {
+      Message newMessage = discoPersistence.saveDiscussionMessageConnection(userBase.getUserById(senderID).getUserLogin()+" : " + message,discussionId);
+      property.firePropertyChange("BroadcastMessageToDiscussion", null,
+          new BroadcastMessageToDiscussionRequest(discussionId, newMessage));
+      fetch();
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+
   }
 
   @Override public void removeListener(PropertyChangeListener listener)
@@ -233,6 +243,7 @@ public class ServerModelManager implements ServerModel
       this.discussionList = discoPersistence.loadDiscussions();
       this.userBase = discoPersistence.loadUsers();
       discoPersistence.linkTheConnectionsBetween(discussionList, userBase);
+      discoPersistence.linkDiscussionMessage(discussionList);
     }
     catch (SQLException e)
     {

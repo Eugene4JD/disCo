@@ -38,9 +38,9 @@ public class Discussion
     return userBase.getUserById(userId);
   }
 
-  public void addMessage(String message, String login)
+  public void addMessage(String message, int messageId)
   {
-    messageList.addMessage(message, login);
+    messageList.addMessage(message, messageId);
   }
 
   public MessageList getMessageList()

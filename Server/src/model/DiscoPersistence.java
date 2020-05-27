@@ -1,5 +1,7 @@
 package model;
 
+import org.postgresql.core.SqlCommand;
+
 import java.sql.SQLException;
 
 public interface DiscoPersistence
@@ -24,5 +26,7 @@ public interface DiscoPersistence
       throws SQLException;
   void changeEditorLoginInEveryDiscussion(String oldEditorLogin,
       String newEditorLogin) throws SQLException;
+  Message saveDiscussionMessageConnection(String text, int discussionId) throws SQLException;
+  void linkDiscussionMessage(DiscussionList discussionList) throws SQLException;
 
 }

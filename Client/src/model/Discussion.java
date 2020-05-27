@@ -14,6 +14,8 @@ public class Discussion
     messageList = new MessageList();
     userBase = new UserBase();
     this.LoginOfEditorOfDiscussion = editorOfDiscussion;
+    this.discussionId = discussionId;
+    this.discussionName = discussionName;
   }
 
   public void addUser(User user)
@@ -36,9 +38,9 @@ public class Discussion
     return userBase.getUserById(userId);
   }
 
-  public void addMessage(String message, String login)
+  public void addMessage(String message, int messageId)
   {
-    messageList.addMessage(message, login);
+    messageList.addMessage(message, messageId);
   }
 
   public MessageList getMessageList()
@@ -65,4 +67,5 @@ public class Discussion
   {
     return this.LoginOfEditorOfDiscussion;
   }
+
 }

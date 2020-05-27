@@ -11,9 +11,9 @@ public class MessageList
     messages = new ArrayList<>();
   }
 
-  public void addMessage(String text, String senderId)
+  public void addMessage(String text, int messageId)
   {
-    messages.add(new Message(senderId, text, getNewId()));
+    messages.add(new Message(text, messageId));
   }
 
   public void clearList()
@@ -24,22 +24,9 @@ public class MessageList
       messages.remove(0);
     }
   }
-
   public Message getMessage(int index)
   {
     return messages.get(index);
-  }
-
-  public Message getMessageById(int id)
-  {
-    for (int i = 0; i < messages.size(); i++)
-    {
-      if (messages.get(i).getMessageId() == id)
-      {
-        return messages.get(i);
-      }
-    }
-    return null;
   }
 
   public int size()
