@@ -47,36 +47,36 @@
                         </Text>
                     </children>
                 </VBox>
-            <VBox prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 10 10 0 0;">
-               <children>
-                  <HBox prefHeight="27.0" prefWidth="130.0">
-                     <children>
-                        <ImageView fitHeight="18.0" fitWidth="25.0" onMouseClicked="#editPressed" opacity="0.83" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: OPEN_HAND;">
-                           <image>
-                              <Image url="@../../resources/edit.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="10.0" top="5.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <ImageView fitHeight="18.0" fitWidth="25.0" onMouseClicked="#removePressed" opacity="0.83" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: OPEN_HAND;">
-                           <image>
-                              <Image url="@../../resources/remove.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="10.0" top="5.0" />
-                           </HBox.margin>
-                        </ImageView>
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
-               </children>
-               <HBox.margin>
-                  <Insets left="238.0" />
-               </HBox.margin>
-            </VBox>
+                <VBox prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 10 10 0 0;">
+                    <children>
+                        <HBox prefHeight="27.0" prefWidth="130.0">
+                            <children>
+                                <ImageView fitHeight="18.0" fitWidth="25.0" onMouseClicked="#editPressed" opacity="0.83" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: OPEN_HAND;">
+                                    <image>
+                                        <Image url="@../../resources/edit.png" />
+                                    </image>
+                                    <HBox.margin>
+                                        <Insets left="10.0" top="5.0" />
+                                    </HBox.margin>
+                                </ImageView>
+                                <ImageView fitHeight="18.0" fitWidth="25.0" onMouseClicked="#removePressed" opacity="0.83" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: OPEN_HAND;">
+                                    <image>
+                                        <Image url="@../../resources/remove.png" />
+                                    </image>
+                                    <HBox.margin>
+                                        <Insets left="10.0" top="5.0" />
+                                    </HBox.margin>
+                                </ImageView>
+                            </children>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                        </HBox>
+                    </children>
+                    <HBox.margin>
+                        <Insets left="238.0" />
+                    </HBox.margin>
+                </VBox>
             </children>
             <VBox.margin>
                 <Insets left="40.0" top="10.0" />
@@ -84,7 +84,7 @@
         </HBox>
         <HBox prefHeight="274.0" prefWidth="600.0">
             <children>
-                <JFXListView fx:id="chatList" prefHeight="274.0" prefWidth="520.0" style="-fx-background-color: #E8E8E8;">
+                <JFXListView fx:id="chatList" prefHeight="274.0" prefWidth="519.0" style="-fx-background-color: #E8E8E8;">
                     <HBox.margin>
                         <Insets left="40.0" />
                     </HBox.margin>
