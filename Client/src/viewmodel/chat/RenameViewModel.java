@@ -18,6 +18,19 @@ public class RenameViewModel
     old = new SimpleStringProperty();
   }
 
+  public void load()
+  {
+    setOldName();
+  }
+
+  private void setOldName()
+  {
+    System.out.println(model.getDiscussionListBuffer()
+        .getDiscussionById(model.getSelectedDiscussion()).getDiscussionName());
+    old.set(model.getDiscussionListBuffer()
+        .getDiscussionById(model.getSelectedDiscussion()).getDiscussionName());
+  }
+
   public StringProperty getEnterProperty()
   {
     return enter;
