@@ -63,6 +63,11 @@ public class Discussion
     return discussionId;
   }
 
+  public void setDiscussionName(String discussionName)
+  {
+    this.discussionName = discussionName;
+  }
+
   public String getLoginOfEditorOfDiscussion()
   {
     return this.LoginOfEditorOfDiscussion;
