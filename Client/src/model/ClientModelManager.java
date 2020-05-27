@@ -183,17 +183,21 @@ public class ClientModelManager implements ClientModel
       case "broadcastChangePasswordToUser":
         BroadcastChangedPasswordToUser request8 = (BroadcastChangedPasswordToUser) evt
             .getNewValue();
-        property.firePropertyChange("ChangedPassword", null, request8);
+        if (request8.isSuccessOfChangingPassword())
+              property.firePropertyChange("ChangedPassword", null, "Password has been successfully changed!");
+        else
+             property.firePropertyChange("ChangedPassword",null,"Old password was not correct...");
         break;
       case "broadcastChangeUserNameToUser":
         BroadcastChangedUserNameToUser request9 = (BroadcastChangedUserNameToUser) evt
             .getNewValue();
-        property.firePropertyChange("ChangedUserName", null, request9);
+        this.login = request9.getNewUserName();
+        property.firePropertyChange("ChangedUserName", null, login);
         break;
       case "broadcastDeletedAccountRequest":
         BroadcastDeletedAccountRequest request10 = (BroadcastDeletedAccountRequest) evt
             .getNewValue();
-        //property.firePropertyChange("ds");
+        property.firePropertyChange("RemoveUser",null,request10);
         break;
     }
   }

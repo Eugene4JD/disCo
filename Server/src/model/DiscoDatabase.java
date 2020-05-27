@@ -155,14 +155,14 @@ public class DiscoDatabase implements DiscoPersistence
   @Override public void editUserPassword(int userId, String newPassword)
       throws SQLException
   {
-    String sql = "UPDATE DicCoDB.userBase SET Password = ? WHERE ID = ?;";
+    String sql = "UPDATE DisCoDB.userBase SET Password = ? WHERE ID = ?;";
     db.update(sql, newPassword, userId);
   }
 
   @Override public void changeEditorLoginInEveryDiscussion(
       String oldEditorLogin, String newEditorLogin) throws SQLException
   {
-    String sql = "UPDATE DisCoDB.DiscussionUserList SET LoginOfEditor = ? WHERE LoginOfEditor = ?";
+    String sql = "UPDATE DisCoDB.DiscussionList SET LoginOfEditor = ? WHERE LoginOfEditor = ?";
     db.update(sql, newEditorLogin, oldEditorLogin);
   }
 }

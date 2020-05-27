@@ -9,7 +9,7 @@ public class ChangePasswordRequest extends Request
   public ChangePasswordRequest(int userID, String oldPassword,
       String newPassword)
   {
-    super(RequestType.BroadcastChangePasswordToUser);
+    super(RequestType.ChangePasswordName);
     this.newPassword = newPassword;
     this.oldPassword = oldPassword;
     this.userId = userID;

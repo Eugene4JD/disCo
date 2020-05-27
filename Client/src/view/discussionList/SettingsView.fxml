@@ -74,7 +74,7 @@
                                 <Insets top="8.0" />
                             </VBox.margin>
                         </JFXTextField>
-                        <JFXPasswordField fx:id="oldPasswordFeld" focusColor="#003780" opacity="0.95" prefHeight="25.0" prefWidth="354.0" promptText="Old password">
+                        <JFXPasswordField fx:id="oldPasswordField" focusColor="#003780" opacity="0.95" prefHeight="25.0" prefWidth="354.0" promptText="Old password">
                             <cursor>
                                 <Cursor fx:constant="TEXT" />
                             </cursor>

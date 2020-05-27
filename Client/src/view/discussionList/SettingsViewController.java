@@ -2,6 +2,7 @@ package view.discussionList;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
@@ -9,7 +10,10 @@ import javafx.scene.text.Text;
 import view.ViewHandler;
 import viewmodel.discussionList.SettingsViewModel;
 
-public class SettingsViewController
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class SettingsViewController implements PropertyChangeListener
 {
   @FXML private Text usernameText;
   @FXML private JFXTextField usernameField;
@@ -27,12 +31,20 @@ public class SettingsViewController
   {
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;
+    viewModel.addListener(this);
     this.root = root;
     this.usernameText.textProperty()
         .bindBidirectional(viewModel.getUsernameProperty());
     this.usernameField.textProperty()
         .bindBidirectional(viewModel.getNewUsernameProperty());
     this.errorLabel.textProperty().bindBidirectional(viewModel.getError());
+    this.oldPasswordField.textProperty()
+        .bindBidirectional(viewModel.getOldPassword());
+    this.newPasswordField1.textProperty()
+        .bindBidirectional(viewModel.getNewPassword1());
+    this.newPasswordField2.textProperty()
+        .bindBidirectional(viewModel.getNewPassword2());
+
   }
 
   public void backButtonPressed(ActionEvent actionEvent)
@@ -47,7 +59,7 @@ public class SettingsViewController
 
   public void applyButtonPressed(ActionEvent actionEvent)
   {
-    System.out.println("Success");
+   viewModel.applyButton();
   }
 
   public void reset()
@@ -58,5 +70,17 @@ public class SettingsViewController
   public Region getRoot()
   {
     return root;
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() -> {
+      switch (evt.getPropertyName())
+      {
+        case "RemoveUser":
+          viewHandler.openView("login");
+      }
+    });
+
   }
 }
