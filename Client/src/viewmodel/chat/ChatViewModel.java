@@ -84,6 +84,7 @@ public class ChatViewModel implements PropertyChangeListener
             chatList.add(new Label(discussion.getMessageList()
                 .getMessage(discussion.getMessageList().size() - 1)
                 .toString()));
+            enterField.set("");
           }
           break;
         case "Add":

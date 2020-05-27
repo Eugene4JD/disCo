@@ -1,5 +1,6 @@
 package model;
 
+import org.postgresql.core.SqlCommand;
 import utility.persistence.MyDatabase;
 
 import java.sql.SQLException;
@@ -91,6 +92,8 @@ public class DiscoDatabase implements DiscoPersistence
     db.update(sql, discussionId);
     sql = "Delete from DisCoDB.DiscussionUserList where DiscussionID = ?;";
     db.update(sql, discussionId);
+    sql ="Delete from DisCoDB.DiscussionMessageList where DiscussionID = ?;";
+    db.update(sql,discussionId);
   }
 
   @Override public void removeUser(int userID) throws SQLException
@@ -164,5 +167,32 @@ public class DiscoDatabase implements DiscoPersistence
   {
     String sql = "UPDATE DisCoDB.DiscussionList SET LoginOfEditor = ? WHERE LoginOfEditor = ?";
     db.update(sql, newEditorLogin, oldEditorLogin);
+  }
+
+  @Override public Message saveDiscussionMessageConnection(String text,
+      int discussionId) throws SQLException
+  {
+    DateTime dateTime  = new DateTime();
+    String messageText = dateTime.getTimestamp() + " " + text;
+    String sql = "INSERT INTO DisCoDB.DiscussionMessageList(DiscussionId,MessageText) " + " VALUES(?,?);";
+    db.update(sql,discussionId,messageText);
+
+    sql = "SELECT MessageID from DisCoDB.DiscussionMessageList WHERE DiscussionID = ? AND MessageText = ?;";
+    ArrayList<Object[]> idRes = db.query(sql, discussionId, messageText);
+    System.out.println(idRes.size());
+    int id = Integer.parseInt(idRes.get(0)[0].toString());
+    return new Message(messageText,id);
+  }
+
+  @Override public void linkDiscussionMessage(DiscussionList discussionList) throws SQLException
+  {
+    String sql = "Select * from DisCoDB.DiscussionMessageList";
+    ArrayList<Object[]> result = db.query(sql);
+    for (int i = 0; i < result.size(); i++)
+    {
+      Object[] row = result.get(i);
+      discussionList.getDiscussionById((int) row[0])
+          .addMessage((String)row[2],((int)row[1]));
+    }
   }
 }
