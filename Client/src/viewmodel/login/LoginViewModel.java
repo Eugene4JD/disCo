@@ -1,5 +1,6 @@
 package viewmodel.login;
 
+import javafx.application.Platform;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -57,12 +58,12 @@ public class LoginViewModel
     String password = this.password.get();
     if (username.equals(""))
     {
-      error.set("!  Username empty");
+      error.set("empty username");
 
     }
     else if (password.equals(""))
     {
-      error.set("!  Password empty");
+      error.set("empty password");
     }
     else
       model.log(username, password, false);
@@ -70,16 +71,18 @@ public class LoginViewModel
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
-    switch (evt.getPropertyName())
-    {
-      case "LogStatus":
-        if (evt.getNewValue().equals(false))
-        {
-          error.set("!  Incorrect user or password");
-        }
-        else
-          property.firePropertyChange("LogStatus", null, evt.getNewValue());
-    }
+    Platform.runLater(() -> {
+      switch (evt.getPropertyName())
+      {
+        case "LogStatus":
+          if (evt.getNewValue().equals(false))
+          {
+            error.set("wrong username/password");
+          }
+          else
+            property.firePropertyChange("LogStatus", null, evt.getNewValue());
+      }
+    });
   }
 
   @Override public void addListener(PropertyChangeListener listener)

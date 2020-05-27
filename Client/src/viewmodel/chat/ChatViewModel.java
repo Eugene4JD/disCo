@@ -105,4 +105,14 @@ public class ChatViewModel implements PropertyChangeListener
   {
     return threadName;
   }
+
+  public void edit()
+  {
+    //model.changeNameOfDiscussion();
+  }
+
+  public void remove()
+  {
+    //model.removeDiscussion();
+  }
 }

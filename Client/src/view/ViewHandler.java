@@ -41,7 +41,7 @@ public class ViewHandler
     try
     {
       AudioInputStream audioInputStream = AudioSystem
-          .getAudioInputStream(new File("Client/src/resources/intro.wav"));
+          .getAudioInputStream(new File("Client/src/resources/cops.wav"));
       Clip clip = AudioSystem.getClip();
       clip.open(audioInputStream);
       clip.start();
@@ -130,6 +130,7 @@ public class ViewHandler
     {
       try
       {
+        viewModelFactory.getRegistrationViewModel().clear();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(fxmlFile));
         Region root = loader.load();

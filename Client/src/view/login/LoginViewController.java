@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -19,7 +20,7 @@ public class LoginViewController implements PropertyChangeListener
 {
   @FXML private JFXTextField usernameField;
   @FXML private JFXPasswordField passwordField;
-  @FXML private Text errorLabel;
+  @FXML private Label errorLabel;
 
   private ViewHandler viewHandler;
   private LoginViewModel viewModel;

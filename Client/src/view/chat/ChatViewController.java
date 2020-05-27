@@ -62,9 +62,11 @@ public class ChatViewController
 
   public void editPressed(MouseEvent mouseEvent)
   {
+    viewModel.edit();
   }
 
   public void removePressed(MouseEvent mouseEvent)
   {
+    viewModel.remove();
   }
 }

@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -109,22 +110,22 @@
             <children>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Or">
                     <HBox.margin>
-                        <Insets left="41.0" />
+                        <Insets left="41.0" top="2.0" />
                     </HBox.margin>
                 </Text>
                 <Text fill="#003780" strokeType="OUTSIDE" strokeWidth="0.0" text="enter as a guest" underline="true" wrappingWidth="87.73675537109375">
                     <HBox.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0" top="2.0" />
                     </HBox.margin>
                 </Text>
-            <Text fx:id="errorLabel" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="! Error label" textAlignment="CENTER" wrappingWidth="162.13672637939453">
+            <Label fx:id="errorLabel" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="189.0" text="error label" textAlignment="CENTER" textFill="#ff0000cc">
                <font>
-                  <Font name="Calibri Bold" size="15.0" />
+                  <Font name="Consolas Bold" size="12.0" />
                </font>
                <HBox.margin>
-                  <Insets left="50.0" top="2.0" />
+                  <Insets left="22.0" top="2.0" />
                </HBox.margin>
-            </Text>
+            </Label>
             </children>
             <VBox.margin>
                 <Insets top="10.0" />

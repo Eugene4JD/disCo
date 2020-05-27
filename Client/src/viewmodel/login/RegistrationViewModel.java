@@ -1,25 +1,30 @@
 package viewmodel.login;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.ClientModel;
+import utility.UnnamedPropertyChangeSubject;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
-public class RegistrationViewModel implements PropertyChangeListener
+public class RegistrationViewModel
+    implements PropertyChangeListener, UnnamedPropertyChangeSubject
 {
   private ClientModel model;
   private StringProperty username;
   private StringProperty password;
   private StringProperty repeatPassword;
   private StringProperty error;
-  private boolean isLogInSuccess;
+  private PropertyChangeSupport property;
 
   public RegistrationViewModel(ClientModel model)
   {
     this.model = model;
     model.addListener(this);
+    this.property = new PropertyChangeSupport(this);
     username = new SimpleStringProperty();
     password = new SimpleStringProperty();
     repeatPassword = new SimpleStringProperty();
@@ -28,9 +33,9 @@ public class RegistrationViewModel implements PropertyChangeListener
 
   public void clear()
   {
-    username.set(null);
-    password.set(null);
-    repeatPassword.set(null);
+    username.set("");
+    password.set("");
+    repeatPassword.set("");
   }
 
   public StringProperty getUsernameProperty()
@@ -56,22 +61,59 @@ public class RegistrationViewModel implements PropertyChangeListener
   public void signUp()
   {
     String username = this.username.get();
-    String password = this.password.get();
-    model.log(username, password, true);
-
+    String password0 = this.password.get();
+    String password1 = this.repeatPassword.get();
+    if (username.equals(""))
+    {
+      error.set("empty username");
+    }
+    else if (username.contains(" "))
+    {
+      error.set("invalid username");
+    }
+    else if (password0.equals(""))
+    {
+      error.set("empty password");
+    }
+    else if (password0.contains(" "))
+    {
+      error.set("invalid password");
+    }
+    else if (!password1.equals(password0))
+    {
+      error.set("passwords do not match");
+    }
+    else
+      System.out.println("pressed");
+      model.log(username, password0, true);
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
-    switch (evt.getPropertyName())
-    {
-      case "LogStatus":
-        if (evt.getNewValue().equals(true))
-        {
-          isLogInSuccess = true;
-        }
-        else
-          isLogInSuccess = false;
-    }
+    Platform.runLater(() -> {
+      switch (evt.getPropertyName())
+      {
+        case "LogStatus":
+          if (evt.getNewValue().equals(false))
+          {
+            System.out.println("false");
+            //error.set("try another username");
+          }
+          else
+            System.out.println("true");
+            //property.firePropertyChange("LogStatus", null, evt.getNewValue());
+      }
+    });
+
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    property.addPropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    property.removePropertyChangeListener(listener);
   }
 }

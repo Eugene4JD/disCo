@@ -2,19 +2,24 @@ package view.login;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import view.ViewHandler;
 import viewmodel.login.RegistrationViewModel;
 
-public class RegistrationViewController
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class RegistrationViewController implements PropertyChangeListener
 {
   @FXML private JFXTextField usernameField;
   @FXML private JFXPasswordField passwordField;
   @FXML private JFXPasswordField repeatPasswordField;
-  @FXML private Text errorLabel;
+  @FXML private Label errorLabel;
 
   private ViewHandler viewHandler;
   private RegistrationViewModel viewModel;
@@ -26,6 +31,7 @@ public class RegistrationViewController
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;
     this.root = root;
+    this.viewModel.addListener(this);
 
     usernameField.textProperty()
         .bindBidirectional(viewModel.getUsernameProperty());
@@ -33,7 +39,7 @@ public class RegistrationViewController
         .bindBidirectional(viewModel.getPasswordProperty());
     repeatPasswordField.textProperty()
         .bindBidirectional(viewModel.getRepeatPasswordProperty());
-    errorLabel.textProperty().bindBidirectional(viewModel.getErrorProperty());
+    errorLabel.textProperty().bind(viewModel.getErrorProperty());
   }
 
   public void reset()
@@ -49,12 +55,24 @@ public class RegistrationViewController
   public void signUpButtonPressed(ActionEvent event)
   {
     viewModel.signUp();
-    viewHandler.openView("login");
-
   }
 
   public Region getRoot()
   {
     return root;
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() -> {
+      switch (evt.getPropertyName())
+      {
+        case "LogStatus":
+          if (evt.getNewValue().equals(true))
+          {
+            viewHandler.openView("login");
+          }
+      }
+    });
   }
 }
