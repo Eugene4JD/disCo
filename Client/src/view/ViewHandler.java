@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import view.chat.ChatViewController;
+import view.chat.RenameViewController;
 import view.discussionList.AddViewController;
 import view.discussionList.MainViewController;
 import view.discussionList.SettingsViewController;
@@ -27,6 +28,7 @@ public class ViewHandler
   private ChatViewController chatViewController;
   private AddViewController addViewController;
   private SettingsViewController settingsViewController;
+  private RenameViewController renameViewController;
 
   public ViewHandler(ViewModelFactory viewModelFactory)
   {
@@ -73,6 +75,9 @@ public class ViewHandler
         break;
       case "settings":
         root = loadSettingsView("discussionList/SettingsView.fxml");
+        break;
+      case "rename":
+        root = loadRenameView("chat/RenameView.fxml");
         break;
     }
     currentScene.setRoot(root);
@@ -252,6 +257,31 @@ public class ViewHandler
       settingsViewController.reset();
     }
     return settingsViewController.getRoot();
+  }
+
+  private Region loadRenameView(String fxmlFile)
+  {
+    if (renameViewController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        Region root = loader.load();
+        renameViewController = loader.getController();
+        renameViewController
+            .init(this, viewModelFactory.getRenameViewModel(), root);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else
+    {
+      renameViewController.reset();
+    }
+    return renameViewController.getRoot();
   }
 
 }
