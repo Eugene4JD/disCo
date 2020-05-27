@@ -54,7 +54,7 @@ public class SettingsViewController implements PropertyChangeListener
 
   public void removeProfileButtonPressed(ActionEvent actionEvent)
   {
-    viewModel.removeUserButton();
+
   }
 
   public void applyButtonPressed(ActionEvent actionEvent)

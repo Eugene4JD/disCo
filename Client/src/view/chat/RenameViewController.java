@@ -1,6 +1,5 @@
 package view.chat;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,10 +8,7 @@ import javafx.scene.layout.Region;
 import view.ViewHandler;
 import viewmodel.chat.RenameViewModel;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
-public class RenameViewController implements PropertyChangeListener
+public class RenameViewController
 {
   @FXML private TextField enterField;
   @FXML private Label oldTitleLabel;
@@ -26,7 +22,6 @@ public class RenameViewController implements PropertyChangeListener
   {
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;
-    viewModel.addListener(this);
     this.root = root;
 
     enterField.textProperty().bindBidirectional(viewModel.getEnterProperty());
@@ -41,6 +36,7 @@ public class RenameViewController implements PropertyChangeListener
   public void saveButtonPressed(ActionEvent actionEvent)
   {
     viewModel.rename();
+    viewHandler.openView("chat");
   }
 
   public void cancelButtonPressed(ActionEvent actionEvent)
@@ -51,16 +47,5 @@ public class RenameViewController implements PropertyChangeListener
   public Region getRoot()
   {
     return root;
-  }
-
-  @Override public void propertyChange(PropertyChangeEvent evt)
-  {
-    Platform.runLater(()->{
-      switch (evt.getPropertyName())
-      {
-        case "AnswerReceived":
-          viewHandler.openView("chat");
-      }
-    });
   }
 }
