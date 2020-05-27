@@ -84,7 +84,6 @@ public class RegistrationViewModel
       error.set("passwords do not match");
     }
     else
-      System.out.println("pressed");
       model.log(username, password0, true);
   }
 
@@ -96,12 +95,11 @@ public class RegistrationViewModel
         case "LogStatus":
           if (evt.getNewValue().equals(false))
           {
-            System.out.println("false");
-            //error.set("try another username");
+            error.set("try another username");
           }
           else
-            System.out.println("true");
-            //property.firePropertyChange("LogStatus", null, evt.getNewValue());
+            property.firePropertyChange("LogStatus", null, true);
+          break;
       }
     });
 

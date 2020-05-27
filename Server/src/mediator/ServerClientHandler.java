@@ -55,8 +55,25 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
             LogRequest request1 = gson.fromJson(req, LogRequest.class);
             if (request1.isNewUser())
             {
-              model.addNewUserToUserBase("RegisteredUser", request1.getLogin(),
-                  request1.getPassword());
+              if (model.getUserFromUserBaseByLogin(request1.getLogin()) == null)
+              {
+                model.addNewUserToUserBase("RegisteredUser", request1.getLogin(),
+                    request1.getPassword());
+                User user = model.getUserFromUserBaseByLogin(request1.getLogin());
+                out.println(gson.toJson(
+                    new BroadcastLoginStatusToUserRequest(true, request1.getLogin(),
+                        user.getUserId())));
+                DiscussionList discussionList = model.getDiscussionWithUser(
+                    model.getUserFromUserBaseByLogin(request1.getLogin())
+                        .getUserId());
+                out.println(gson.toJson(
+                    new BroadcastDiscussionsToUserRequest(discussionList)));
+              }
+              else
+              {
+                out.println(gson.toJson(
+                    new BroadcastLoginStatusToUserRequest(false, "", 0)));
+              }
             }
             else
             {
