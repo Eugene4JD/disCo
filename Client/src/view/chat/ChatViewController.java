@@ -1,5 +1,6 @@
 package view.chat;
 
+import com.jfoenix.controls.JFXAlert;
 import com.jfoenix.controls.JFXListView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

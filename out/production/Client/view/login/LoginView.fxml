@@ -77,7 +77,7 @@
         </HBox>
         <HBox prefHeight="38.0" prefWidth="400.0">
             <children>
-                <Text fx:id="errorLabel" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="! Error label" textAlignment="CENTER" wrappingWidth="142.93671417236328">
+                <Text fx:id="errorLabel" fill="RED" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="! Error label" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="142.93671417236328">
                     <font>
                         <Font name="Calibri Bold Italic" size="13.0" />
                     </font>
