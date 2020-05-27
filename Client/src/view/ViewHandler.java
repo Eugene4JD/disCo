@@ -177,6 +177,7 @@ public class ViewHandler
     else
     {
       mainViewController.reset();
+      viewModelFactory.getMainViewModel().load();
     }
     return mainViewController.getRoot();
   }
@@ -272,6 +273,7 @@ public class ViewHandler
         renameViewController = loader.getController();
         renameViewController
             .init(this, viewModelFactory.getRenameViewModel(), root);
+        viewModelFactory.getRenameViewModel().load();
       }
       catch (Exception e)
       {
@@ -281,6 +283,7 @@ public class ViewHandler
     else
     {
       renameViewController.reset();
+      viewModelFactory.getRenameViewModel().load();
     }
     return renameViewController.getRoot();
   }

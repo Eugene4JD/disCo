@@ -91,7 +91,11 @@ public class SettingsViewModel
     {
       error.set("! Fields are not used correctly...");
     }
+  }
 
+  public void removeUserButton()
+  {
+    this.model.removeItself();
   }
 
   public StringProperty getNewPassword2()
