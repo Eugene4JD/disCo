@@ -3,6 +3,7 @@ package view.discussionList;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXPopup;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -20,9 +21,11 @@ import model.ClientModel;
 import view.ViewHandler;
 import viewmodel.discussionList.MainViewModel;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.FileInputStream;
 
-public class MainViewController
+public class MainViewController implements PropertyChangeListener
 {
   @FXML private JFXListView<Label> listView;
   @FXML private TextField searchField;
@@ -119,5 +122,16 @@ public class MainViewController
       else
         viewModel.searchById();
     }
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(()->{
+      switch (evt.getPropertyName())
+      {
+        case "LogToExistingDiscussion":
+          viewHandler.openView("chat");
+      }
+    });
   }
 }

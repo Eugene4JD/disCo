@@ -17,6 +17,7 @@ import utility.observer.listener.LocalListener;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 public class MainViewModel implements PropertyChangeListener,
     UnnamedPropertyChangeSubject
@@ -26,6 +27,7 @@ public class MainViewModel implements PropertyChangeListener,
   private ObservableList<Label> listView;
   private ObservableList<String> searchSelector;
   private StringProperty usernamesThreads;
+  private PropertyChangeSupport property;
 
   public MainViewModel(ClientModel model)
   {
@@ -36,6 +38,7 @@ public class MainViewModel implements PropertyChangeListener,
     model.addListener(this);
     this.model = model;
     usernamesThreads = new SimpleStringProperty();
+    property = new PropertyChangeSupport(this);
     // updateListView();
   }
 
@@ -89,17 +92,10 @@ public class MainViewModel implements PropertyChangeListener,
               discussion.getDiscussionId() + "      " + discussion
                   .getDiscussionName()));
           break;
-       /* case "AddList":
-          DiscussionList list = (DiscussionList) evt.getNewValue();
-          for (int i = 0; i < list.size(); i++)
-          {
-            listView.add(new Label(
-                list.getDiscussion(i).getDiscussionId() + "      " + list
-                    .getDiscussion(i).getDiscussionName()));
-          }
+        case "LoggedToExistingDiscussion":
+          model.selectDiscussion((int)evt.getNewValue());
+          property.firePropertyChange("LogToExistingDiscussion",null,evt.getNewValue());
           break;
-        */
-
         case "searchByName":
           listView.clear();
           DiscussionList titleList = (DiscussionList) evt.getNewValue();

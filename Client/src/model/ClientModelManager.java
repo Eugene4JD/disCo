@@ -137,7 +137,12 @@ public class ClientModelManager implements ClientModel
         if (request2.getUserId() == this.id)
         {
           discussionListBuffer.addDiscussion(request2.getDiscussion());
-          property.firePropertyChange("Add", null, request2.getDiscussion());
+          if (request2.getDiscussion().getLoginOfEditorOfDiscussion().equals(this.login))
+             property.firePropertyChange("Add", null, request2.getDiscussion());
+          else
+          {
+            property.firePropertyChange("LoggedToExistingDiscussion",null,request2.getDiscussion().getDiscussionId());
+          }
         }
         break;
       case "broadcastRemovingDiscussionToUser":
