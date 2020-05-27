@@ -58,34 +58,28 @@ public class SettingsViewModel
 
   public void applyButton()
   {
-    if (this.newUsername.get().equals("") && (
-        !(this.oldPassword.get().equals("")) && (!(this.newPassword1.get()
-            .equals(""))) && (!this.newPassword2.get().equals(""))))
+    if (this.newUsername.get().equals("") && (!(this.oldPassword.get().equals("")) && (!(this.newPassword1.get().equals(""))) && (!this.newPassword2.get().equals(""))))
     {
       System.out.println("this");
       if (this.newPassword1.get().equals(this.newPassword2.get()))
       {
         System.out.println("And this this");
-        model.changePassword(oldPassword.get(), newPassword1.get());
+        model.changePassword(oldPassword.get(),newPassword1.get());
       }
       else
       {
         this.error.set("! New Password is not the same in both fields...");
       }
     }
-    else if (!(this.newUsername.get().equals("")) && this.oldPassword.get()
-        .equals("") && this.newPassword1.get().equals("") && this.newPassword2
-        .get().equals(""))
+    else if (!(this.newUsername.get().equals("")) && this.oldPassword.get().equals("") && this.newPassword1.get().equals("") && this.newPassword2.get().equals(""))
     {
       model.changeLogin(newUsername.get());
     }
-    else if ((!(this.newUsername.get().equals(""))) && (
-        !(this.oldPassword.get().equals("")) && (!(this.newPassword1.get()
-            .equals(""))) && (!this.newPassword2.get().equals(""))))
+    else  if ((!(this.newUsername.get().equals(""))) && (!(this.oldPassword.get().equals("")) && (!(this.newPassword1.get().equals(""))) && (!this.newPassword2.get().equals(""))))
     {
       if (this.newPassword1.get().equals(this.newPassword2.get()))
       {
-        model.changePassword(oldPassword.get(), newPassword1.get());
+        model.changePassword(oldPassword.get(),newPassword1.get());
         model.changeLogin(newUsername.get());
       }
       else
