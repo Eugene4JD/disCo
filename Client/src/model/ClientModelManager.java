@@ -177,8 +177,7 @@ public class ClientModelManager implements ClientModel
       case "broadcastChangeDiscussionName":
         BroadcastChangedDiscussionName request7 = (BroadcastChangedDiscussionName) evt
             .getNewValue();
-        this.discussionListBuffer.getDiscussionById(request7.getDiscussionId()).setDiscussionName(request7.getDiscussionName());
-        property.firePropertyChange("ChangedDiscussionName", null, request7.getDiscussionName());
+        property.firePropertyChange("ChangedDiscussionName", null, request7);
         break;
       case "broadcastChangePasswordToUser":
         BroadcastChangedPasswordToUser request8 = (BroadcastChangedPasswordToUser) evt

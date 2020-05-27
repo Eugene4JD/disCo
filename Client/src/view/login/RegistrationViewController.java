@@ -68,9 +68,9 @@ public class RegistrationViewController implements PropertyChangeListener
       switch (evt.getPropertyName())
       {
         case "LogStatus":
-          if (evt.getNewValue().equals("true"))
+          if (evt.getNewValue().equals(true))
           {
-            viewHandler.openView("main");
+            viewHandler.openView("login");
           }
       }
     });
