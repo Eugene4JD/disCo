@@ -1,5 +1,6 @@
 package view.discussionList;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -7,7 +8,10 @@ import javafx.scene.layout.Region;
 import view.ViewHandler;
 import viewmodel.discussionList.AddViewModel;
 
-public class AddViewController
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class AddViewController implements PropertyChangeListener
 {
   @FXML private TextField enterField;
 
@@ -19,6 +23,7 @@ public class AddViewController
   {
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;
+    viewModel.addListener(this);
     this.root = root;
 
     enterField.textProperty().bindBidirectional(viewModel.getEnterProperty());
@@ -32,7 +37,6 @@ public class AddViewController
   public void createThreadButtonPressed(ActionEvent actionEvent)
   {
     viewModel.createThread();
-    viewHandler.openView("main");
   }
 
   public void cancelButtonPressed(ActionEvent actionEvent)
@@ -43,5 +47,17 @@ public class AddViewController
   public Region getRoot()
   {
     return root;
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(()->{
+      switch (evt.getPropertyName())
+      {
+        case "AnswerReceived":
+          viewHandler.openView("main");
+          break;
+      }
+    });
   }
 }

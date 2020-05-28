@@ -17,6 +17,7 @@ import utility.observer.listener.LocalListener;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 public class MainViewModel implements PropertyChangeListener,
     UnnamedPropertyChangeSubject
@@ -26,6 +27,7 @@ public class MainViewModel implements PropertyChangeListener,
   private ObservableList<Label> listView;
   private ObservableList<String> searchSelector;
   private StringProperty usernamesThreads;
+  private PropertyChangeSupport property;
 
   public MainViewModel(ClientModel model)
   {
@@ -36,6 +38,7 @@ public class MainViewModel implements PropertyChangeListener,
     model.addListener(this);
     this.model = model;
     usernamesThreads = new SimpleStringProperty();
+    property = new PropertyChangeSupport(this);
     // updateListView();
   }
 
@@ -68,6 +71,7 @@ public class MainViewModel implements PropertyChangeListener,
   public void load()
   {
     this.usernamesThreads.set(model.getLogin() + "'s threads ▼");
+    this.search.set("");
     listView.clear();
     for (int i = 0; i < model.getDiscussionListBuffer().size(); i++)
     {
@@ -89,17 +93,11 @@ public class MainViewModel implements PropertyChangeListener,
               discussion.getDiscussionId() + "      " + discussion
                   .getDiscussionName()));
           break;
-       /* case "AddList":
-          DiscussionList list = (DiscussionList) evt.getNewValue();
-          for (int i = 0; i < list.size(); i++)
-          {
-            listView.add(new Label(
-                list.getDiscussion(i).getDiscussionId() + "      " + list
-                    .getDiscussion(i).getDiscussionName()));
-          }
+        case "LoggedToExistingDiscussion":
+          System.out.println("it was here");
+          model.selectDiscussion((int)evt.getNewValue());
+          property.firePropertyChange("LogToExistingDiscussion",null,evt.getNewValue());
           break;
-        */
-
         case "searchByName":
           listView.clear();
           DiscussionList titleList = (DiscussionList) evt.getNewValue();
@@ -118,6 +116,9 @@ public class MainViewModel implements PropertyChangeListener,
             listView.add(new Label(
                 iD.getDiscussionId() + "      " + iD.getDiscussionName()));
           }
+          break;
+        case "ChangedDiscussionName":
+          load();
           break;
       }
     });
@@ -188,11 +189,11 @@ public class MainViewModel implements PropertyChangeListener,
 
   @Override public void addListener(PropertyChangeListener listener)
   {
-
+    this.property.addPropertyChangeListener(listener);
   }
 
   @Override public void removeListener(PropertyChangeListener listener)
   {
-
+    this.property.removePropertyChangeListener(listener);
   }
 }

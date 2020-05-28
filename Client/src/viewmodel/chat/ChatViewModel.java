@@ -88,9 +88,10 @@ public class ChatViewModel implements PropertyChangeListener
           }
           break;
         case "Add":
-          load();
         case "AddList":
+        case "ChangedDiscussionName":
           load();
+          break;
 
       }
     });
