@@ -9,21 +9,26 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import model.ClientModel;
 import model.Discussion;
+import utility.UnnamedPropertyChangeSubject;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
-public class ChatViewModel implements PropertyChangeListener
+public class ChatViewModel
+    implements PropertyChangeListener, UnnamedPropertyChangeSubject
 {
   private ClientModel model;
   private ObservableList<Label> chatList;
   private StringProperty enterField;
   private StringProperty threadName;
+  private PropertyChangeSupport property;
 
   public ChatViewModel(ClientModel model)
   {
     this.model = model;
     model.addListener(this);
+    property = new PropertyChangeSupport(this);
     updateChatList();
     this.enterField = new SimpleStringProperty();
     this.threadName = new SimpleStringProperty();
@@ -87,17 +92,15 @@ public class ChatViewModel implements PropertyChangeListener
             enterField.set("");
           }
           break;
-        case "Add":
-        case "AddList":
         case "ChangedDiscussionName":
           load();
           break;
         case "DiscussionRemoved":
-          if (model.getSelectedDiscussion() == (int)evt.getNewValue())
+          if (model.getSelectedDiscussion() == (int) evt.getNewValue())
           {
-
+            property.firePropertyChange("RemoveThread", null, null);
           }
-
+          break;
       }
     });
   }
@@ -114,6 +117,24 @@ public class ChatViewModel implements PropertyChangeListener
 
   public void remove()
   {
-    //model.removeDiscussion();
+    try
+    {
+      //model.removeDiscussion(model.getSelectedDiscussion());
+      property.firePropertyChange("Loading", null, null);
+    }
+    catch (Exception e)
+    {
+      property.firePropertyChange("AccessDenied", null, null);
+    }
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    property.removePropertyChangeListener(listener);
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    property.addPropertyChangeListener(listener);
   }
 }

@@ -2,21 +2,36 @@ package view.chat;
 
 import com.jfoenix.controls.JFXAlert;
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXSpinner;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import view.ViewHandler;
 import viewmodel.chat.ChatViewModel;
 
-public class ChatViewController
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Optional;
+
+public class ChatViewController implements PropertyChangeListener
 {
   @FXML private JFXListView<Label> chatList;
   @FXML private TextField enterField;
-  @FXML private Text threadName;
+  @FXML private Label threadName;
+  @FXML private VBox vBox;
+  @FXML private JFXSpinner spinner;
+  @FXML private ImageView logo;
 
   private ViewHandler viewHandler;
   private ChatViewModel viewModel;
@@ -28,6 +43,7 @@ public class ChatViewController
     this.viewHandler = viewHandler;
     this.viewModel = viewModel;
     this.root = root;
+    viewModel.addListener(this);
 
     //chatList.setExpanded(true);
     chatList.setItems(viewModel.getChatList());
@@ -42,7 +58,7 @@ public class ChatViewController
 
   public void load()
   {
-     viewModel.load();
+    viewModel.load();
   }
 
   public Region getRoot()
@@ -67,6 +83,61 @@ public class ChatViewController
 
   public void removePressed(MouseEvent mouseEvent)
   {
-    viewModel.remove();
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Confirmation");
+    alert.setHeaderText(
+        "Are you sure that you want to remove this thread? This action is irreversible");
+    Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+    stage.getIcons()
+        .add(new Image(getClass().getResourceAsStream("/resources/exp.png")));
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.get() == ButtonType.OK)
+    {
+      viewModel.remove();
+    }
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(() -> {
+      switch (evt.getPropertyName())
+      {
+        case "AccessDenied":
+          accessDeniedAlert();
+          break;
+        case "RemoveThread":
+          removeLoading();
+          viewHandler.openView("main");
+          break;
+        case "Loading":
+          setLoading();
+          break;
+      }
+    });
+  }
+
+  private void setLoading()
+  {
+    logo.setOpacity(0.5);
+    spinner.visibleProperty().setValue(true);
+    vBox.disableProperty().setValue(true);
+  }
+
+  private void removeLoading()
+  {
+    logo.setOpacity(1);
+    spinner.visibleProperty().setValue(false);
+    vBox.disableProperty().setValue(false);
+  }
+
+  private void accessDeniedAlert()
+  {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle("Error");
+    alert.setHeaderText("You are not the editor of this thread");
+    Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+    stage.getIcons()
+        .add(new Image(getClass().getResourceAsStream("/resources/exp.png")));
+    alert.showAndWait();
   }
 }
