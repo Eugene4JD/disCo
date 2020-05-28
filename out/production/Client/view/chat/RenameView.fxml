@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -11,108 +12,95 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="287.0" prefWidth="607.0"
-      userData="Renaming threads" xmlns="http://javafx.com/javafx/11.0.1"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="view.chat.RenameViewController">
+<VBox fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="287.0" prefWidth="607.0" userData="Renaming threads" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.chat.RenameViewController">
     <children>
-        <HBox prefHeight="66.0" prefWidth="822.0"
-              style="-fx-background-color: #E8E8E8;">
+        <HBox prefHeight="66.0" prefWidth="822.0" style="-fx-background-color: #E8E8E8;">
             <children>
-                <ImageView fitHeight="49.0" fitWidth="140.0" pickOnBounds="true"
-                           preserveRatio="true">
+                <ImageView fx:id="logo" fitHeight="49.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../resources/v2.3_240p_transparent.png"/>
+                        <Image url="@../../resources/v2.3_240p_transparent.png" />
                     </image>
                     <HBox.margin>
-                        <Insets left="224.0" top="11.0"/>
+                        <Insets left="224.0" top="11.0" />
                     </HBox.margin>
                 </ImageView>
+            <JFXSpinner fx:id="spinner" focusTraversable="false" prefHeight="66.0" prefWidth="25.0" style="-fx-background-color: transparent;" styleClass="spinner" stylesheets="@../../resources/spinner.css" visible="false">
+               <HBox.margin>
+                  <Insets left="161.0" />
+               </HBox.margin>
+            </JFXSpinner>
             </children>
         </HBox>
         <HBox prefHeight="6.0" prefWidth="607.0">
             <children>
-                <Text fill="#000000bc" strokeType="OUTSIDE" strokeWidth="0.0"
-                      text="Old title:" wrappingWidth="70.93682861328125">
+                <Text fx:id="oldTitleText" fill="#000000bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Old title:" wrappingWidth="70.93682861328125">
                     <font>
-                        <Font name="System Bold" size="14.0"/>
+                        <Font name="System Bold" size="14.0" />
                     </font>
                     <HBox.margin>
-                        <Insets left="41.0"/>
+                        <Insets left="41.0" />
                     </HBox.margin>
                 </Text>
                 <HBox prefHeight="8.0" prefWidth="428.0">
                     <HBox.margin>
-                        <Insets left="9.0"/>
+                        <Insets left="9.0" />
                     </HBox.margin>
                     <children>
-                        <Label fx:id="oldTitleLabel" prefHeight="9.0"
-                               prefWidth="142.0" text="Label"
-                               textFill="#354f6a">
+                        <Label fx:id="oldTitleLabel" focusTraversable="false" prefHeight="9.0" prefWidth="142.0" text="Label" textFill="#354f6a">
                             <font>
-                                <Font name="Consolas Bold" size="14.0"/>
+                                <Font name="Consolas Bold" size="14.0" />
                             </font>
                             <HBox.margin>
-                                <Insets left="1.0" top="2.0"/>
+                                <Insets left="1.0" top="2.0" />
                             </HBox.margin>
                         </Label>
                     </children>
                 </HBox>
             </children>
             <VBox.margin>
-                <Insets top="19.0"/>
+                <Insets top="19.0" />
             </VBox.margin>
         </HBox>
         <HBox prefHeight="42.0" prefWidth="600.0">
             <children>
-                <Text fill="#000000bc" strokeType="OUTSIDE" strokeWidth="0.0"
-                      text="New title:" wrappingWidth="76.5367431640625">
+                <Text fx:id="newTitleText" fill="#000000bc" strokeType="OUTSIDE" strokeWidth="0.0" text="New title:" wrappingWidth="76.5367431640625">
                     <font>
-                        <Font name="System Bold" size="14.0"/>
+                        <Font name="System Bold" size="14.0" />
                     </font>
                     <HBox.margin>
-                        <Insets left="41.0" top="10.0"/>
+                        <Insets left="41.0" top="10.0" />
                     </HBox.margin>
                 </Text>
-                <TextField fx:id="enterField" prefHeight="26.0"
-                           prefWidth="431.0" promptText="Enter new title"
-                           style="-fx-background-radius: 0; -fx-background-color: -fx-text-box-border, -fx-control-inner-background;">
+                <TextField fx:id="enterField" onKeyPressed="#onEnter" prefHeight="26.0" prefWidth="431.0" promptText="Enter new title" style="-fx-background-radius: 0; -fx-background-color: -fx-text-box-border, -fx-control-inner-background;">
                     <HBox.margin>
-                        <Insets left="3.0" top="6.0"/>
+                        <Insets left="3.0" top="6.0" />
                     </HBox.margin>
                 </TextField>
             </children>
             <VBox.margin>
-                <Insets top="3.0"/>
+                <Insets top="3.0" />
             </VBox.margin>
         </HBox>
         <HBox prefHeight="46.0" prefWidth="416.0">
             <children>
-                <JFXButton onAction="#saveButtonPressed" prefHeight="30.0"
-                           prefWidth="512.0"
-                           style="-fx-background-color: #354f6a; -fx-background-radius: 0;"
-                           text="Save and close" textFill="#ededed">
+                <JFXButton onAction="#saveButtonPressed" prefHeight="30.0" prefWidth="512.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Save and close" textFill="#ededed">
                     <font>
-                        <Font name="System Bold" size="13.0"/>
+                        <Font name="System Bold" size="13.0" />
                     </font>
                     <HBox.margin>
-                        <Insets left="40.0" top="10.0"/>
+                        <Insets left="40.0" top="10.0" />
                     </HBox.margin>
                 </JFXButton>
             </children>
         </HBox>
         <HBox prefHeight="37.0" prefWidth="600.0">
             <children>
-                <JFXButton fx:id="backButton" onAction="#cancelButtonPressed"
-                           prefHeight="30.0" prefWidth="512.0"
-                           style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;"
-                           text="Cancel">
+                <JFXButton fx:id="backButton" onAction="#cancelButtonPressed" prefHeight="30.0" prefWidth="512.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="Cancel">
                     <font>
-                        <Font name="System Bold" size="13.0"/>
+                        <Font name="System Bold" size="13.0" />
                     </font>
                     <HBox.margin>
-                        <Insets left="40.0"/>
+                        <Insets left="40.0" />
                     </HBox.margin>
                 </JFXButton>
             </children>

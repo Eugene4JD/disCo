@@ -11,8 +11,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class RenameViewModel implements PropertyChangeListener,
-    UnnamedPropertyChangeSubject
+public class RenameViewModel
+    implements PropertyChangeListener, UnnamedPropertyChangeSubject
 {
   private ClientModel model;
   private StringProperty enter;
@@ -55,8 +55,14 @@ public class RenameViewModel implements PropertyChangeListener,
   public void rename()
   {
     if (!enter.get().equals(""))
-       model.changeNameOfDiscussion(model.getSelectedDiscussion(),enter.get());
+    {
+      model.changeNameOfDiscussion(model.getSelectedDiscussion(), enter.get());
+      property.firePropertyChange("Loading", null, null);
+    }
+    else
+      property.firePropertyChange("AlertEmpty", null, null);
   }
+
   public StringProperty getOldProperty()
   {
     return old;
@@ -64,11 +70,12 @@ public class RenameViewModel implements PropertyChangeListener,
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
-    Platform.runLater(()->{
+    Platform.runLater(() -> {
       switch (evt.getPropertyName())
       {
         case "ChangedDiscussionName":
-          property.firePropertyChange("AnswerReceived",null,evt.getNewValue());
+          property
+              .firePropertyChange("AnswerReceived", null, evt.getNewValue());
           break;
       }
     });
