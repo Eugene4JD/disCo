@@ -62,7 +62,6 @@ public class ChatViewController
 
   public void editPressed(MouseEvent mouseEvent)
   {
-    viewModel.edit();
     viewHandler.openView("rename");
   }
 
