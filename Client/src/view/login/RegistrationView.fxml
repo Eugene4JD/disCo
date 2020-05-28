@@ -32,7 +32,7 @@
                 </JFXSpinner>
             </children>
         </HBox>
-        <Label prefHeight="18.0" prefWidth="265.0" text="Welcome to disCo!" textFill="#354f6a">
+        <Label focusTraversable="false" prefHeight="18.0" prefWidth="265.0" text="Welcome to disCo!" textFill="#354f6a">
             <font>
                 <Font name="System Bold" size="17.0" />
             </font>
@@ -40,7 +40,7 @@
                 <Insets left="40.0" top="22.0" />
             </VBox.margin>
         </Label>
-        <Label text="To start using disCo create a new account ">
+        <Label focusTraversable="false" text="To start using disCo create a new account ">
             <VBox.margin>
                 <Insets left="40.0" />
             </VBox.margin>
@@ -113,7 +113,7 @@
         </HBox>
         <HBox prefHeight="34.0" prefWidth="416.0">
             <children>
-                <Label text="Or">
+                <Label focusTraversable="false" text="Or">
                     <HBox.margin>
                         <Insets left="41.0" top="2.0" />
                     </HBox.margin>
@@ -123,7 +123,7 @@
                         <Insets left="5.0" top="2.0" />
                     </HBox.margin>
                 </Label>
-                <Label fx:id="errorLabel" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="189.0" text="error label" textAlignment="CENTER" textFill="#ff0000cc">
+                <Label fx:id="errorLabel" alignment="CENTER_RIGHT" focusTraversable="false" prefHeight="18.0" prefWidth="189.0" text="error label" textAlignment="CENTER" textFill="#ff0000cc">
                     <font>
                         <Font name="Consolas Bold" size="12.0" />
                     </font>

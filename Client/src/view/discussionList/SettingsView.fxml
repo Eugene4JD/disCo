@@ -106,7 +106,7 @@
                         </JFXPasswordField>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="errorLabel" prefHeight="18.0" prefWidth="230.0" text="error label" textAlignment="CENTER" textFill="#ff0000cc">
+                        <Label fx:id="errorLabel" focusTraversable="false" prefHeight="18.0" prefWidth="230.0" text="error label" textAlignment="CENTER" textFill="#ff0000cc">
                            <font>
                               <Font name="Consolas Bold" size="12.0" />
                            </font>
