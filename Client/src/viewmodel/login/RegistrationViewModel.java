@@ -36,7 +36,9 @@ public class RegistrationViewModel
     username.set("");
     password.set("");
     repeatPassword.set("");
+    error.set("");
   }
+
 
   public StringProperty getUsernameProperty()
   {

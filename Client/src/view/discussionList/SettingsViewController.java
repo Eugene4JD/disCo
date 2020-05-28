@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import view.ViewHandler;
 import viewmodel.discussionList.SettingsViewModel;
@@ -126,7 +125,6 @@ public class SettingsViewController implements PropertyChangeListener
           }
       }
     });
-
   }
 
   public void setLoading()
