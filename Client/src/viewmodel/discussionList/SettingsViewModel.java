@@ -22,6 +22,7 @@ public class SettingsViewModel
   private StringProperty oldPassword;
   private StringProperty error;
   private PropertyChangeSupport property;
+  boolean trigger = false;
 
   public SettingsViewModel(ClientModel model)
   {
@@ -74,7 +75,10 @@ public class SettingsViewModel
           error.set("no spaces for passwords");
         }
         else
+        {
           model.changePassword(oldPass, newPass1);
+          property.firePropertyChange("Loading", null, true);
+        }
       }
       else
       {
@@ -90,15 +94,29 @@ public class SettingsViewModel
         error.set("no spaces in usernames");
       }
       else
+      {
         model.changeLogin(user);
+        property.firePropertyChange("Loading", null, true);
+      }
+
     }
     else if ((!(user.equals(""))) && (!(oldPass.equals("")) && (!(newPass1
         .equals(""))) && (!newPass2.equals(""))))
     {
-      if (newPass1.equals(newPass2))
+      if (user.contains(" "))
+      {
+        this.error.set("no spaces for usernames");
+      }
+      else if (newPass1.contains(" "))
+      {
+        this.error.set("no spaces for passwords");
+      }
+      else if (newPass1.equals(newPass2))
       {
         model.changePassword(oldPass, newPass1);
         model.changeLogin(user);
+        trigger = true;
+        property.firePropertyChange("Loading", null, true);
       }
       else
       {
@@ -149,15 +167,27 @@ public class SettingsViewModel
         case "ChangedUserName":
           load();
           this.error.set("username changed");
+          property.firePropertyChange("Loading", null, "changedUsername");
+          trigger = false;
           break;
         case "ChangedPassword":
           load();
           this.error.set(evt.getNewValue().toString());
+          if (!trigger)
+          {
+            property.firePropertyChange("Loading", null, "changedPassword");
+          }
           break;
         case "RemoveUser":
           property.firePropertyChange("RemovedUser", null, evt.getNewValue());
           break;
       }
+
+      //if (trigger)
+      //{
+      //property.firePropertyChange("Loading", null, "changedBoth");
+      //trigger = false;
+      //}
     });
   }
 

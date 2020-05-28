@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -11,13 +12,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="713.0" userData="Settings" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.discussionList.SettingsViewController">
+<VBox fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="713.0" userData="Settings" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.discussionList.SettingsViewController">
     <children>
         <HBox prefHeight="66.0" prefWidth="822.0" style="-fx-background-color: #E8E8E8;">
             <children>
-                <ImageView fitHeight="49.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="logo" fitHeight="49.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../../resources/v2.3_240p_transparent.png" />
                     </image>
@@ -25,12 +25,17 @@
                         <Insets left="33.0" top="11.0" />
                     </HBox.margin>
                 </ImageView>
+            <JFXSpinner fx:id="spinner" focusTraversable="false" prefHeight="66.0" prefWidth="25.0" style="-fx-background-color: transparent;" styleClass="spinner" stylesheets="@../../resources/spinner.css" visible="false">
+               <HBox.margin>
+                  <Insets left="350.0" />
+               </HBox.margin>
+            </JFXSpinner>
                 <JFXButton onAction="#backButtonPressed" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Back" textFill="#ededed">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
                     <HBox.margin>
-                        <Insets left="395.0" top="18.0" />
+                        <Insets left="20.0" top="18.0" />
                     </HBox.margin>
                 </JFXButton>
             </children>
@@ -50,14 +55,14 @@
                                 <Insets left="53.0" top="16.0" />
                             </VBox.margin>
                         </ImageView>
-                        <Text fx:id="usernameText" fill="#000000a8" strokeType="OUTSIDE" strokeWidth="0.0" text="User_Name" textAlignment="CENTER" wrappingWidth="153.33670806884766">
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets left="23.0" top="5.0" />
-                            </VBox.margin>
-                        </Text>
+                  <Label fx:id="usernameText" alignment="CENTER" prefHeight="20.0" prefWidth="152.0" text="User_Name" textFill="#000000bf">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="23.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
                         <JFXButton onAction="#removeProfileButtonPressed" prefHeight="50.0" prefWidth="146.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="I want to &#10;remove my profile&#10;&#10;" textAlignment="CENTER">
                             <font>
                                 <Font name="System Bold" size="13.0" />
