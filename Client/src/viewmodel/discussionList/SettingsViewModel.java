@@ -179,15 +179,9 @@ public class SettingsViewModel
           }
           break;
         case "RemoveUser":
-          property.firePropertyChange("RemovedUser", null, evt.getNewValue());
+          property.firePropertyChange("RemovedUser", null, null);
           break;
       }
-
-      //if (trigger)
-      //{
-      //property.firePropertyChange("Loading", null, "changedBoth");
-      //trigger = false;
-      //}
     });
   }
 

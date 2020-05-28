@@ -6,16 +6,21 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import view.ViewHandler;
 import viewmodel.discussionList.SettingsViewModel;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Optional;
 
 public class SettingsViewController implements PropertyChangeListener
 {
@@ -59,7 +64,19 @@ public class SettingsViewController implements PropertyChangeListener
 
   public void removeProfileButtonPressed(ActionEvent actionEvent)
   {
-    viewModel.removeUserButton();
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Confirmation");
+    alert.setHeaderText(
+        "Are you sure that you want to remove your profile? This action is irreversible");
+    Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+    stage.getIcons()
+        .add(new Image(getClass().getResourceAsStream("/resources/exp.png")));
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.get() == ButtonType.OK)
+    {
+      viewModel.removeUserButton();
+      setLoading();
+    }
   }
 
   public void applyButtonPressed(ActionEvent actionEvent)
@@ -83,6 +100,7 @@ public class SettingsViewController implements PropertyChangeListener
       switch (evt.getPropertyName())
       {
         case "RemoveUser":
+          removeLoading();
           viewHandler.openView("login");
           break;
         case "Loading":
