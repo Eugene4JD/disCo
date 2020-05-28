@@ -49,7 +49,10 @@ public class AddViewModel
       property.firePropertyChange("Alert", null, null);
     }
     else
+    {
       model.createDiscussion(enter.get());
+      property.firePropertyChange("Loading", null, null);
+    }
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)

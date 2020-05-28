@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -11,13 +12,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="416.0" userData="Register" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.login.RegistrationViewController">
+<VBox fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="416.0" userData="Register" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.login.RegistrationViewController">
     <children>
         <HBox prefHeight="82.0" prefWidth="412.0" style="-fx-background-color: #E8E8E8;">
             <children>
-                <ImageView fitHeight="62.0" fitWidth="464.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="logo" fitHeight="62.0" fitWidth="464.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../../resources/v2.3_240p_transparent.png" />
                     </image>
@@ -25,21 +25,26 @@
                         <Insets left="96.0" top="11.0" />
                     </HBox.margin>
                 </ImageView>
+                <JFXSpinner fx:id="spinner" focusTraversable="false" prefHeight="66.0" prefWidth="25.0" style="-fx-background-color: transparent;" styleClass="spinner" stylesheets="@../../resources/spinner.css" visible="false">
+                    <HBox.margin>
+                        <Insets left="43.0" />
+                    </HBox.margin>
+                </JFXSpinner>
             </children>
         </HBox>
-        <Text fill="#354f6a" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to disCo!" wrappingWidth="320.5367431640625">
-            <VBox.margin>
-                <Insets left="40.0" top="22.0" />
-            </VBox.margin>
+        <Label prefHeight="18.0" prefWidth="265.0" text="Welcome to disCo!" textFill="#354f6a">
             <font>
                 <Font name="System Bold" size="17.0" />
             </font>
-        </Text>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To start using disCo create a new account " wrappingWidth="320.5367431640625">
+            <VBox.margin>
+                <Insets left="40.0" top="22.0" />
+            </VBox.margin>
+        </Label>
+        <Label text="To start using disCo create a new account ">
             <VBox.margin>
                 <Insets left="40.0" />
             </VBox.margin>
-        </Text>
+        </Label>
         <HBox prefHeight="58.0" prefWidth="416.0">
             <children>
                 <JFXTextField fx:id="usernameField" focusColor="#003780" opacity="0.95" prefHeight="40.0" prefWidth="320.0" promptText="Username">
@@ -108,24 +113,24 @@
         </HBox>
         <HBox prefHeight="34.0" prefWidth="416.0">
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Or">
+                <Label text="Or">
                     <HBox.margin>
                         <Insets left="41.0" top="2.0" />
                     </HBox.margin>
-                </Text>
-                <Text fill="#003780" strokeType="OUTSIDE" strokeWidth="0.0" text="enter as a guest" underline="true" wrappingWidth="87.73675537109375">
+                </Label>
+                <Label text="enter as a guest" textFill="#003780" underline="true">
                     <HBox.margin>
                         <Insets left="5.0" top="2.0" />
                     </HBox.margin>
-                </Text>
-            <Label fx:id="errorLabel" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="189.0" text="error label" textAlignment="CENTER" textFill="#ff0000cc">
-               <font>
-                  <Font name="Consolas Bold" size="12.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="22.0" top="2.0" />
-               </HBox.margin>
-            </Label>
+                </Label>
+                <Label fx:id="errorLabel" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="189.0" text="error label" textAlignment="CENTER" textFill="#ff0000cc">
+                    <font>
+                        <Font name="Consolas Bold" size="12.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="25.0" top="3.0" />
+                    </HBox.margin>
+                </Label>
             </children>
             <VBox.margin>
                 <Insets top="10.0" />

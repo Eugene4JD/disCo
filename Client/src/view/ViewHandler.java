@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import view.chat.ChatViewController;
 import view.chat.RenameViewController;
@@ -95,6 +96,7 @@ public class ViewHandler
         .add(new Image(getClass().getResourceAsStream("/resources/exp.png")));
     primaryStage.centerOnScreen();
     primaryStage.setResizable(false);
+    //primaryStage.initModality(Modality.WINDOW_MODAL);
     primaryStage.show();
   }
 

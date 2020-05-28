@@ -1,14 +1,17 @@
 package view.login;
 
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXSpinner;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import view.ViewHandler;
 import viewmodel.login.RegistrationViewModel;
@@ -22,6 +25,9 @@ public class RegistrationViewController implements PropertyChangeListener
   @FXML private JFXPasswordField passwordField;
   @FXML private JFXPasswordField repeatPasswordField;
   @FXML private Label errorLabel;
+  @FXML private VBox vBox;
+  @FXML private JFXSpinner spinner;
+  @FXML private ImageView logo;
 
   private ViewHandler viewHandler;
   private RegistrationViewModel viewModel;
@@ -69,11 +75,30 @@ public class RegistrationViewController implements PropertyChangeListener
     Platform.runLater(() -> {
       switch (evt.getPropertyName())
       {
-        case "LogStatus":
-          if (evt.getNewValue().equals("true"))
+        case "Loading":
+          if (evt.getNewValue().equals(true))
           {
-            viewHandler.openView("main");
+            logo.setOpacity(0.5);
+            usernameField.setOpacity(0.5);
+            passwordField.setOpacity(0.5);
+            repeatPasswordField.setOpacity(0.5);
+            spinner.visibleProperty().setValue(true);
+            vBox.disableProperty().setValue(true);
+            break;
           }
+          else if (evt.getNewValue().equals(false))
+          {
+            logo.setOpacity(1);
+            usernameField.setOpacity(0.95);
+            passwordField.setOpacity(0.95);
+            repeatPasswordField.setOpacity(0.95);
+            spinner.visibleProperty().setValue(false);
+            vBox.disableProperty().setValue(false);
+            break;
+          }
+        case "LogStatus":
+          viewHandler.openView("main");
+          break;
       }
     });
   }

@@ -84,7 +84,11 @@ public class RegistrationViewModel
       error.set("passwords do not match");
     }
     else
+    {
       model.log(username, password0, true);
+      property.firePropertyChange("Loading", null, true);
+    }
+
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
@@ -95,10 +99,15 @@ public class RegistrationViewModel
         case "LogStatus":
           if (evt.getNewValue().equals(false))
           {
+            property.firePropertyChange("Loading", null, false);
             error.set("try another username");
           }
           else
-            property.firePropertyChange("LogStatus", null, true);
+          {
+            property.firePropertyChange("Loading", null, false);
+            property.firePropertyChange("LogStatus", null, null);
+          }
+
           break;
       }
     });

@@ -1,14 +1,17 @@
 package view.discussionList;
 
+import com.jfoenix.controls.JFXSpinner;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import view.ViewHandler;
 import viewmodel.discussionList.AddViewModel;
@@ -18,7 +21,10 @@ import java.beans.PropertyChangeListener;
 
 public class AddViewController implements PropertyChangeListener
 {
+  @FXML private ImageView logo;
+  @FXML private VBox vBox;
   @FXML private TextField enterField;
+  @FXML private JFXSpinner spinner;
 
   private ViewHandler viewHandler;
   private AddViewModel viewModel;
@@ -30,7 +36,6 @@ public class AddViewController implements PropertyChangeListener
     this.viewModel = viewModel;
     viewModel.addListener(this);
     this.root = root;
-
     enterField.textProperty().bindBidirectional(viewModel.getEnterProperty());
   }
 
@@ -60,10 +65,18 @@ public class AddViewController implements PropertyChangeListener
       switch (evt.getPropertyName())
       {
         case "AnswerReceived":
+          logo.setOpacity(1);
+          spinner.visibleProperty().setValue(false);
+          vBox.disableProperty().setValue(false);
           viewHandler.openView("main");
           break;
         case "Alert":
           alertWindow();
+          break;
+        case "Loading":
+          logo.setOpacity(0.5);
+          spinner.visibleProperty().setValue(true);
+          vBox.disableProperty().setValue(true);
           break;
       }
     });
