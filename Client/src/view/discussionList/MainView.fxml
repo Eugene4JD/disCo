@@ -36,7 +36,7 @@
         </HBox>
         <HBox prefHeight="31.0" prefWidth="800.0">
             <children>
-                <Text fx:id="usernamesThreads" fill="#000000a8" strokeType="OUTSIDE" strokeWidth="0.0" text="USERNAME'S threads ▼" wrappingWidth="162.13665771484375">
+                <Text fx:id="usernamesThreads" fill="#000000a8" strokeType="OUTSIDE" strokeWidth="0.0" text="USERNAME'S threads ▼" wrappingWidth="555.7367095947266">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -49,7 +49,7 @@
                         <Font name="System Bold" size="13.0" />
                     </font>
                     <HBox.margin>
-                        <Insets left="496.0" />
+                        <Insets left="102.0" />
                     </HBox.margin>
                 </JFXButton>
             </children>

@@ -12,8 +12,8 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class AddViewModel implements PropertyChangeListener,
-    UnnamedPropertyChangeSubject
+public class AddViewModel
+    implements PropertyChangeListener, UnnamedPropertyChangeSubject
 {
   private ClientModel model;
   private StringProperty enter;
@@ -37,18 +37,29 @@ public class AddViewModel implements PropertyChangeListener,
     return enter;
   }
 
+  public void load()
+  {
+    enter.set("");
+  }
+
   public void createThread()
   {
-    model.createDiscussion(enter.get());
+    if (enter.get().equals(""))
+    {
+      property.firePropertyChange("Alert", null, null);
+    }
+    else
+      model.createDiscussion(enter.get());
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
-    Platform.runLater(()->{
+    Platform.runLater(() -> {
       switch (evt.getPropertyName())
       {
         case "Add":
-          property.firePropertyChange("AnswerReceived",null,evt.getNewValue());
+          property
+              .firePropertyChange("AnswerReceived", null, evt.getNewValue());
       }
     });
   }

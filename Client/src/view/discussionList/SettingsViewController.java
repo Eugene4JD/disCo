@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import view.ViewHandler;
@@ -20,7 +21,7 @@ public class SettingsViewController implements PropertyChangeListener
   @FXML private JFXPasswordField oldPasswordField;
   @FXML private JFXPasswordField newPasswordField1;
   @FXML private JFXPasswordField newPasswordField2;
-  @FXML private Text errorLabel;
+  @FXML private Label errorLabel;
 
   private ViewHandler viewHandler;
   private SettingsViewModel viewModel;
@@ -37,14 +38,13 @@ public class SettingsViewController implements PropertyChangeListener
         .bindBidirectional(viewModel.getUsernameProperty());
     this.usernameField.textProperty()
         .bindBidirectional(viewModel.getNewUsernameProperty());
-    this.errorLabel.textProperty().bindBidirectional(viewModel.getError());
+    this.errorLabel.textProperty().bind(viewModel.getError());
     this.oldPasswordField.textProperty()
         .bindBidirectional(viewModel.getOldPassword());
     this.newPasswordField1.textProperty()
         .bindBidirectional(viewModel.getNewPassword1());
     this.newPasswordField2.textProperty()
         .bindBidirectional(viewModel.getNewPassword2());
-
   }
 
   public void backButtonPressed(ActionEvent actionEvent)
@@ -59,7 +59,7 @@ public class SettingsViewController implements PropertyChangeListener
 
   public void applyButtonPressed(ActionEvent actionEvent)
   {
-   viewModel.applyButton();
+    viewModel.applyButton();
   }
 
   public void reset()

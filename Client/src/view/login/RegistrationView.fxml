@@ -66,7 +66,7 @@
         </HBox>
         <HBox prefHeight="52.0" prefWidth="400.0">
             <children>
-                <JFXPasswordField fx:id="repeatPasswordField" focusColor="#003780" opacity="0.95" prefHeight="40.0" prefWidth="320.0" promptText="Repeat password">
+                <JFXPasswordField fx:id="repeatPasswordField" focusColor="#003780" onKeyPressed="#onEnter" opacity="0.95" prefHeight="40.0" prefWidth="320.0" promptText="Repeat password">
                     <HBox.margin>
                         <Insets left="40.0" top="2.0" />
                     </HBox.margin>

@@ -3,8 +3,13 @@ package view.discussionList;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 import view.ViewHandler;
 import viewmodel.discussionList.AddViewModel;
 
@@ -34,7 +39,7 @@ public class AddViewController implements PropertyChangeListener
     viewModel.clear();
   }
 
-  public void createThreadButtonPressed(ActionEvent actionEvent)
+  public void createThreadButtonPressed()
   {
     viewModel.createThread();
   }
@@ -51,13 +56,35 @@ public class AddViewController implements PropertyChangeListener
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
-    Platform.runLater(()->{
+    Platform.runLater(() -> {
       switch (evt.getPropertyName())
       {
         case "AnswerReceived":
           viewHandler.openView("main");
           break;
+        case "Alert":
+          alertWindow();
+          break;
       }
     });
+  }
+
+  public void alertWindow()
+  {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle("Error");
+    alert.setHeaderText("Untitled threads are not allowed");
+    Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+    stage.getIcons()
+        .add(new Image(getClass().getResourceAsStream("/resources/exp.png")));
+    alert.showAndWait();
+  }
+
+  public void onEnter(KeyEvent keyEvent)
+  {
+    if (keyEvent.getCode() == KeyCode.ENTER)
+    {
+      createThreadButtonPressed();
+    }
   }
 }

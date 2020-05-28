@@ -10,60 +10,76 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="256.0" prefWidth="607.0" userData="Creating a new thread" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.discussionList.AddViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="256.0" prefWidth="607.0"
+      userData="Creating a new thread" xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="view.discussionList.AddViewController">
     <children>
-        <HBox prefHeight="66.0" prefWidth="822.0" style="-fx-background-color: #E8E8E8;">
+        <HBox prefHeight="66.0" prefWidth="822.0"
+              style="-fx-background-color: #E8E8E8;">
             <children>
-                <ImageView fitHeight="49.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="49.0" fitWidth="140.0" pickOnBounds="true"
+                           preserveRatio="true">
                     <image>
-                        <Image url="@../../resources/v2.3_240p_transparent.png" />
+                        <Image url="@../../resources/v2.3_240p_transparent.png"/>
                     </image>
                     <HBox.margin>
-                        <Insets left="224.0" top="11.0" />
+                        <Insets left="224.0" top="11.0"/>
                     </HBox.margin>
                 </ImageView>
             </children>
         </HBox>
         <HBox prefHeight="42.0" prefWidth="600.0">
             <children>
-                <Text fill="#000000bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Thread title:" wrappingWidth="88.53680419921875">
+                <Text fill="#000000bc" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Thread title:" wrappingWidth="88.53680419921875">
                     <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="14.0"/>
                     </font>
                     <HBox.margin>
-                        <Insets left="41.0" top="10.0" />
+                        <Insets left="41.0" top="10.0"/>
                     </HBox.margin>
                 </Text>
-                <TextField fx:id="enterField" prefHeight="26.0" prefWidth="420.0" promptText="Enter message" style="-fx-background-radius: 0; -fx-background-color: -fx-text-box-border, -fx-control-inner-background;">
+                <TextField fx:id="enterField" prefHeight="26.0"
+                           prefWidth="420.0" promptText="Enter message"
+                           onKeyPressed="#onEnter"
+                           style="-fx-background-radius: 0; -fx-background-color: -fx-text-box-border, -fx-control-inner-background;">
                     <HBox.margin>
-                        <Insets left="3.0" top="6.0" />
+                        <Insets left="3.0" top="6.0"/>
                     </HBox.margin>
                 </TextField>
             </children>
             <VBox.margin>
-                <Insets top="12.0" />
+                <Insets top="12.0"/>
             </VBox.margin>
         </HBox>
         <HBox prefHeight="46.0" prefWidth="416.0">
             <children>
-                <JFXButton onAction="#createThreadButtonPressed" prefHeight="30.0" prefWidth="512.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Create a new THREAD!" textFill="#ededed">
+                <JFXButton onAction="#createThreadButtonPressed"
+                           prefHeight="30.0" prefWidth="512.0"
+                           style="-fx-background-color: #354f6a; -fx-background-radius: 0;"
+                           text="Create a new THREAD!" textFill="#ededed">
                     <font>
-                        <Font name="System Bold" size="13.0" />
+                        <Font name="System Bold" size="13.0"/>
                     </font>
                     <HBox.margin>
-                        <Insets left="40.0" top="10.0" />
+                        <Insets left="40.0" top="10.0"/>
                     </HBox.margin>
                 </JFXButton>
             </children>
         </HBox>
         <HBox prefHeight="37.0" prefWidth="600.0">
             <children>
-                <JFXButton fx:id="backButton" onAction="#cancelButtonPressed" prefHeight="30.0" prefWidth="512.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="Cancel">
+                <JFXButton fx:id="backButton" onAction="#cancelButtonPressed"
+                           prefHeight="30.0" prefWidth="512.0"
+                           style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;"
+                           text="Cancel">
                     <font>
-                        <Font name="System Bold" size="13.0" />
+                        <Font name="System Bold" size="13.0"/>
                     </font>
                     <HBox.margin>
-                        <Insets left="40.0" />
+                        <Insets left="40.0"/>
                     </HBox.margin>
                 </JFXButton>
             </children>

@@ -38,7 +38,7 @@ public class ClientModelManager implements ClientModel
       e.printStackTrace();
     }
     this.login = "";
-    this.userType ="";
+    this.userType = "";
   }
 
   @Override public void connect()
@@ -118,7 +118,7 @@ public class ClientModelManager implements ClientModel
         if (discussion != null)
         {
           discussion.addMessage(request.getMessage().getText(),
-            request.getDiscussionID());
+              request.getDiscussionID());
           property.firePropertyChange("NewMessageToChat", null, discussion);
 
         }
@@ -139,11 +139,13 @@ public class ClientModelManager implements ClientModel
         if (request2.getUserId() == this.id)
         {
           discussionListBuffer.addDiscussion(request2.getDiscussion());
-          if (request2.getDiscussion().getLoginOfEditorOfDiscussion().equals(this.login))
-             property.firePropertyChange("Add", null, request2.getDiscussion());
+          if (request2.getDiscussion().getLoginOfEditorOfDiscussion()
+              .equals(this.login))
+            property.firePropertyChange("Add", null, request2.getDiscussion());
           else
           {
-            property.firePropertyChange("LoggedToExistingDiscussion",null,request2.getDiscussion().getDiscussionId());
+            property.firePropertyChange("LoggedToExistingDiscussion", null,
+                request2.getDiscussion().getDiscussionId());
           }
         }
         break;
@@ -185,20 +187,25 @@ public class ClientModelManager implements ClientModel
       case "broadcastChangeDiscussionName":
         BroadcastChangedDiscussionName request7 = (BroadcastChangedDiscussionName) evt
             .getNewValue();
-        if (!(this.discussionListBuffer.getDiscussionById(request7.getDiscussionId()) == null))
+        if (!(this.discussionListBuffer
+            .getDiscussionById(request7.getDiscussionId()) == null))
         {
-          this.discussionListBuffer.getDiscussionById(request7.getDiscussionId())
+          this.discussionListBuffer
+              .getDiscussionById(request7.getDiscussionId())
               .setDiscussionName(request7.getDiscussionName());
-          property.firePropertyChange("ChangedDiscussionName", null, request7.getDiscussionName());
+          property.firePropertyChange("ChangedDiscussionName", null,
+              request7.getDiscussionName());
         }
         break;
       case "broadcastChangePasswordToUser":
         BroadcastChangedPasswordToUser request8 = (BroadcastChangedPasswordToUser) evt
             .getNewValue();
         if (request8.isSuccessOfChangingPassword())
-              property.firePropertyChange("ChangedPassword", null, "Password has been successfully changed!");
+          property.firePropertyChange("ChangedPassword", null,
+              "password successfully changed");
         else
-             property.firePropertyChange("ChangedPassword",null,"Old password was not correct...");
+          property.firePropertyChange("ChangedPassword", null,
+              "wrong old password");
         break;
       case "broadcastChangeUserNameToUser":
         BroadcastChangedUserNameToUser request9 = (BroadcastChangedUserNameToUser) evt
@@ -209,7 +216,7 @@ public class ClientModelManager implements ClientModel
       case "broadcastDeletedAccountRequest":
         BroadcastDeletedAccountRequest request10 = (BroadcastDeletedAccountRequest) evt
             .getNewValue();
-        property.firePropertyChange("RemoveUser",null,request10);
+        property.firePropertyChange("RemoveUser", null, request10);
         break;
     }
   }

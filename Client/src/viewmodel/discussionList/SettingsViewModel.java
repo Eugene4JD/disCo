@@ -58,44 +58,56 @@ public class SettingsViewModel
 
   public void applyButton()
   {
-    if (this.newUsername.get().equals("") && (
-        !(this.oldPassword.get().equals("")) && (!(this.newPassword1.get()
-            .equals(""))) && (!this.newPassword2.get().equals(""))))
+    String user = this.newUsername.get();
+    String oldPass = this.oldPassword.get();
+    String newPass1 = this.newPassword1.get();
+    String newPass2 = this.newPassword2.get();
+
+    // 1 Password change
+    if (user.equals("") && (!(oldPass.equals("")) && (!(newPass1.equals("")))
+        && (!(newPass2.equals("")))))
     {
-      System.out.println("this");
-      if (this.newPassword1.get().equals(this.newPassword2.get()))
+      if (newPass1.equals(newPass2))
       {
-        System.out.println("And this this");
-        model.changePassword(oldPassword.get(), newPassword1.get());
+        if (newPass1.contains(" "))
+        {
+          error.set("no spaces for passwords");
+        }
+        else
+          model.changePassword(oldPass, newPass1);
       }
       else
       {
-        this.error.set("! New Password is not the same in both fields...");
+        this.error.set("new passwords do not match");
       }
     }
-    else if (!(this.newUsername.get().equals("")) && this.oldPassword.get()
-        .equals("") && this.newPassword1.get().equals("") && this.newPassword2
-        .get().equals(""))
+    // 2 Username change
+    else if (!(user.equals("")) && oldPass.equals("") && newPass1.equals("")
+        && newPass2.equals(""))
     {
-      model.changeLogin(newUsername.get());
-    }
-    else if ((!(this.newUsername.get().equals(""))) && (
-        !(this.oldPassword.get().equals("")) && (!(this.newPassword1.get()
-            .equals(""))) && (!this.newPassword2.get().equals(""))))
-    {
-      if (this.newPassword1.get().equals(this.newPassword2.get()))
+      if (user.contains(" "))
       {
-        model.changePassword(oldPassword.get(), newPassword1.get());
-        model.changeLogin(newUsername.get());
+        error.set("no spaces in usernames");
+      }
+      else
+        model.changeLogin(user);
+    }
+    else if ((!(user.equals(""))) && (!(oldPass.equals("")) && (!(newPass1
+        .equals(""))) && (!newPass2.equals(""))))
+    {
+      if (newPass1.equals(newPass2))
+      {
+        model.changePassword(oldPass, newPass1);
+        model.changeLogin(user);
       }
       else
       {
-        this.error.set("! New Password is not the same in both fields...");
+        this.error.set("new passwords do not match");
       }
     }
     else
     {
-      error.set("! Fields are not used correctly...");
+      error.set("something went wrong");
     }
   }
 
@@ -136,6 +148,7 @@ public class SettingsViewModel
       {
         case "ChangedUserName":
           load();
+          this.error.set("username changed");
           break;
         case "ChangedPassword":
           load();

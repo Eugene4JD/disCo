@@ -6,6 +6,8 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import view.ViewHandler;
@@ -52,7 +54,7 @@ public class RegistrationViewController implements PropertyChangeListener
     viewHandler.openView("login");
   }
 
-  public void signUpButtonPressed(ActionEvent event)
+  public void signUpButtonPressed()
   {
     viewModel.signUp();
   }
@@ -74,5 +76,13 @@ public class RegistrationViewController implements PropertyChangeListener
           }
       }
     });
+  }
+
+  public void onEnter(KeyEvent keyEvent)
+  {
+    if (keyEvent.getCode() == KeyCode.ENTER)
+    {
+      signUpButtonPressed();
+    }
   }
 }
