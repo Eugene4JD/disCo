@@ -1,21 +1,30 @@
 package viewmodel.discussionList;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.ClientModel;
 import model.Discussion;
+import utility.UnnamedPropertyChangeSubject;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class AddViewModel
+public class AddViewModel implements PropertyChangeListener,
+    UnnamedPropertyChangeSubject
 {
   private ClientModel model;
   private StringProperty enter;
+  private PropertyChangeSupport property;
 
   public AddViewModel(ClientModel model)
   {
     this.model = model;
+    model.addListener(this);
     enter = new SimpleStringProperty();
+    this.property = new PropertyChangeSupport(this);
   }
 
   public void clear()
@@ -30,8 +39,27 @@ public class AddViewModel
 
   public void createThread()
   {
-    int random = ThreadLocalRandom.current().nextInt(5, 1000);
     model.createDiscussion(enter.get());
   }
 
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    Platform.runLater(()->{
+      switch (evt.getPropertyName())
+      {
+        case "Add":
+          property.firePropertyChange("AnswerReceived",null,evt.getNewValue());
+      }
+    });
+  }
+
+  @Override public void removeListener(PropertyChangeListener listener)
+  {
+    this.property.removePropertyChangeListener(listener);
+  }
+
+  @Override public void addListener(PropertyChangeListener listener)
+  {
+    this.property.addPropertyChangeListener(listener);
+  }
 }

@@ -1,5 +1,6 @@
 package model;
 
+import network.BroadcastChangedDiscussionName;
 import network.BroadcastMessageToDiscussionRequest;
 import utility.Log;
 
@@ -114,7 +115,7 @@ public class ServerModelManager implements ServerModel
     try
     {
       discoPersistence.saveUserDiscussionConnection(discussionID, userID);
-      discussionList.getDiscussion(discussionID)
+      discussionList.getDiscussionById(discussionID)
           .addUser(userBase.getUserById(userID));
     }
     catch (SQLException e)
@@ -127,6 +128,7 @@ public class ServerModelManager implements ServerModel
   @Override public void addLog(String log)
   {
     this.log.addLog(log);
+    property.firePropertyChange("NewLog",null,log);
   }
 
   @Override public void addMessageToDiscussion(int discussionId, int senderID,
@@ -228,13 +230,14 @@ public class ServerModelManager implements ServerModel
     {
       discoPersistence.editNameOfDiscussion(discussionId, password);
       fetch();
+      property.firePropertyChange("BroadcastChangedDiscussionName",null,new BroadcastChangedDiscussionName(discussionId,password));
     }
     catch (Exception e)
     {
       e.printStackTrace();
     }
-
   }
+
 
   private void fetch()
   {

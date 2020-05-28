@@ -8,10 +8,12 @@ import java.io.IOException;
 public class RemoteModelProxy implements RemoteModel
 {
   private ClientSender clientSender;
+  private ClientModel model;
 
   public RemoteModelProxy(ClientModel model) throws IOException
   {
     clientSender = new ClientSender(model);
+    this.model = model;
   }
 
   @Override public void log(String login, String password, boolean isNewUser)
@@ -31,7 +33,14 @@ public class RemoteModelProxy implements RemoteModel
 
   @Override public void removeDiscussion(int discussionId, int userId)
   {
-    clientSender.removeDiscussion(discussionId, userId);
+    if (model.getDiscussionListBuffer().getDiscussionById(discussionId).getLoginOfEditorOfDiscussion().equals(model.getLogin()) || model.getUserType().equals("Admin"))
+    {
+      clientSender.removeDiscussion(discussionId, userId);
+    }
+    else
+    {
+      //here to do something with error labels..
+    }
   }
 
   @Override public void createNewDiscussion(String discussionId, int UserId)
@@ -74,7 +83,14 @@ public class RemoteModelProxy implements RemoteModel
   @Override public void changeNameOfDiscussion(int discussionId,
       String discussionName)
   {
-    clientSender.changeNameOfDiscussion(discussionId, discussionName);
+    if (model.getDiscussionListBuffer().getDiscussionById(discussionId).getLoginOfEditorOfDiscussion().equals(model.getLogin()) || model.getUserType().equals("Admin"))
+    {
+      clientSender.changeNameOfDiscussion(discussionId, discussionName);
+    }
+    else
+    {
+      // to throw something to make an error label
+    }
   }
 
   @Override public void changeLoginOfUser(int userId, String newLogin)

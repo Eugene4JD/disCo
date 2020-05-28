@@ -71,6 +71,7 @@ public class MainViewModel implements PropertyChangeListener,
   public void load()
   {
     this.usernamesThreads.set(model.getLogin() + "'s threads ▼");
+    this.search.set("");
     listView.clear();
     for (int i = 0; i < model.getDiscussionListBuffer().size(); i++)
     {
@@ -93,6 +94,7 @@ public class MainViewModel implements PropertyChangeListener,
                   .getDiscussionName()));
           break;
         case "LoggedToExistingDiscussion":
+          System.out.println("it was here");
           model.selectDiscussion((int)evt.getNewValue());
           property.firePropertyChange("LogToExistingDiscussion",null,evt.getNewValue());
           break;
@@ -114,6 +116,9 @@ public class MainViewModel implements PropertyChangeListener,
             listView.add(new Label(
                 iD.getDiscussionId() + "      " + iD.getDiscussionName()));
           }
+          break;
+        case "ChangedDiscussionName":
+          load();
           break;
       }
     });
@@ -184,11 +189,11 @@ public class MainViewModel implements PropertyChangeListener,
 
   @Override public void addListener(PropertyChangeListener listener)
   {
-
+    this.property.addPropertyChangeListener(listener);
   }
 
   @Override public void removeListener(PropertyChangeListener listener)
   {
-
+    this.property.removePropertyChangeListener(listener);
   }
 }

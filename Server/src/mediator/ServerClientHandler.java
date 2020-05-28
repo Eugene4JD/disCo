@@ -6,6 +6,7 @@ import model.DiscussionList;
 import model.ServerModel;
 import model.User;
 import network.*;
+import utility.Log;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -23,6 +24,7 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
   private boolean running;
   private ServerModel model;
   private Gson gson;
+  private Log log;
 
   public ServerClientHandler(Socket socket, ServerModel model)
       throws IOException
@@ -44,6 +46,7 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
       try
       {
         String req = in.readLine();
+        model.addLog(req);
         switch ((gson.fromJson(req, Request.class).getType()))
         {
           case Message:
@@ -62,7 +65,7 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
                 User user = model.getUserFromUserBaseByLogin(request1.getLogin());
                 out.println(gson.toJson(
                     new BroadcastLoginStatusToUserRequest(true, request1.getLogin(),
-                        user.getUserId())));
+                        user.getUserId(),user.getUserType())));
                 DiscussionList discussionList = model.getDiscussionWithUser(
                     model.getUserFromUserBaseByLogin(request1.getLogin())
                         .getUserId());
@@ -72,7 +75,7 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
               else
               {
                 out.println(gson.toJson(
-                    new BroadcastLoginStatusToUserRequest(false, "", 0)));
+                    new BroadcastLoginStatusToUserRequest(false, "", 0,"")));
               }
             }
             else
@@ -84,7 +87,7 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
                 {
                   out.println(gson.toJson(
                       new BroadcastLoginStatusToUserRequest(true,
-                          user.getUserLogin(), user.getUserId())));
+                          user.getUserLogin(), user.getUserId(),user.getUserType())));
                   DiscussionList discussionList = model.getDiscussionWithUser(
                       model.getUserFromUserBaseByLogin(request1.getLogin())
                           .getUserId());
@@ -93,11 +96,11 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
                 }
                 else
                   out.println(gson.toJson(
-                      new BroadcastLoginStatusToUserRequest(false, "", 0)));
+                      new BroadcastLoginStatusToUserRequest(false, "", 0,"")));
               }
               else
                 out.println(gson.toJson(
-                    new BroadcastLoginStatusToUserRequest(false, "", 0)));
+                    new BroadcastLoginStatusToUserRequest(false, "", 0,"")));
             }
             break;
 
@@ -173,9 +176,6 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
                 .fromJson(req, ChangeDiscussionNameRequest.class);
             model.editNameOfDiscussion(request8.getDiscussionId(),
                 request8.getDiscussionName());
-            out.println(gson.toJson(
-                new BroadcastChangedDiscussionName(request8.getDiscussionId(),
-                    request8.getDiscussionName())));
             break;
 
           case ChangePasswordName:
@@ -231,8 +231,10 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
   {
     switch (event.getPropertyName())
     {
+      case "BroadcastChangedDiscussionName":
       case "BroadcastMessageToDiscussion":
         out.println(gson.toJson(event.getNewValue()));
+        break;
     }
   }
 }

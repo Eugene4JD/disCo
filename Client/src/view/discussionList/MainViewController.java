@@ -49,6 +49,7 @@ public class MainViewController implements PropertyChangeListener
     searchField.textProperty().bindBidirectional(viewModel.getSearch());
     usernamesThreads.textProperty()
         .bindBidirectional(viewModel.getUserNamesThreads());
+    viewModel.addListener(this);
   }
 
   private void initPopup()
@@ -131,7 +132,9 @@ public class MainViewController implements PropertyChangeListener
       {
         case "LogToExistingDiscussion":
           viewHandler.openView("chat");
+          break;
       }
     });
+
   }
 }

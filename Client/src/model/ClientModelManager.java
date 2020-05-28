@@ -20,6 +20,7 @@ public class ClientModelManager implements ClientModel
   private PropertyChangeSupport property;
   private int selectedDiscussionId;
   private DiscussionList lastSearched;
+  private String userType;
 
   public ClientModelManager()
   {
@@ -37,6 +38,7 @@ public class ClientModelManager implements ClientModel
       e.printStackTrace();
     }
     this.login = "";
+    this.userType ="";
   }
 
   @Override public void connect()
@@ -157,6 +159,7 @@ public class ClientModelManager implements ClientModel
         {
           this.login = request4.getLogin();
           this.id = request4.getId();
+          this.userType = request4.getTypeOfUser();
           property.firePropertyChange("LogStatus", null, true);
         }
         else
@@ -182,8 +185,12 @@ public class ClientModelManager implements ClientModel
       case "broadcastChangeDiscussionName":
         BroadcastChangedDiscussionName request7 = (BroadcastChangedDiscussionName) evt
             .getNewValue();
-        this.discussionListBuffer.getDiscussionById(request7.getDiscussionId()).setDiscussionName(request7.getDiscussionName());
-        property.firePropertyChange("ChangedDiscussionName", null, request7.getDiscussionName());
+        if (!(this.discussionListBuffer.getDiscussionById(request7.getDiscussionId()) == null))
+        {
+          this.discussionListBuffer.getDiscussionById(request7.getDiscussionId())
+              .setDiscussionName(request7.getDiscussionName());
+          property.firePropertyChange("ChangedDiscussionName", null, request7.getDiscussionName());
+        }
         break;
       case "broadcastChangePasswordToUser":
         BroadcastChangedPasswordToUser request8 = (BroadcastChangedPasswordToUser) evt
@@ -307,5 +314,10 @@ public class ClientModelManager implements ClientModel
   @Override public void removeItself()
   {
     this.remoteModel.removeUser(id);
+  }
+
+  @Override public String getUserType()
+  {
+    return userType;
   }
 }
