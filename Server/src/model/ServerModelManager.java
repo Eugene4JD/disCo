@@ -2,6 +2,7 @@ package model;
 
 import network.BroadcastChangedDiscussionName;
 import network.BroadcastMessageToDiscussionRequest;
+import network.BroadcastRemovingDiscussionToUserRequest;
 import utility.Log;
 
 import java.beans.PropertyChangeListener;
@@ -89,6 +90,7 @@ public class ServerModelManager implements ServerModel
     {
       discoPersistence.removeDiscussion(discussionId, userId);
       discussionList.removeDiscussionById(discussionId);
+      property.firePropertyChange("BroadcastRemovingDiscussionToUserRequest",null,new BroadcastRemovingDiscussionToUserRequest(discussionId));
     }
     catch (SQLException e)
     {

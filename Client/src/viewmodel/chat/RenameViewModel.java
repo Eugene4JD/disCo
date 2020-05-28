@@ -56,11 +56,18 @@ public class RenameViewModel
   {
     if (!enter.get().equals(""))
     {
-      model.changeNameOfDiscussion(model.getSelectedDiscussion(), enter.get());
-      property.firePropertyChange("Loading", null, null);
+      try
+      {
+        model.changeNameOfDiscussion(model.getSelectedDiscussion(), enter.get());
+        property.firePropertyChange("Loading", null, "");
+      }
+      catch (Exception e)
+      {
+        property.firePropertyChange("IllegalAccess",null,"");
+      }
     }
     else
-      property.firePropertyChange("AlertEmpty", null, null);
+      property.firePropertyChange("AlertEmpty", null, "");
   }
 
   public StringProperty getOldProperty()

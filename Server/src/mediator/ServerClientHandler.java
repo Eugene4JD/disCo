@@ -138,9 +138,6 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
             {
               model.removeDiscussion(request4.getDiscussionId(),
                   request4.getUserId());
-              out.println(gson.toJson(
-                  new BroadcastRemovingDiscussionToUserRequest(
-                      request4.getDiscussionId())));
             }
             break;
 
@@ -200,7 +197,7 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
             RemoveUserRequest request10 = gson
                 .fromJson(req, RemoveUserRequest.class);
             model.removeUserFromUserBase(request10.getUserId());
-            out.println(new BroadcastDeletedAccountRequest());
+            out.println(gson.toJson(new BroadcastDeletedAccountRequest()));
             break;
         }
       }
@@ -233,6 +230,7 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
     {
       case "BroadcastChangedDiscussionName":
       case "BroadcastMessageToDiscussion":
+      case "BroadcastRemovingDiscussionToUserRequest":
         out.println(gson.toJson(event.getNewValue()));
         break;
     }

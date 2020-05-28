@@ -118,6 +118,7 @@ public class MainViewModel implements PropertyChangeListener,
           }
           break;
         case "ChangedDiscussionName":
+        case "DiscussionRemoved":
           load();
           break;
       }

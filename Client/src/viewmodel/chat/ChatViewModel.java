@@ -92,6 +92,11 @@ public class ChatViewModel implements PropertyChangeListener
         case "ChangedDiscussionName":
           load();
           break;
+        case "DiscussionRemoved":
+          if (model.getSelectedDiscussion() == (int)evt.getNewValue())
+          {
+
+          }
 
       }
     });

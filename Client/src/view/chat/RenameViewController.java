@@ -94,6 +94,9 @@ public class RenameViewController implements PropertyChangeListener
         case "AlertEmpty":
           alertEmpty();
           break;
+        case "IllegalAccess":
+          illegalAlert();
+          break;
       }
     });
   }
@@ -125,6 +128,17 @@ public class RenameViewController implements PropertyChangeListener
     newTitleText.setOpacity(0.95);
     spinner.visibleProperty().setValue(false);
     vBox.disableProperty().setValue(false);
+  }
+
+  public void illegalAlert()
+  {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle("Error");
+    alert.setHeaderText("You are not the editor of this thread");
+    Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+    stage.getIcons()
+        .add(new Image(getClass().getResourceAsStream("/resources/exp.png")));
+    alert.showAndWait();
   }
 
   public void onEnter(KeyEvent keyEvent)

@@ -98,7 +98,7 @@ public class DiscoDatabase implements DiscoPersistence
 
   @Override public void removeUser(int userID) throws SQLException
   {
-    String sql = "Delete from DisCoDB.userBase where UserId = ?;";
+    String sql = "Delete from DisCoDB.userBase where ID = ?;";
     db.update(sql, userID);
     sql = "Delete from DisCoDB.DiscussionUserList where UserId = ?;";
     db.update(sql, userID);

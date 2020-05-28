@@ -152,7 +152,11 @@ public class ClientModelManager implements ClientModel
       case "broadcastRemovingDiscussionToUser":
         BroadcastRemovingDiscussionToUserRequest request3 = (BroadcastRemovingDiscussionToUserRequest) evt
             .getNewValue();
-        discussionListBuffer.removeDiscussionById(request3.getDiscussionId());
+        if (this.discussionListBuffer.getDiscussionById(request3.getDiscussionId()) != null)
+        {
+          discussionListBuffer.removeDiscussionById(request3.getDiscussionId());
+          property.firePropertyChange("DiscussionRemoved",null,request3.getDiscussionId());
+        }
         break;
       case "broadcastLoginStatusToUser":
         BroadcastLoginStatusToUserRequest request4 = (BroadcastLoginStatusToUserRequest) evt

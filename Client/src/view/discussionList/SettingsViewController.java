@@ -98,7 +98,7 @@ public class SettingsViewController implements PropertyChangeListener
     Platform.runLater(() -> {
       switch (evt.getPropertyName())
       {
-        case "RemoveUser":
+        case "RemovedUser":
           removeLoading();
           viewHandler.openView("login");
           break;

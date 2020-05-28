@@ -39,7 +39,7 @@ public class RemoteModelProxy implements RemoteModel
     }
     else
     {
-      //here to do something with error labels..
+      throw new IllegalStateException("Restrict access");
     }
   }
 
@@ -89,7 +89,7 @@ public class RemoteModelProxy implements RemoteModel
     }
     else
     {
-      // to throw something to make an error label
+      throw new IllegalStateException("Restrict access");
     }
   }
 
