@@ -128,8 +128,13 @@ public class ChatViewController implements PropertyChangeListener
           else if (evt.getNewValue().equals(false))
           {
             removeMessageLoading();
+            //viewModel.load();
             break;
           }
+        case "toBottom":
+        {
+          chatList.scrollTo((int) evt.getNewValue());
+        }
       }
     });
   }

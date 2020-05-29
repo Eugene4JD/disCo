@@ -68,6 +68,8 @@ public class ChatViewModel
             new Label(discussion.getMessageList().getMessage(i).toString()));
       }
       setThreadName();
+      property.firePropertyChange("toBottom", null,
+          discussion.getMessageList().size() - 1);
     }
     enterField.set("");
   }
@@ -97,6 +99,8 @@ public class ChatViewModel
                 .getMessage(discussion.getMessageList().size() - 1)
                 .toString()));
             property.firePropertyChange("MessageLoading", null, false);
+            property.firePropertyChange("toBottom", null,
+                discussion.getMessageList().size() - 1);
           }
           break;
         case "ChangedDiscussionName":
