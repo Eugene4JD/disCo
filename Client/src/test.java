@@ -82,7 +82,7 @@ public class test
             String discussionId3=in.nextLine();
             int discussionID = model.getDiscussionIdFromBuffer(discussionId3);
             int userID = model.getId();
-            model.removeDiscussion(discussionID,userID);
+            model.removeDiscussion(discussionID);
             System.out.println("removed discussion");
 
             break;

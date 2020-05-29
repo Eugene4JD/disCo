@@ -98,7 +98,7 @@ public class ChatViewModel
         case "DiscussionRemoved":
           if (model.getSelectedDiscussion() == (int) evt.getNewValue())
           {
-            property.firePropertyChange("RemoveThread", null, null);
+            property.firePropertyChange("RemoveThread", null, "");
           }
           break;
       }
@@ -119,22 +119,22 @@ public class ChatViewModel
   {
     try
     {
-      //model.removeDiscussion(model.getSelectedDiscussion());
-      property.firePropertyChange("Loading", null, null);
+      model.removeDiscussion(model.getSelectedDiscussion());
+      property.firePropertyChange("Loading", null, "");
     }
     catch (Exception e)
     {
-      property.firePropertyChange("AccessDenied", null, null);
+      property.firePropertyChange("AccessDenied", null, "");
     }
   }
 
   @Override public void addListener(PropertyChangeListener listener)
   {
-    property.removePropertyChangeListener(listener);
+    property.addPropertyChangeListener(listener);
   }
 
   @Override public void removeListener(PropertyChangeListener listener)
   {
-    property.addPropertyChangeListener(listener);
+    property.removePropertyChangeListener(listener);
   }
 }

@@ -65,9 +65,9 @@ public class ClientModelManager implements ClientModel
     }
   }
 
-  @Override public void removeDiscussion(int discussionId, int userId)
+  @Override public void removeDiscussion(int discussionId)
   {
-    this.remoteModel.removeDiscussion(discussionId, userId);
+    this.remoteModel.removeDiscussion(discussionId,id);
   }
 
   @Override public void addDiscussion(Discussion discussion)

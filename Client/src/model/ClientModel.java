@@ -12,7 +12,7 @@ public interface ClientModel extends ultimateUnnamedPropertyChangeSubject
   void addDiscussion(Discussion discussion);
   void addUser(User user);
   void createDiscussion(String discussionId);
-  void removeDiscussion(int discussionId, int userId);
+  void removeDiscussion(int discussionId);
   void sendMessageToDiscussion(int discussionID, int userId, String message);
   void connect();
   void disconnect();
