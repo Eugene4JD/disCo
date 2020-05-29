@@ -65,7 +65,7 @@
         </HBox>
         <HBox prefHeight="35.0" prefWidth="800.0">
             <children>
-                <TextField fx:id="searchField" onKeyTyped="#searchRefresh" prefHeight="28.0" prefWidth="554.0" promptText="Search" style="-fx-background-radius: 0; -fx-background-color: -fx-text-box-border, -fx-control-inner-background;">
+                <TextField fx:id="searchField" focusTraversable="false" onKeyTyped="#searchRefresh" prefHeight="28.0" prefWidth="554.0" promptText="Search" style="-fx-background-radius: 0; -fx-background-color: -fx-text-box-border, -fx-control-inner-background;">
                     <HBox.margin>
                         <Insets left="40.0" />
                     </HBox.margin>

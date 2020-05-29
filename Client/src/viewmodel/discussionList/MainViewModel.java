@@ -19,8 +19,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class MainViewModel implements PropertyChangeListener,
-    UnnamedPropertyChangeSubject
+public class MainViewModel
+    implements PropertyChangeListener, UnnamedPropertyChangeSubject
 {
   private ClientModel model;
   private StringProperty search;
@@ -95,8 +95,9 @@ public class MainViewModel implements PropertyChangeListener,
           break;
         case "LoggedToExistingDiscussion":
           System.out.println("it was here");
-          model.selectDiscussion((int)evt.getNewValue());
-          property.firePropertyChange("LogToExistingDiscussion",null,evt.getNewValue());
+          model.selectDiscussion((int) evt.getNewValue());
+          property.firePropertyChange("LogToExistingDiscussion", null,
+              evt.getNewValue());
           break;
         case "searchByName":
           listView.clear();
@@ -196,5 +197,25 @@ public class MainViewModel implements PropertyChangeListener,
   @Override public void removeListener(PropertyChangeListener listener)
   {
     this.property.removePropertyChangeListener(listener);
+  }
+
+  public void settings()
+  {
+    if (model.getUserType().equals("Guest"))
+    {
+      property.firePropertyChange("AlertGuest", null, "");
+    }
+    else
+      property.firePropertyChange("OpenSettings", null, "");
+  }
+
+  public void add()
+  {
+    if (model.getUserType().equals("Guest"))
+    {
+      property.firePropertyChange("AlertGuest", null, "");
+    }
+    else
+      property.firePropertyChange("OpenAdd", null, "");
   }
 }

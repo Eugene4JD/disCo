@@ -79,12 +79,12 @@ public class MainViewController implements PropertyChangeListener
 
   public void settingsButtonPressed(ActionEvent actionEvent)
   {
-    viewHandler.openView("settings");
+    viewModel.settings();
   }
 
   public void addButtonPressed(ActionEvent actionEvent)
   {
-    viewHandler.openView("add");
+    viewModel.add();
   }
 
   public void doubleClickOnThread(MouseEvent mouseEvent)
@@ -139,6 +139,21 @@ public class MainViewController implements PropertyChangeListener
         case "LogToExistingDiscussion":
           viewHandler.openView("chat");
           break;
+        case "OpenSettings":
+        {
+          viewHandler.openView("settings");
+          break;
+        }
+        case "OpenAdd":
+        {
+          viewHandler.openView("add");
+          break;
+        }
+        case "AlertGuest":
+        {
+          accessDenied();
+          break;
+        }
       }
     });
   }
@@ -147,7 +162,7 @@ public class MainViewController implements PropertyChangeListener
   {
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle("Error");
-    alert.setHeaderText("Create an account firstly!");
+    alert.setHeaderText("This feature is only available for registered users!");
     Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
     stage.getIcons()
         .add(new Image(getClass().getResourceAsStream("/resources/exp.png")));
