@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
@@ -12,11 +13,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="815.0" userData="disCo" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.discussionList.MainViewController">
+<VBox fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="815.0" userData="disCo" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.discussionList.MainViewController">
     <children>
         <HBox prefHeight="66.0" prefWidth="822.0" style="-fx-background-color: #E8E8E8;">
             <children>
-                <ImageView fitHeight="49.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="logo" fitHeight="49.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../../resources/v2.3_240p_transparent.png" />
                     </image>
@@ -24,12 +25,17 @@
                         <Insets left="33.0" top="11.0" />
                     </HBox.margin>
                 </ImageView>
-                <JFXButton onAction="#settingsButtonPressed" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Settings" textFill="#ededed">
+            <JFXSpinner fx:id="spinner" focusTraversable="false" prefHeight="66.0" prefWidth="25.0" style="-fx-background-color: transparent;" styleClass="spinner" stylesheets="@../../resources/spinner.css" visible="false">
+               <HBox.margin>
+                  <Insets left="459.0" />
+               </HBox.margin>
+            </JFXSpinner>
+                <JFXButton focusTraversable="false" onAction="#settingsButtonPressed" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Settings" textFill="#ededed">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
                     <HBox.margin>
-                        <Insets left="505.0" top="18.0" />
+                        <Insets left="20.0" top="18.0" />
                     </HBox.margin>
                 </JFXButton>
             </children>
@@ -44,7 +50,7 @@
                         <Insets left="41.0" top="12.0" />
                     </HBox.margin>
                 </Text>
-                <JFXButton onAction="#addButtonPressed" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="+ Add ">
+                <JFXButton focusTraversable="false" onAction="#addButtonPressed" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="+ Add ">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
@@ -64,7 +70,7 @@
                         <Insets left="40.0" />
                     </HBox.margin>
                 </TextField>
-                <ComboBox fx:id="searchSelector" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 0; -fx-font-weight: bold;" value="by ID">
+                <ComboBox fx:id="searchSelector" focusTraversable="false" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 0; -fx-font-weight: bold;" value="by ID">
                     <HBox.margin>
                         <Insets left="15.0" />
                     </HBox.margin>
@@ -76,7 +82,7 @@
         </HBox>
         <HBox prefHeight="283.0" prefWidth="800.0">
             <children>
-                <JFXListView fx:id="listView" onMouseClicked="#doubleClickOnThread" prefHeight="283.0" prefWidth="720.0" style="-fx-background-color: #E8E8E8;">
+                <JFXListView fx:id="listView" focusTraversable="false" onMouseClicked="#doubleClickOnThread" prefHeight="283.0" prefWidth="720.0" style="-fx-background-color: #E8E8E8;">
                     <HBox.margin>
                         <Insets left="40.0" />
                     </HBox.margin>

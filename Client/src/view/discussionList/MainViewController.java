@@ -3,9 +3,11 @@ package view.discussionList;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXPopup;
+import com.jfoenix.controls.JFXSpinner;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -17,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.ClientModel;
 import view.ViewHandler;
 import viewmodel.discussionList.MainViewModel;
@@ -32,6 +35,9 @@ public class MainViewController implements PropertyChangeListener
   @FXML private JFXPopup popup;
   @FXML private ComboBox<String> searchSelector;
   @FXML private Text usernamesThreads;
+  @FXML private ImageView logo;
+  @FXML private VBox vBox;
+  @FXML private JFXSpinner spinner;
 
   private ViewHandler viewHandler;
   private MainViewModel viewModel;
@@ -127,7 +133,7 @@ public class MainViewController implements PropertyChangeListener
 
   @Override public void propertyChange(PropertyChangeEvent evt)
   {
-    Platform.runLater(()->{
+    Platform.runLater(() -> {
       switch (evt.getPropertyName())
       {
         case "LogToExistingDiscussion":
@@ -135,6 +141,16 @@ public class MainViewController implements PropertyChangeListener
           break;
       }
     });
+  }
 
+  private void accessDenied()
+  {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle("Error");
+    alert.setHeaderText("Create an account firstly!");
+    Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+    stage.getIcons()
+        .add(new Image(getClass().getResourceAsStream("/resources/exp.png")));
+    alert.showAndWait();
   }
 }
