@@ -10,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -108,6 +110,14 @@ public class RegistrationViewController implements PropertyChangeListener
     if (keyEvent.getCode() == KeyCode.ENTER)
     {
       signUpButtonPressed();
+    }
+  }
+
+  public void enterAsAGuestClicked(MouseEvent mouseEvent)
+  {
+    if (mouseEvent.getButton().equals(MouseButton.PRIMARY))
+    {
+      viewModel.enterAsAGuest();
     }
   }
 }

@@ -57,9 +57,8 @@ public class AddViewModel
       }
       catch (Exception e)
       {
-        // to do
+        property.firePropertyChange("AlertGuest", null, null);
       }
-
     }
   }
 

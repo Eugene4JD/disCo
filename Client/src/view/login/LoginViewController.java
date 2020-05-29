@@ -1,14 +1,18 @@
 package view.login;
 
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXSpinner;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import view.ViewHandler;
 import viewmodel.login.LoginViewModel;
@@ -21,6 +25,9 @@ public class LoginViewController implements PropertyChangeListener
   @FXML private JFXTextField usernameField;
   @FXML private JFXPasswordField passwordField;
   @FXML private Label errorLabel;
+  @FXML private VBox vBox;
+  @FXML private JFXSpinner spinner;
+  @FXML private ImageView logo;
 
   private ViewHandler viewHandler;
   private LoginViewModel viewModel;
@@ -68,7 +75,10 @@ public class LoginViewController implements PropertyChangeListener
 
   public void enterAsGuestClicked(MouseEvent mouseEvent)
   {
-    viewHandler.openView("main");
+    if (mouseEvent.getButton().equals(MouseButton.PRIMARY))
+    {
+      viewModel.enterAsAGuest();
+    }
   }
 
   public void onEnter(KeyEvent keyEvent)
@@ -85,11 +95,33 @@ public class LoginViewController implements PropertyChangeListener
       switch (evt.getPropertyName())
       {
         case "LogStatus":
-          if (evt.getNewValue().equals(true))
-          {
-            viewHandler.openView("main");
-          }
+          removeLoading();
+          viewHandler.openView("main");
+          break;
+        case "Loading":
+        {
+          setLoading();
+          break;
+        }
       }
     });
+  }
+
+  private void setLoading()
+  {
+    logo.setOpacity(0.5);
+    usernameField.setOpacity(0.5);
+    passwordField.setOpacity(0.5);
+    spinner.visibleProperty().setValue(true);
+    vBox.disableProperty().setValue(true);
+  }
+
+  private void removeLoading()
+  {
+    logo.setOpacity(1);
+    usernameField.setOpacity(0.95);
+    passwordField.setOpacity(0.95);
+    spinner.visibleProperty().setValue(false);
+    vBox.disableProperty().setValue(false);
   }
 }

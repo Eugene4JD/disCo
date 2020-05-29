@@ -144,4 +144,6 @@ public class ChatViewModel
   {
     property.removePropertyChangeListener(listener);
   }
+  //model.getUserType() if "Guest"
+
 }

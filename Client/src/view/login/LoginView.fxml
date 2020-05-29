@@ -13,17 +13,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="367.0" prefWidth="416.0"
-      userData="Log in" xmlns="http://javafx.com/javafx/11.0.1"
+<VBox fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity"
+      minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0"
+      prefWidth="416.0" userData="Log in"
+      xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="view.login.LoginViewController">
     <children>
         <HBox prefHeight="82.0" prefWidth="412.0"
               style="-fx-background-color: #E8E8E8;">
             <children>
-                <ImageView fitHeight="62.0" fitWidth="464.0" pickOnBounds="true"
-                           preserveRatio="true">
+                <ImageView fx:id="logo" fitHeight="62.0" fitWidth="464.0"
+                           pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../../resources/v2.3_240p_transparent.png"/>
                     </image>
@@ -74,12 +75,13 @@
         </HBox>
         <HBox prefHeight="20.0" prefWidth="400.0">
             <children>
-                <Label text="No account? ">
+                <Label focusTraversable="false" text="No account? ">
                     <HBox.margin>
                         <Insets left="40.0"/>
                     </HBox.margin>
                 </Label>
-                <Label onMouseClicked="#createOnePressed" text="Create one!"
+                <Label focusTraversable="false"
+                       onMouseClicked="#createOnePressed" text="Create one!"
                        textFill="#003780" underline="true"/>
             </children>
             <VBox.margin>
@@ -88,7 +90,8 @@
         </HBox>
         <HBox prefHeight="27.0" prefWidth="400.0">
             <children>
-                <Label onMouseClicked="#enterAsGuestClicked" prefHeight="18.0"
+                <Label focusTraversable="false"
+                       onMouseClicked="#enterAsGuestClicked" prefHeight="18.0"
                        prefWidth="106.0" text="Enter as a guest"
                        textFill="#003780" underline="true">
                     <HBox.margin>

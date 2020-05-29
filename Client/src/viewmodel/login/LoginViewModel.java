@@ -59,14 +59,13 @@ public class LoginViewModel
     if (username.equals(""))
     {
       error.set("empty username");
-
     }
     else if (password.equals(""))
     {
       error.set("empty password");
     }
     else
-      model.log(username, password, false,false);
+      model.log(username, password, false, false);
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
@@ -80,7 +79,10 @@ public class LoginViewModel
             error.set("wrong username/password");
           }
           else
+          {
             property.firePropertyChange("LogStatus", null, evt.getNewValue());
+          }
+
       }
     });
   }
@@ -93,5 +95,11 @@ public class LoginViewModel
   @Override public void removeListener(PropertyChangeListener listener)
   {
     property.removePropertyChangeListener(listener);
+  }
+
+  public void enterAsAGuest()
+  {
+    model.log("", "", true, true);
+    property.firePropertyChange("Loading", null, true);
   }
 }

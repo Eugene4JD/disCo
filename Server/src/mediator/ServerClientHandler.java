@@ -118,8 +118,10 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
               User user = model
                   .addNewUserToUserBase("Guest", request1.getLogin(),
                       request1.getPassword());
-              out.println(new BroadcastLoginStatusToUserRequest(true, "Guest-"+user.getUserId(),
-                  user.getUserId(), user.getUserType(), true));
+              out.println(gson.toJson(
+                  new BroadcastLoginStatusToUserRequest(true,
+                      "Guest-" + user.getUserId(), user.getUserId(),
+                      user.getUserType(), true)));
             }
             break;
 

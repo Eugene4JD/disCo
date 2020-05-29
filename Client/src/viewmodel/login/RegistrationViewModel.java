@@ -41,10 +41,9 @@ public class RegistrationViewModel
 
   public void enterAsAGuest()
   {
-    model.log("","",true,true);
-    property.firePropertyChange("Loading",null,true);
+    model.log("", "", true, true);
+    property.firePropertyChange("Loading", null, true);
   }
-
 
   public StringProperty getUsernameProperty()
   {
@@ -93,7 +92,7 @@ public class RegistrationViewModel
     }
     else
     {
-      model.log(username, password0, true,false);
+      model.log(username, password0, true, false);
       property.firePropertyChange("Loading", null, true);
     }
 
@@ -113,9 +112,8 @@ public class RegistrationViewModel
           else
           {
             property.firePropertyChange("Loading", null, false);
-            property.firePropertyChange("LogStatus", null, null);
+            property.firePropertyChange("LogStatus", null, "");
           }
-
           break;
       }
     });

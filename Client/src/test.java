@@ -43,11 +43,11 @@ public class test
             String isNewUser=in.nextLine();
             if (isNewUser.equals("true"))
             {
-                model.log(login,password,true);
+                model.log(login,password,true, false);
             }
             else
             {
-              model.log(login,password,false);
+              model.log(login,password,false, false);
             }
             System.out.println("log added");
             break;
