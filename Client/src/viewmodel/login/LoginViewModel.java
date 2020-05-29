@@ -82,7 +82,6 @@ public class LoginViewModel
           {
             property.firePropertyChange("LogStatus", null, evt.getNewValue());
           }
-
       }
     });
   }
