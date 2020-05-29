@@ -1,6 +1,6 @@
 package view.chat;
 
-import com.jfoenix.controls.JFXAlert;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXSpinner;
 import javafx.application.Platform;
@@ -12,10 +12,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import view.ViewHandler;
 import viewmodel.chat.ChatViewModel;
@@ -34,6 +35,8 @@ public class ChatViewController implements PropertyChangeListener
   @FXML private ImageView logo;
   @FXML private ImageView renameIcon;
   @FXML private ImageView removeIcon;
+  @FXML private JFXButton sendButton;
+  private boolean disableSend = false;
 
   private ViewHandler viewHandler;
   private ChatViewModel viewModel;
@@ -61,6 +64,7 @@ public class ChatViewController implements PropertyChangeListener
   public void load()
   {
     viewModel.load();
+    enterField.requestFocus();
   }
 
   public Region getRoot()
@@ -73,7 +77,7 @@ public class ChatViewController implements PropertyChangeListener
     viewHandler.openView("main");
   }
 
-  public void sendButtonPressed(ActionEvent actionEvent)
+  public void sendButtonPressed()
   {
     viewModel.sendMessage();
   }
@@ -114,6 +118,17 @@ public class ChatViewController implements PropertyChangeListener
         case "Loading":
           setLoading();
           break;
+        case "MessageLoading":
+          if (evt.getNewValue().equals(true))
+          {
+            setMessageLoading();
+            break;
+          }
+          else if (evt.getNewValue().equals(false))
+          {
+            removeMessageLoading();
+            break;
+          }
       }
     });
   }
@@ -136,6 +151,28 @@ public class ChatViewController implements PropertyChangeListener
     vBox.disableProperty().setValue(false);
   }
 
+  private void setMessageLoading()
+  {
+    renameIcon.setOpacity(0.5);
+    renameIcon.disableProperty().setValue(true);
+    removeIcon.setOpacity(0.5);
+    removeIcon.disableProperty().setValue(true);
+    spinner.visibleProperty().setValue(true);
+    sendButton.disableProperty().setValue(true);
+    disableSend = true;
+  }
+
+  private void removeMessageLoading()
+  {
+    renameIcon.setOpacity(1);
+    renameIcon.disableProperty().setValue(false);
+    removeIcon.setOpacity(1);
+    removeIcon.disableProperty().setValue(false);
+    spinner.visibleProperty().setValue(false);
+    sendButton.disableProperty().setValue(false);
+    disableSend = false;
+  }
+
   private void accessDeniedAlert()
   {
     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -145,5 +182,14 @@ public class ChatViewController implements PropertyChangeListener
     stage.getIcons()
         .add(new Image(getClass().getResourceAsStream("/resources/exp.png")));
     alert.showAndWait();
+  }
+
+  public void onEnter(KeyEvent keyEvent)
+  {
+    if (keyEvent.getCode() == KeyCode.ENTER)
+    {
+      if (!disableSend)
+        sendButtonPressed();
+    }
   }
 }

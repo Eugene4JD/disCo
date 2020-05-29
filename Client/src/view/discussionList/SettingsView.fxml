@@ -30,7 +30,7 @@
                   <Insets left="350.0" />
                </HBox.margin>
             </JFXSpinner>
-                <JFXButton onAction="#backButtonPressed" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Back" textFill="#ededed">
+                <JFXButton focusTraversable="false" onAction="#backButtonPressed" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Back" textFill="#ededed">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
@@ -55,7 +55,7 @@
                                 <Insets left="53.0" top="16.0" />
                             </VBox.margin>
                         </ImageView>
-                  <Label fx:id="usernameText" alignment="CENTER" prefHeight="20.0" prefWidth="152.0" text="User_Name" textFill="#000000bf">
+                  <Label fx:id="usernameText" alignment="CENTER" focusTraversable="false" prefHeight="20.0" prefWidth="152.0" text="User_Name" textFill="#000000bf">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -63,7 +63,7 @@
                         <Insets left="23.0" top="5.0" />
                      </VBox.margin>
                   </Label>
-                        <JFXButton onAction="#removeProfileButtonPressed" prefHeight="50.0" prefWidth="146.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="I want to &#10;remove my profile&#10;&#10;" textAlignment="CENTER">
+                        <JFXButton focusTraversable="false" onAction="#removeProfileButtonPressed" prefHeight="50.0" prefWidth="146.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="I want to &#10;remove my profile&#10;&#10;" textAlignment="CENTER">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -114,7 +114,7 @@
                               <Insets left="1.0" top="46.0" />
                            </HBox.margin>
                         </Label>
-                        <JFXButton onAction="#applyButtonPressed" prefHeight="30.0" prefWidth="122.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="Apply changes">
+                        <JFXButton focusTraversable="false" onAction="#applyButtonPressed" prefHeight="30.0" prefWidth="122.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="Apply changes">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>

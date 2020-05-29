@@ -83,7 +83,7 @@
         </HBox>
         <HBox prefHeight="46.0" prefWidth="416.0">
             <children>
-                <JFXButton onAction="#saveButtonPressed" prefHeight="30.0" prefWidth="512.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Save and close" textFill="#ededed">
+                <JFXButton focusTraversable="false" onAction="#saveButtonPressed" prefHeight="30.0" prefWidth="512.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Save and close" textFill="#ededed">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
@@ -95,7 +95,7 @@
         </HBox>
         <HBox prefHeight="37.0" prefWidth="600.0">
             <children>
-                <JFXButton fx:id="backButton" onAction="#cancelButtonPressed" prefHeight="30.0" prefWidth="512.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="Cancel">
+                <JFXButton fx:id="backButton" focusTraversable="false" onAction="#cancelButtonPressed" prefHeight="30.0" prefWidth="512.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="Cancel">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>

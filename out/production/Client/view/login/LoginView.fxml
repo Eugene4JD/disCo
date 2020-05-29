@@ -58,7 +58,7 @@
                         <Insets left="40.0" />
                     </HBox.margin>
                 </Text>
-                <Text fill="#003780" focusTraversable="true" onMouseClicked="#createOnePressed" strokeType="OUTSIDE" strokeWidth="0.0" text="Create one!" underline="true" wrappingWidth="66.93670654296875" />
+                <Text fill="#003780" onMouseClicked="#createOnePressed" strokeType="OUTSIDE" strokeWidth="0.0" text="Create one!" underline="true" wrappingWidth="66.93670654296875" />
             </children>
             <VBox.margin>
                 <Insets top="25.0" />
@@ -66,7 +66,7 @@
         </HBox>
         <HBox prefHeight="27.0" prefWidth="400.0">
             <children>
-                <Text fill="#003780" focusTraversable="true" onMouseClicked="#enterAsGuestClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter as a guest" underline="true" wrappingWidth="87.73675537109375">
+                <Text fill="#003780" onMouseClicked="#enterAsGuestClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter as a guest" underline="true" wrappingWidth="87.73675537109375">
                     <HBox.margin>
                         <Insets left="40.0" />
                     </HBox.margin>
@@ -86,7 +86,7 @@
                         <Insets left="40.0" />
                     </HBox.margin>
                 </Label>
-                <JFXButton fx:id="cancelButton" onAction="#cancelButtonPressed" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="Cancel">
+                <JFXButton fx:id="cancelButton" focusTraversable="false" onAction="#cancelButtonPressed" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="Cancel">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
@@ -94,7 +94,7 @@
                         <Insets left="10.0" />
                     </HBox.margin>
                 </JFXButton>
-                <JFXButton fx:id="signInButton" onAction="#signInButtonPressed" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Sign in" textFill="#ededed">
+                <JFXButton fx:id="signInButton" focusTraversable="false" onAction="#signInButtonPressed" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Sign in" textFill="#ededed">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>

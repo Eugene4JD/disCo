@@ -69,12 +69,19 @@ public class ChatViewModel
       }
       setThreadName();
     }
+    enterField.set("");
   }
 
   public void sendMessage()
   {
-    model.sendMessageToDiscussion(model.getSelectedDiscussion(), model.getId(),
-        enterField.get());
+    if (!enterField.get().equals(""))
+    {
+      model
+          .sendMessageToDiscussion(model.getSelectedDiscussion(), model.getId(),
+              enterField.get());
+      property.firePropertyChange("MessageLoading", null, true);
+      enterField.set("");
+    }
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)
@@ -89,7 +96,7 @@ public class ChatViewModel
             chatList.add(new Label(discussion.getMessageList()
                 .getMessage(discussion.getMessageList().size() - 1)
                 .toString()));
-            enterField.set("");
+            property.firePropertyChange("MessageLoading", null, false);
           }
           break;
         case "ChangedDiscussionName":

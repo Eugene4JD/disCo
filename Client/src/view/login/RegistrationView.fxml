@@ -83,7 +83,7 @@
         </HBox>
         <HBox prefHeight="46.0" prefWidth="416.0">
             <children>
-                <JFXButton fx:id="signInButton" onAction="#signUpButtonPressed" prefHeight="30.0" prefWidth="320.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Sign up for FREE !" textFill="#ededed">
+                <JFXButton fx:id="signInButton" focusTraversable="false" onAction="#signUpButtonPressed" prefHeight="30.0" prefWidth="320.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Sign up for FREE !" textFill="#ededed">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
@@ -98,7 +98,7 @@
         </HBox>
         <HBox prefHeight="27.0" prefWidth="400.0">
             <children>
-                <JFXButton fx:id="backButton" onAction="#backButtonPressed" prefHeight="30.0" prefWidth="320.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="Back">
+                <JFXButton fx:id="backButton" focusTraversable="false" onAction="#backButtonPressed" prefHeight="30.0" prefWidth="320.0" style="-fx-background-color: #C5D5D6; -fx-background-radius: 0;" text="Back">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
@@ -118,7 +118,7 @@
                         <Insets left="41.0" top="2.0" />
                     </HBox.margin>
                 </Label>
-                <Label text="enter as a guest" textFill="#003780" underline="true">
+                <Label focusTraversable="false" text="enter as a guest" textFill="#003780" underline="true">
                     <HBox.margin>
                         <Insets left="5.0" top="2.0" />
                     </HBox.margin>
