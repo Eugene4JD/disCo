@@ -70,7 +70,7 @@
                         <Insets left="40.0" />
                     </HBox.margin>
                 </TextField>
-                <ComboBox fx:id="searchSelector" focusTraversable="false" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 0; -fx-font-weight: bold;" value="by ID">
+                <ComboBox fx:id="searchSelector" focusTraversable="false" onHiding="#comboHidden" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 0; -fx-font-weight: bold;" value="by ID">
                     <HBox.margin>
                         <Insets left="15.0" />
                     </HBox.margin>

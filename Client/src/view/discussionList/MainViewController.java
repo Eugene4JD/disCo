@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXPopup;
 import com.jfoenix.controls.JFXSpinner;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -116,7 +117,6 @@ public class MainViewController implements PropertyChangeListener
   {
     if (searchSelector.getValue().equals("by TITLE"))
     {
-
       if (searchField.getText().equals(""))
         viewModel.load();
       else
@@ -154,6 +154,11 @@ public class MainViewController implements PropertyChangeListener
           accessDenied();
           break;
         }
+        case "AlertLetters":
+        {
+          noLettersAllowed();
+          break;
+        }
       }
     });
   }
@@ -167,5 +172,21 @@ public class MainViewController implements PropertyChangeListener
     stage.getIcons()
         .add(new Image(getClass().getResourceAsStream("/resources/exp.png")));
     alert.showAndWait();
+  }
+
+  private void noLettersAllowed()
+  {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle("Error");
+    alert.setHeaderText("Letter are not allowed for ID search!");
+    Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+    stage.getIcons()
+        .add(new Image(getClass().getResourceAsStream("/resources/exp.png")));
+    alert.showAndWait();
+  }
+
+  public void comboHidden(Event event)
+  {
+    viewModel.load();
   }
 }

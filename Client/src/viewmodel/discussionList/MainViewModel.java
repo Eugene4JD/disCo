@@ -133,13 +133,18 @@ public class MainViewModel
 
   public void searchByName()
   {
-    System.out.println(search.get());
     model.searchDiscussionsByName(search.get());
   }
 
   public void searchById()
   {
-    model.searchDiscussionById(Integer.parseInt(search.get()));
+    if (containsLetters())
+    {
+    property.firePropertyChange("AlertLetters", null, "");
+    load();
+    }
+    else
+      model.searchDiscussionById(Integer.parseInt(search.get()));
   }
 
   public void logToDiscussion(String selectedLabel)
@@ -217,5 +222,19 @@ public class MainViewModel
     }
     else
       property.firePropertyChange("OpenAdd", null, "");
+  }
+
+  private boolean containsLetters()
+  {
+    String s = search.get();
+    int len = s.length();
+    for (int i = 0; i < len; i++)
+    {
+      if (Character.isLetter(s.charAt(i)) == true)
+      {
+        return true;
+      }
+    }
+    return false;
   }
 }
