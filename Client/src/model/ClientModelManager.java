@@ -101,9 +101,9 @@ public class ClientModelManager implements ClientModel
     remoteModel.createNewDiscussion(discussionId, id);
   }
 
-  @Override public void log(String login, String password, boolean isNewUser)
+  @Override public void log(String login, String password, boolean isNewUser, boolean isGuest)
   {
-    remoteModel.log(login, password, isNewUser);
+    remoteModel.log(login, password, isNewUser, isGuest);
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)

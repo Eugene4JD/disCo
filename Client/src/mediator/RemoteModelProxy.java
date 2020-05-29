@@ -16,9 +16,9 @@ public class RemoteModelProxy implements RemoteModel
     this.model = model;
   }
 
-  @Override public void log(String login, String password, boolean isNewUser)
+  @Override public void log(String login, String password, boolean isNewUser,boolean isGuest)
   {
-    clientSender.log(login, password, isNewUser);
+    clientSender.log(login, password, isNewUser,isGuest);
   }
 
   @Override public void connect() throws IOException
@@ -45,7 +45,14 @@ public class RemoteModelProxy implements RemoteModel
 
   @Override public void createNewDiscussion(String discussionId, int UserId)
   {
-    clientSender.createNewDiscussion(discussionId, UserId);
+    if (!model.getUserType().equals("Guest"))
+    {
+      clientSender.createNewDiscussion(discussionId, UserId);
+    }
+    else
+    {
+      throw new IllegalStateException("! You are guest, only registered users are allowed to do that");
+    }
   }
 
   @Override public void logToExistingDiscussion(int discussionId, int userId)
@@ -77,7 +84,14 @@ public class RemoteModelProxy implements RemoteModel
   @Override public void changePassword(int userId, String oldPassword,
       String newPassword)
   {
-    clientSender.changePassword(userId, oldPassword, newPassword);
+    if (!model.getUserType().equals("Guest"))
+    {
+      clientSender.changePassword(userId, oldPassword, newPassword);
+    }
+    else
+    {
+      throw new IllegalStateException("! You are guest, only registered users are allowed to do that");
+    }
   }
 
   @Override public void changeNameOfDiscussion(int discussionId,
@@ -95,6 +109,13 @@ public class RemoteModelProxy implements RemoteModel
 
   @Override public void changeLoginOfUser(int userId, String newLogin)
   {
-    clientSender.changeLoginOfUser(userId, newLogin);
+    if (!model.getUserType().equals("Guest"))
+    {
+      clientSender.changeLoginOfUser(userId, newLogin);
+    }
+    else
+    {
+      throw new IllegalStateException("! You are guest, only registered users are allowed to do that");
+    }
   }
 }

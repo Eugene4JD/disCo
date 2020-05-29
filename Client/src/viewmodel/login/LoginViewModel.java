@@ -66,7 +66,7 @@ public class LoginViewModel
       error.set("empty password");
     }
     else
-      model.log(username, password, false);
+      model.log(username, password, false,false);
   }
 
   @Override public void propertyChange(PropertyChangeEvent evt)

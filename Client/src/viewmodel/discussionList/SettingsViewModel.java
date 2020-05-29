@@ -64,68 +64,74 @@ public class SettingsViewModel
     String newPass1 = this.newPassword1.get();
     String newPass2 = this.newPassword2.get();
 
-    // 1 Password change
-    if (user.equals("") && (!(oldPass.equals("")) && (!(newPass1.equals("")))
-        && (!(newPass2.equals("")))))
+    try
     {
-      if (newPass1.equals(newPass2))
+      // 1 Password change
+      if (user.equals("") && (!(oldPass.equals("")) && (!(newPass1.equals("")))
+          && (!(newPass2.equals("")))))
       {
-        if (newPass1.contains(" "))
+        if (newPass1.equals(newPass2))
         {
-          error.set("no spaces for passwords");
+          if (newPass1.contains(" "))
+          {
+            error.set("no spaces for passwords");
+          }
+          else
+          {
+            model.changePassword(oldPass, newPass1);
+            property.firePropertyChange("Loading", null, true);
+          }
         }
         else
         {
-          model.changePassword(oldPass, newPass1);
+          this.error.set("new passwords do not match");
+        }
+      }
+      // 2 Username change
+      else if (!(user.equals("")) && oldPass.equals("") && newPass1.equals("")
+          && newPass2.equals(""))
+      {
+        if (user.contains(" "))
+        {
+          error.set("no spaces in usernames");
+        }
+        else
+        {
+          model.changeLogin(user);
           property.firePropertyChange("Loading", null, true);
+        }
+
+      }
+      else if ((!(user.equals(""))) && (!(oldPass.equals("")) && (!(newPass1.equals(""))) && (!newPass2.equals(""))))
+      {
+        if (user.contains(" "))
+        {
+          this.error.set("no spaces for usernames");
+        }
+        else if (newPass1.contains(" "))
+        {
+          this.error.set("no spaces for passwords");
+        }
+        else if (newPass1.equals(newPass2))
+        {
+          model.changePassword(oldPass, newPass1);
+          model.changeLogin(user);
+          trigger = true;
+          property.firePropertyChange("Loading", null, true);
+        }
+        else
+        {
+          this.error.set("new passwords do not match");
         }
       }
       else
       {
-        this.error.set("new passwords do not match");
+        error.set("something went wrong");
       }
     }
-    // 2 Username change
-    else if (!(user.equals("")) && oldPass.equals("") && newPass1.equals("")
-        && newPass2.equals(""))
+    catch (Exception e)
     {
-      if (user.contains(" "))
-      {
-        error.set("no spaces in usernames");
-      }
-      else
-      {
-        model.changeLogin(user);
-        property.firePropertyChange("Loading", null, true);
-      }
-
-    }
-    else if ((!(user.equals(""))) && (!(oldPass.equals("")) && (!(newPass1
-        .equals(""))) && (!newPass2.equals(""))))
-    {
-      if (user.contains(" "))
-      {
-        this.error.set("no spaces for usernames");
-      }
-      else if (newPass1.contains(" "))
-      {
-        this.error.set("no spaces for passwords");
-      }
-      else if (newPass1.equals(newPass2))
-      {
-        model.changePassword(oldPass, newPass1);
-        model.changeLogin(user);
-        trigger = true;
-        property.firePropertyChange("Loading", null, true);
-      }
-      else
-      {
-        this.error.set("new passwords do not match");
-      }
-    }
-    else
-    {
-      error.set("something went wrong");
+      // to do something
     }
   }
 

@@ -27,26 +27,32 @@ public class ServerModelManager implements ServerModel
     try
     {
       this.discoPersistence = new DiscoDatabase();
-    }
-    catch (ClassNotFoundException e)
-    {
-      e.printStackTrace();
-    }
-    fetch();
-  }
-
-  @Override public void addNewUserToUserBase(String userType, String login,
-      String password)
-  {
-    try
-    {
-      userBase.addUser(discoPersistence.saveUser(userType, login, password));
+      fetch();
+      this.discoPersistence.removeGuests(this.userBase);
       fetch();
     }
     catch (Exception e)
     {
       e.printStackTrace();
     }
+
+  }
+
+  @Override public User addNewUserToUserBase(String userType, String login,
+      String password)
+  {
+    try
+    {
+      User user = discoPersistence.saveUser(userType, login, password);
+      userBase.addUser(user);
+      fetch();
+      return user;
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    return null;
   }
 
   @Override public Discussion createNewDiscussion(String discussionName,
@@ -90,7 +96,9 @@ public class ServerModelManager implements ServerModel
     {
       discoPersistence.removeDiscussion(discussionId, userId);
       discussionList.removeDiscussionById(discussionId);
-      property.firePropertyChange("BroadcastRemovingDiscussionToUserRequest",null,new BroadcastRemovingDiscussionToUserRequest(discussionId));
+      property
+          .firePropertyChange("BroadcastRemovingDiscussionToUserRequest", null,
+              new BroadcastRemovingDiscussionToUserRequest(discussionId));
     }
     catch (SQLException e)
     {
@@ -130,7 +138,7 @@ public class ServerModelManager implements ServerModel
   @Override public void addLog(String log)
   {
     this.log.addLog(log);
-    property.firePropertyChange("NewLog",null,log);
+    property.firePropertyChange("NewLog", null, log);
   }
 
   @Override public void addMessageToDiscussion(int discussionId, int senderID,
@@ -139,7 +147,9 @@ public class ServerModelManager implements ServerModel
 
     try
     {
-      Message newMessage = discoPersistence.saveDiscussionMessageConnection(userBase.getUserById(senderID).getUserLogin()+" : " + message,discussionId);
+      Message newMessage = discoPersistence.saveDiscussionMessageConnection(
+          userBase.getUserById(senderID).getUserLogin() + " : " + message,
+          discussionId);
       property.firePropertyChange("BroadcastMessageToDiscussion", null,
           new BroadcastMessageToDiscussionRequest(discussionId, newMessage));
       fetch();
@@ -232,14 +242,14 @@ public class ServerModelManager implements ServerModel
     {
       discoPersistence.editNameOfDiscussion(discussionId, password);
       fetch();
-      property.firePropertyChange("BroadcastChangedDiscussionName",null,new BroadcastChangedDiscussionName(discussionId,password));
+      property.firePropertyChange("BroadcastChangedDiscussionName", null,
+          new BroadcastChangedDiscussionName(discussionId, password));
     }
     catch (Exception e)
     {
       e.printStackTrace();
     }
   }
-
 
   private void fetch()
   {

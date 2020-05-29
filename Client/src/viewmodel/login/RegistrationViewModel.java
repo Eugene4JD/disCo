@@ -39,6 +39,12 @@ public class RegistrationViewModel
     error.set("");
   }
 
+  public void enterAsAGuest()
+  {
+    model.log("","",true,true);
+    property.firePropertyChange("Loading",null,true);
+  }
+
 
   public StringProperty getUsernameProperty()
   {
@@ -87,7 +93,7 @@ public class RegistrationViewModel
     }
     else
     {
-      model.log(username, password0, true);
+      model.log(username, password0, true,false);
       property.firePropertyChange("Loading", null, true);
     }
 
