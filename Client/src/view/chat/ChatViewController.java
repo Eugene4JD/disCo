@@ -32,6 +32,8 @@ public class ChatViewController implements PropertyChangeListener
   @FXML private VBox vBox;
   @FXML private JFXSpinner spinner;
   @FXML private ImageView logo;
+  @FXML private ImageView renameIcon;
+  @FXML private ImageView removeIcon;
 
   private ViewHandler viewHandler;
   private ChatViewModel viewModel;
@@ -119,6 +121,8 @@ public class ChatViewController implements PropertyChangeListener
   private void setLoading()
   {
     logo.setOpacity(0.5);
+    renameIcon.setOpacity(0.5);
+    removeIcon.setOpacity(0.5);
     spinner.visibleProperty().setValue(true);
     vBox.disableProperty().setValue(true);
   }
@@ -126,6 +130,8 @@ public class ChatViewController implements PropertyChangeListener
   private void removeLoading()
   {
     logo.setOpacity(1);
+    renameIcon.setOpacity(1);
+    removeIcon.setOpacity(1);
     spinner.visibleProperty().setValue(false);
     vBox.disableProperty().setValue(false);
   }
