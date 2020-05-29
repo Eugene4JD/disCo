@@ -36,6 +36,7 @@ public class ChatViewController implements PropertyChangeListener
   @FXML private ImageView renameIcon;
   @FXML private ImageView removeIcon;
   @FXML private JFXButton sendButton;
+  @FXML private JFXButton back;
   private boolean disableSend = false;
 
   private ViewHandler viewHandler;
@@ -157,7 +158,9 @@ public class ChatViewController implements PropertyChangeListener
     renameIcon.disableProperty().setValue(true);
     removeIcon.setOpacity(0.5);
     removeIcon.disableProperty().setValue(true);
+    back.disableProperty().setValue(true);
     spinner.visibleProperty().setValue(true);
+    spinner.setOpacity(0.5);
     sendButton.disableProperty().setValue(true);
     disableSend = true;
   }
@@ -168,6 +171,7 @@ public class ChatViewController implements PropertyChangeListener
     renameIcon.disableProperty().setValue(false);
     removeIcon.setOpacity(1);
     removeIcon.disableProperty().setValue(false);
+    back.disableProperty().setValue(false);
     spinner.visibleProperty().setValue(false);
     sendButton.disableProperty().setValue(false);
     disableSend = false;

@@ -30,7 +30,7 @@
                         <Insets left="274.0" />
                     </HBox.margin>
                 </JFXSpinner>
-                <JFXButton focusTraversable="false" onAction="#backButtonPressed" prefHeight="30.0" prefWidth="67.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Back" textFill="#ededed">
+                <JFXButton fx:id="back" focusTraversable="false" onAction="#backButtonPressed" prefHeight="30.0" prefWidth="67.0" style="-fx-background-color: #354f6a; -fx-background-radius: 0;" text="Back" textFill="#ededed">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>

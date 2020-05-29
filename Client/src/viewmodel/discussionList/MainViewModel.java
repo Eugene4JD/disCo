@@ -94,7 +94,7 @@ public class MainViewModel
                   .getDiscussionName()));
           break;
         case "LoggedToExistingDiscussion":
-          System.out.println("it was here");
+          //System.out.println("it was here");
           model.selectDiscussion((int) evt.getNewValue());
           property.firePropertyChange("LogToExistingDiscussion", null,
               evt.getNewValue());
@@ -118,7 +118,6 @@ public class MainViewModel
                 iD.getDiscussionId() + "      " + iD.getDiscussionName()));
           }
           break;
-        case "ChangedDiscussionName":
         case "DiscussionRemoved":
           load();
           break;
@@ -140,8 +139,8 @@ public class MainViewModel
   {
     if (containsLetters())
     {
-    property.firePropertyChange("AlertLetters", null, "");
-    load();
+      property.firePropertyChange("AlertLetters", null, "");
+      load();
     }
     else
       model.searchDiscussionById(Integer.parseInt(search.get()));
@@ -165,6 +164,7 @@ public class MainViewModel
         }
       }
     }
+    property.firePropertyChange("Loading", null, null);
   }
 
   public boolean checkSearch(String selectedLabel)

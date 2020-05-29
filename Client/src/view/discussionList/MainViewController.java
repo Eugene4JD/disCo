@@ -137,6 +137,7 @@ public class MainViewController implements PropertyChangeListener
       switch (evt.getPropertyName())
       {
         case "LogToExistingDiscussion":
+          removeLoading();
           viewHandler.openView("chat");
           break;
         case "OpenSettings":
@@ -157,6 +158,11 @@ public class MainViewController implements PropertyChangeListener
         case "AlertLetters":
         {
           noLettersAllowed();
+          break;
+        }
+        case "Loading":
+        {
+          setLoading();
           break;
         }
       }
@@ -188,5 +194,21 @@ public class MainViewController implements PropertyChangeListener
   public void comboHidden(Event event)
   {
     viewModel.load();
+  }
+
+  private void setLoading()
+  {
+    logo.setOpacity(0.5);
+    usernamesThreads.setOpacity(0.5);
+    spinner.visibleProperty().setValue(true);
+    vBox.disableProperty().setValue(true);
+  }
+
+  private void removeLoading()
+  {
+    logo.setOpacity(1);
+    usernamesThreads.setOpacity(1);
+    spinner.visibleProperty().setValue(false);
+    vBox.disableProperty().setValue(false);
   }
 }
