@@ -115,8 +115,9 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
             }
             else
             {
+              model.updateGuestCounter();
               User user = model
-                  .addNewUserToUserBase("Guest", request1.getLogin(),
+                  .addNewUserToUserBase("Guest","Guest-" + Integer.toString(model.getGuestCounter()),
                       request1.getPassword());
               out.println(gson.toJson(
                   new BroadcastLoginStatusToUserRequest(true,

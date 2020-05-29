@@ -119,6 +119,7 @@ public class MainViewModel
           }
           break;
         case "DiscussionRemoved":
+        case "ChangedDiscussionName":
           load();
           break;
       }

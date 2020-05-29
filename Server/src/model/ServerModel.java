@@ -25,5 +25,7 @@ public interface ServerModel extends UnnamedPropertyChangeSubject
   void editUserLogin(int userId, String userLogin);
   void editUserPassword(int userId, String password);
   void editNameOfDiscussion(int discussionId, String password);
+  int getGuestCounter();
+  void updateGuestCounter();
 
 }

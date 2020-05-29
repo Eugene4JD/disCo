@@ -17,12 +17,14 @@ public class ServerModelManager implements ServerModel
   private PropertyChangeSupport property;
   private UserBase userBase;
   private Log log;
+  private int guestCounter;
 
   public ServerModelManager()
   {
     this.discussionList = new DiscussionList();
     this.userBase = new UserBase();
     this.log = Log.getInstance();
+    this.guestCounter = 0;
     property = new PropertyChangeSupport(this);
     try
     {
@@ -43,6 +45,7 @@ public class ServerModelManager implements ServerModel
   {
     try
     {
+      System.out.println(login);
       User user = discoPersistence.saveUser(userType, login, password);
       userBase.addUser(user);
       fetch();
@@ -249,6 +252,16 @@ public class ServerModelManager implements ServerModel
     {
       e.printStackTrace();
     }
+  }
+
+  @Override public void updateGuestCounter()
+  {
+    this.guestCounter ++;
+  }
+
+  @Override public int getGuestCounter()
+  {
+    return guestCounter;
   }
 
   private void fetch()

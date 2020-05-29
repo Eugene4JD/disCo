@@ -44,7 +44,6 @@ public class ServerConnector implements Runnable
       {
         e.printStackTrace();
       }
-
     }
   }
 
