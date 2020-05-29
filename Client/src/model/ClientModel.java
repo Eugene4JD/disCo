@@ -16,7 +16,7 @@ public interface ClientModel extends ultimateUnnamedPropertyChangeSubject
   void sendMessageToDiscussion(int discussionID, int userId, String message);
   void connect();
   void disconnect();
-  void log(String login, String password, boolean isNewUser);
+  void log(String login, String password, boolean isNewUser,boolean isGuest);
   int getDiscussionIdFromBuffer(String name);
   String getLogin();
   int getId();

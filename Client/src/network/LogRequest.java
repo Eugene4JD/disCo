@@ -5,13 +5,15 @@ public class LogRequest extends Request
   private String login;
   private String password;
   private boolean isNewUser;
+  private boolean isGuest;
 
-  public LogRequest(String login, String password, boolean isNewUser)
+  public LogRequest(String login, String password, boolean isNewUser, boolean isGuest)
   {
     super(RequestType.Log);
     this.login = login;
     this.password = password;
     this.isNewUser = isNewUser;
+    this.isGuest = isGuest;
   }
 
   public String getLogin()
@@ -27,5 +29,10 @@ public class LogRequest extends Request
   public boolean isNewUser()
   {
     return this.isNewUser;
+  }
+
+  public boolean isGuest()
+  {
+    return isGuest;
   }
 }

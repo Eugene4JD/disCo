@@ -56,38 +56,21 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
             break;
           case Log:
             LogRequest request1 = gson.fromJson(req, LogRequest.class);
-            if (request1.isNewUser())
+            if (!request1.isGuest())
             {
-              if (model.getUserFromUserBaseByLogin(request1.getLogin()) == null)
+              if (request1.isNewUser())
               {
-                model.addNewUserToUserBase("RegisteredUser", request1.getLogin(),
-                    request1.getPassword());
-                User user = model.getUserFromUserBaseByLogin(request1.getLogin());
-                out.println(gson.toJson(
-                    new BroadcastLoginStatusToUserRequest(true, request1.getLogin(),
-                        user.getUserId(),user.getUserType())));
-                DiscussionList discussionList = model.getDiscussionWithUser(
-                    model.getUserFromUserBaseByLogin(request1.getLogin())
-                        .getUserId());
-                out.println(gson.toJson(
-                    new BroadcastDiscussionsToUserRequest(discussionList)));
-              }
-              else
-              {
-                out.println(gson.toJson(
-                    new BroadcastLoginStatusToUserRequest(false, "", 0,"")));
-              }
-            }
-            else
-            {
-              User user = model.getUserFromUserBaseByLogin(request1.getLogin());
-              if (user != null)
-              {
-                if (user.getUserPassword().equals(request1.getPassword()))
+                if (model.getUserFromUserBaseByLogin(request1.getLogin())
+                    == null)
                 {
+                  model.addNewUserToUserBase("RegisteredUser",
+                      request1.getLogin(), request1.getPassword());
+                  User user = model
+                      .getUserFromUserBaseByLogin(request1.getLogin());
                   out.println(gson.toJson(
                       new BroadcastLoginStatusToUserRequest(true,
-                          user.getUserLogin(), user.getUserId(),user.getUserType())));
+                          request1.getLogin(), user.getUserId(),
+                          user.getUserType(), false)));
                   DiscussionList discussionList = model.getDiscussionWithUser(
                       model.getUserFromUserBaseByLogin(request1.getLogin())
                           .getUserId());
@@ -95,12 +78,48 @@ public class ServerClientHandler implements Runnable, PropertyChangeListener
                       new BroadcastDiscussionsToUserRequest(discussionList)));
                 }
                 else
+                {
                   out.println(gson.toJson(
-                      new BroadcastLoginStatusToUserRequest(false, "", 0,"")));
+                      new BroadcastLoginStatusToUserRequest(false, "", 0, "",
+                          false)));
+                }
               }
               else
-                out.println(gson.toJson(
-                    new BroadcastLoginStatusToUserRequest(false, "", 0,"")));
+              {
+                User user = model
+                    .getUserFromUserBaseByLogin(request1.getLogin());
+                if (user != null)
+                {
+                  if (user.getUserPassword().equals(request1.getPassword()))
+                  {
+                    out.println(gson.toJson(
+                        new BroadcastLoginStatusToUserRequest(true,
+                            user.getUserLogin(), user.getUserId(),
+                            user.getUserType(), false)));
+                    DiscussionList discussionList = model.getDiscussionWithUser(
+                        model.getUserFromUserBaseByLogin(request1.getLogin())
+                            .getUserId());
+                    out.println(gson.toJson(
+                        new BroadcastDiscussionsToUserRequest(discussionList)));
+                  }
+                  else
+                    out.println(gson.toJson(
+                        new BroadcastLoginStatusToUserRequest(false, "", 0, "",
+                            false)));
+                }
+                else
+                  out.println(gson.toJson(
+                      new BroadcastLoginStatusToUserRequest(false, "", 0, "",
+                          false)));
+              }
+            }
+            else
+            {
+              User user = model
+                  .addNewUserToUserBase("Guest", request1.getLogin(),
+                      request1.getPassword());
+              out.println(new BroadcastLoginStatusToUserRequest(true, "Guest-"+user.getUserId(),
+                  user.getUserId(), user.getUserType(), true));
             }
             break;
 

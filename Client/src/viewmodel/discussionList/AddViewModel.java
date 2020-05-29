@@ -50,8 +50,16 @@ public class AddViewModel
     }
     else
     {
-      model.createDiscussion(enter.get());
-      property.firePropertyChange("Loading", null, null);
+      try
+      {
+        model.createDiscussion(enter.get());
+        property.firePropertyChange("Loading", null, null);
+      }
+      catch (Exception e)
+      {
+        // to do
+      }
+
     }
   }
 

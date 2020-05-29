@@ -26,7 +26,9 @@ public interface DiscoPersistence
       throws SQLException;
   void changeEditorLoginInEveryDiscussion(String oldEditorLogin,
       String newEditorLogin) throws SQLException;
-  Message saveDiscussionMessageConnection(String text, int discussionId) throws SQLException;
+  Message saveDiscussionMessageConnection(String text, int discussionId)
+      throws SQLException;
   void linkDiscussionMessage(DiscussionList discussionList) throws SQLException;
+  void removeGuests(UserBase userBase) throws SQLException;
 
 }

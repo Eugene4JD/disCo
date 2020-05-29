@@ -62,9 +62,9 @@ public class ClientSender implements RemoteModel
     out.println(gson.toJson(new CreateDiscussionRequest(discussionID, userId)));
   }
 
-  @Override public void log(String login, String password, boolean isNewUser)
+  @Override public void log(String login, String password, boolean isNewUser,boolean isGuest)
   {
-    out.println(gson.toJson(new LogRequest(login, password, isNewUser)));
+    out.println(gson.toJson(new LogRequest(login, password, isNewUser,isGuest)));
   }
 
   @Override public void logToExistingDiscussion(int discussionId, int userId)

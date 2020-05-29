@@ -6,15 +6,17 @@ public class BroadcastLoginStatusToUserRequest extends Request
   private String login;
   private int id;
   private String typeOfUser;
+  private boolean isGuest;
 
   public BroadcastLoginStatusToUserRequest(Boolean isLogSuccessful,
-      String login, int id, String typeOfUser)
+      String login, int id, String typeOfUser, boolean isGuest)
   {
     super(RequestType.BroadcastLoginStatus);
     this.isLogSuccessful = isLogSuccessful;
     this.login = login;
     this.id = id;
     this.typeOfUser = typeOfUser;
+    this.isGuest = isGuest;
   }
 
   public boolean isLogSuccessful()
@@ -35,5 +37,10 @@ public class BroadcastLoginStatusToUserRequest extends Request
   public String getTypeOfUser()
   {
     return this.typeOfUser;
+  }
+
+  public boolean isGuest()
+  {
+    return isGuest;
   }
 }
