@@ -58,6 +58,7 @@ public class ChatViewModel
 
   public void load()
   {
+    chatList.clear();
     Discussion discussion = model.getDiscussionListBuffer()
         .getDiscussionById(model.getSelectedDiscussion());
     if (discussion != null)

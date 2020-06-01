@@ -45,7 +45,6 @@ public class ServerModelManager implements ServerModel
   {
     try
     {
-      System.out.println(login);
       User user = discoPersistence.saveUser(userType, login, password);
       userBase.addUser(user);
       fetch();
@@ -256,7 +255,7 @@ public class ServerModelManager implements ServerModel
 
   @Override public void updateGuestCounter()
   {
-    this.guestCounter ++;
+    this.guestCounter++;
   }
 
   @Override public int getGuestCounter()
