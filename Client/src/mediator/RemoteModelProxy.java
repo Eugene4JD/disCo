@@ -16,9 +16,10 @@ public class RemoteModelProxy implements RemoteModel
     this.model = model;
   }
 
-  @Override public void log(String login, String password, boolean isNewUser,boolean isGuest)
+  @Override public void log(String login, String password, boolean isNewUser,
+      boolean isGuest)
   {
-    clientSender.log(login, password, isNewUser,isGuest);
+    clientSender.log(login, password, isNewUser, isGuest);
   }
 
   @Override public void connect() throws IOException
@@ -33,7 +34,9 @@ public class RemoteModelProxy implements RemoteModel
 
   @Override public void removeDiscussion(int discussionId, int userId)
   {
-    if (model.getDiscussionListBuffer().getDiscussionById(discussionId).getLoginOfEditorOfDiscussion().equals(model.getLogin()) || model.getUserType().equals("Admin"))
+    if (model.getDiscussionListBuffer().getDiscussionById(discussionId)
+        .getLoginOfEditorOfDiscussion().equals(model.getLogin()) || model
+        .getUserType().equals("Admin"))
     {
       clientSender.removeDiscussion(discussionId, userId);
     }
@@ -51,7 +54,8 @@ public class RemoteModelProxy implements RemoteModel
     }
     else
     {
-      throw new IllegalStateException("! You are guest, only registered users are allowed to do that");
+      throw new IllegalStateException(
+          "! You are guest, only registered users are allowed to do that");
     }
   }
 
@@ -90,14 +94,17 @@ public class RemoteModelProxy implements RemoteModel
     }
     else
     {
-      throw new IllegalStateException("! You are guest, only registered users are allowed to do that");
+      throw new IllegalStateException(
+          "! You are guest, only registered users are allowed to do that");
     }
   }
 
   @Override public void changeNameOfDiscussion(int discussionId,
       String discussionName)
   {
-    if (model.getDiscussionListBuffer().getDiscussionById(discussionId).getLoginOfEditorOfDiscussion().equals(model.getLogin()) || model.getUserType().equals("Admin"))
+    if (model.getDiscussionListBuffer().getDiscussionById(discussionId)
+        .getLoginOfEditorOfDiscussion().equals(model.getLogin()) || model
+        .getUserType().equals("Admin"))
     {
       clientSender.changeNameOfDiscussion(discussionId, discussionName);
     }
@@ -115,7 +122,8 @@ public class RemoteModelProxy implements RemoteModel
     }
     else
     {
-      throw new IllegalStateException("! You are guest, only registered users are allowed to do that");
+      throw new IllegalStateException(
+          "! You are guest, only registered users are allowed to do that");
     }
   }
 }

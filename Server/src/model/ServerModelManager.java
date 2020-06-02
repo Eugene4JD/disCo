@@ -62,6 +62,8 @@ public class ServerModelManager implements ServerModel
   @Override public Discussion createNewDiscussion(String discussionName,
       String editorOfDiscussionLogin)
   {
+    if (discussionName == null || editorOfDiscussionLogin == null)
+      throw new IllegalArgumentException("Null argument has been given");
     try
     {
       Discussion discussion = discoPersistence
