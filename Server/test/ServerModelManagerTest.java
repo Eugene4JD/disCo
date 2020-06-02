@@ -39,8 +39,8 @@ class ServerModelManagerTest
     model.addNewUserToUserBase("RegisteredUser", "Greg1232", "123");
     model.addNewUserToUserBase("RegisteredUser", "Neo12332", "123");
     assertEquals("Greg1232 Neo12332",
-        model.getUserFromUserBaseByLogin("Greg1232").getUserLogin() + " " + model
-            .getUserFromUserBaseByLogin("Neo12332").getUserLogin());
+        model.getUserFromUserBaseByLogin("Greg1232").getUserLogin() + " "
+            + model.getUserFromUserBaseByLogin("Neo12332").getUserLogin());
   }
 
   @Test void addBoundariesUserToUserBase()

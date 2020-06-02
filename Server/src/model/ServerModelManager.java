@@ -129,7 +129,7 @@ public class ServerModelManager implements ServerModel
 
   @Override public void removeUserFromUserBase(int userID)
   {
-    if(userID <= 0)
+    if (userID <= 0)
     {
       throw new IllegalArgumentException("Wrong id");
     }
@@ -173,7 +173,7 @@ public class ServerModelManager implements ServerModel
   @Override public void addMessageToDiscussion(int discussionId, int senderID,
       String message)
   {
-    if (discussionId <=0 || senderID <=0 || message ==null)
+    if (discussionId <= 0 || senderID <= 0 || message == null)
       throw new IllegalArgumentException("Wrong data");
     try
     {
