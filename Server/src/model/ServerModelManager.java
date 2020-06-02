@@ -3,6 +3,7 @@ package model;
 import network.BroadcastChangedDiscussionName;
 import network.BroadcastMessageToDiscussionRequest;
 import network.BroadcastRemovingDiscussionToUserRequest;
+import org.postgresql.core.SqlCommand;
 import utility.Log;
 
 import java.beans.PropertyChangeListener;
@@ -43,6 +44,8 @@ public class ServerModelManager implements ServerModel
   @Override public User addNewUserToUserBase(String userType, String login,
       String password)
   {
+    if (userType == null || login == null || password == null)
+      throw new IllegalArgumentException("Something is null");
     try
     {
       User user = discoPersistence.saveUser(userType, login, password);
@@ -50,9 +53,8 @@ public class ServerModelManager implements ServerModel
       fetch();
       return user;
     }
-    catch (Exception e)
+    catch (SQLException e)
     {
-      e.printStackTrace();
     }
     return null;
   }
