@@ -33,7 +33,6 @@ public class MainViewController implements PropertyChangeListener
 {
   @FXML private JFXListView<Label> listView;
   @FXML private TextField searchField;
-  @FXML private JFXPopup popup;
   @FXML private ComboBox<String> searchSelector;
   @FXML private Text usernamesThreads;
   @FXML private ImageView logo;
@@ -57,15 +56,6 @@ public class MainViewController implements PropertyChangeListener
     usernamesThreads.textProperty()
         .bindBidirectional(viewModel.getUserNamesThreads());
     viewModel.addListener(this);
-  }
-
-  private void initPopup()
-  {
-    JFXButton b0 = new JFXButton("Enter");
-    JFXButton b1 = new JFXButton("Edit");
-    JFXButton b2 = new JFXButton("Remove");
-    VBox vBox = new VBox(b0, b1, b2);
-    popup.setPopupContent(vBox);
   }
 
   public void reset()

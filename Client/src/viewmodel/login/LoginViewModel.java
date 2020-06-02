@@ -15,7 +15,7 @@ public class LoginViewModel
     implements PropertyChangeListener, UnnamedPropertyChangeSubject
 {
   private ClientModel model;
-  private StringProperty username;
+  private StringProperty username;  
   private StringProperty password;
   private StringProperty error;
   private PropertyChangeSupport property;
