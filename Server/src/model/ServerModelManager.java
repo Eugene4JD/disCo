@@ -43,6 +43,8 @@ public class ServerModelManager implements ServerModel
   @Override public User addNewUserToUserBase(String userType, String login,
       String password)
   {
+    if (userType == null || login == null || password == null)
+      throw new IllegalArgumentException("Wrong input");
     try
     {
       User user = discoPersistence.saveUser(userType, login, password);
@@ -50,7 +52,7 @@ public class ServerModelManager implements ServerModel
       fetch();
       return user;
     }
-    catch (Exception e)
+    catch (SQLException e)
     {
       e.printStackTrace();
     }
