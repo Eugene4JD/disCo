@@ -62,6 +62,8 @@ public class ServerModelManager implements ServerModel
   @Override public Discussion createNewDiscussion(String discussionName,
       String editorOfDiscussionLogin)
   {
+    if (discussionName == null || editorOfDiscussionLogin == null)
+      throw new IllegalArgumentException("Null arguments are were given");
     try
     {
       Discussion discussion = discoPersistence
@@ -81,21 +83,35 @@ public class ServerModelManager implements ServerModel
 
   @Override public Discussion getDiscussionById(int discussionId)
   {
+    if (discussionId <= 0)
+    {
+      throw new IllegalArgumentException("index less than zero");
+    }
     return discussionList.getDiscussionById(discussionId);
   }
 
   @Override public User getUserFromUserBaseById(int id)
   {
+    if (id <= 0)
+    {
+      throw new IllegalArgumentException("index less than zero");
+    }
     return userBase.getUserById(id);
   }
 
   @Override public User getUserFromUserBaseByLogin(String login)
   {
+    if (login == null)
+    {
+      throw new IllegalArgumentException("Login is null");
+    }
     return userBase.getUserByLogin(login);
   }
 
   @Override public void removeDiscussion(int discussionId, int userId)
   {
+    if (discussionId <= 0 || userId <= 0)
+      throw new IllegalArgumentException("Wrong data");
     try
     {
       discoPersistence.removeDiscussion(discussionId, userId);
@@ -113,9 +129,14 @@ public class ServerModelManager implements ServerModel
 
   @Override public void removeUserFromUserBase(int userID)
   {
+    if(userID <= 0)
+    {
+      throw new IllegalArgumentException("Wrong id");
+    }
     try
     {
       discoPersistence.removeUser(userID);
+      this.userBase.removeUserById(userID);
       fetch();
     }
     catch (SQLException e)
@@ -126,6 +147,10 @@ public class ServerModelManager implements ServerModel
 
   @Override public void addUserToDiscussion(int discussionID, int userID)
   {
+    if (discussionID <= 0 || userID <= 0)
+    {
+      throw new IllegalArgumentException("Wrong given data");
+    }
     try
     {
       discoPersistence.saveUserDiscussionConnection(discussionID, userID);
@@ -148,7 +173,8 @@ public class ServerModelManager implements ServerModel
   @Override public void addMessageToDiscussion(int discussionId, int senderID,
       String message)
   {
-
+    if (discussionId <=0 || senderID <=0 || message ==null)
+      throw new IllegalArgumentException("Wrong data");
     try
     {
       Message newMessage = discoPersistence.saveDiscussionMessageConnection(
@@ -196,6 +222,10 @@ public class ServerModelManager implements ServerModel
 
   @Override public Discussion getDiscussionWithCertainId(int id)
   {
+    if (id <= 0)
+    {
+      throw new IllegalArgumentException("Wrong ID");
+    }
     return this.discussionList.getDiscussionById(id);
   }
 
