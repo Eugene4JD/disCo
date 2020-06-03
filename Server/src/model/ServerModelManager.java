@@ -179,6 +179,10 @@ public class ServerModelManager implements ServerModel
 
   @Override public void removeDiscussionByName(String name)
   {
+    if (name == null || name.equals(""))
+    {
+      throw new IllegalArgumentException("Wrong name");
+    }
     discussionList.removeDiscussionByName(name);
   }
 
