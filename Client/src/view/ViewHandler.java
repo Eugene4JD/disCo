@@ -41,6 +41,7 @@ public class ViewHandler
     this.primaryStage = primaryStage;
     this.currentScene = new Scene(new Region());
     openView("login");
+    /*
     try
     {
       AudioInputStream audioInputStream = AudioSystem
@@ -52,6 +53,7 @@ public class ViewHandler
     catch (Exception e)
     {
     }
+     */
   }
 
   public void openView(String id)
