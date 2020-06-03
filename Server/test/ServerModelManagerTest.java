@@ -1,5 +1,4 @@
 import model.*;
-import network.CreateDiscussionRequest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -311,6 +310,37 @@ class ServerModelManagerTest
   {
     assertThrows(IllegalArgumentException.class, () -> {
       model.addMessageToDiscussion(-1, -100, "ds");
+    });
+  }
+
+  @Test void removeZeroDiscussionByName()
+  {
+    assertThrows(IllegalArgumentException.class, () -> {
+      model.removeDiscussionByName(null);
+    });
+  }
+
+  @Test void removeOneDiscussionByName()
+  {
+    Discussion discussion = model.createNewDiscussion("BFR", "Tim");
+    model.removeDiscussionByName("BFR");
+    assertNull(model.getDiscussionById(discussion.getDiscussionId()));
+  }
+
+  @Test void removeManyDiscussionByName()
+  {
+    // no need
+  }
+
+  @Test void removeBoundariesDiscussionByName()
+  {
+    // no need
+  }
+
+  @Test void removeExceptionDiscussionByName()
+  {
+    assertThrows(IllegalArgumentException.class, () -> {
+      model.removeDiscussionByName("");
     });
   }
 
